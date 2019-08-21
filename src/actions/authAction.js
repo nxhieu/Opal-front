@@ -14,7 +14,7 @@ export const register = formData => async dispatch => {
   //Need content type header whenever u make  request
   //put your
   try {
-    const res = await fetch("https://opal-rest.herokuapp.com/auth/register", {
+    const res = await fetch("http://localhost:8080/auth/register", {
       method: "PUT",
       body: JSON.stringify(formData),
       headers: {
@@ -35,7 +35,7 @@ export const register = formData => async dispatch => {
 // Log in user
 export const login = formData => async dispatch => {
   try {
-    const res = await fetch("https://opal-rest.herokuapp.com/auth/login", {
+    const res = await fetch("http://localhost:8080/auth/login", {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {
