@@ -43,6 +43,7 @@ class App extends Component {
           </Fragment>
         </Router>
       </Provider>
+      
     );
   }
 }

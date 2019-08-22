@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { register } from "../../actions/authAction";
 import { connect } from "react-redux";
+import "../../dist/css/main.css";
 
 class Register extends Component {
   state = {
@@ -144,11 +145,13 @@ class Register extends Component {
               required
             />
           </div>
+          <div className="btnstyle">
           <input
             type="submit"
             value="Register"
             className="btn btn-primary btn-block"
           />
+          </div>
         </form>
       </div>
     );

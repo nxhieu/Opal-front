@@ -2,38 +2,123 @@
   margin: 0;
   padding: 0; }
 
-body {
-  background: #f4f4f4;
-  color: #333;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.5; }
+  body {
+    background: linear-gradient(90deg, rgba(244,244,244,1) 6%, rgba(214,220,222,1) 46%, rgba(234,232,240,1) 97%);
+    color: #333;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5; 
+  }
 
-.main-nav {
-  display: flex;
-  background-color: #0101be;
-  color: #f4f4f4;
-  padding: 1.6rem;
-  align-items: center;
-  justify-content: space-between; }
+   /* ======== NAVBAR PROPS ========*/
+
+  .main-nav {
+    display: flex;
+    background: linear-gradient(90deg, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 46%, rgba(102,77,153,1) 97%);
+    color: #f4f4f4;
+    padding: 0.8rem;
+    align-items: center;
+    justify-content: space-between; 
+    border: 1px solid gray;}
+
+  /* ======== NAVBAR LOGO PROPS ========*/
+
+  .main-nav .logo ul {
+    display: flex;
+    list-style: none;
+  }
+  
+  .main-nav .logo ul li {
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+  }
+
+  .main-nav .logo .logoparagraph {
+    float: left;
+    align-items: center;
+    color: red;
+  }
+
+  /* ======== NAVBAR RIGHT ITEMS PROPS ========*/
+
   .main-nav .left-nav ul {
     display: flex;
-    list-style: none; }
+    list-style: none; 
+    
+  }
+
   .main-nav .left-nav ul li a {
+    font-size: 20px;
     color: #f4f4f4;
     text-decoration: none;
     border: none;
-    padding: 0.2rem 1rem;
-    text-decoration: none; }
+    padding:  0.5rem 1.5rem;
+    text-decoration: none; 
+  }
+
   .main-nav .left-nav ul li a:hover {
-    background-color: #00008b;
-    cursor: pointer; }
+    background: linear-gradient(180deg, rgba(0,0,139,0.5) 40%, rgba(214,220,222,0.2) 100%);
+    cursor: pointer; 
+  }
+
+  /* ======== FORM PROPS ========*/
+
+  .form-container {
+   font-family: Bookman Old Style; 
+   font-size: 20px;
+   color: purple;
+   margin: 50px;
+ }
+ .form-container h1 {
+  margin-bottom: 30px;
+ }
+  .form-group label{
+    font-weight: bold;
+    float: left;
+    clear: left;
+    width: 250px;
+    text-align: left;
+  }
+
+  .form-group input{
+    float: left;
+    width: 250px;
+    font-size: 20px;
+  }
+
+
+/* ======== BUTTON PROPS ========*/
 
 .btn-light, .btn-darl {
+  font-size: 20px;
   display: inline-block;
   padding: 0.7rem 2rem;
   border: none;
   cursor: pointer;
   text-decoration: none;
   margin-top: 1rem; }
+
+.btn  {
+  font-size: 30px;
+  float: left;
+  clear: left;
+  background:linear-gradient(90deg, rgba(121,74,135,1) 0%, rgba(117,74,134,1) 19%, rgba(85,70,130,1) 83%);
+  color: white;
+  border: none;
+  padding: 8px 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.btnstyle {
+  margin-top: 40px;
+}
+
+
+.btn:hover{
+  background:rgba(85,70,130,1);
+}
 
 /*# sourceMappingURL=main.css.map */
