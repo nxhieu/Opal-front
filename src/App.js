@@ -9,11 +9,11 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import Card from "./components/card/Card";
 import PrivateRoute from "./route/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./dist/css/main.css";
+import Comment from "./components/comment/creatComment";
 
 class App extends Component {
   render() {
@@ -26,12 +26,12 @@ class App extends Component {
             <Switch>
               <Route
                 exact
-                path="/Card"
+                path="/Comment"
                 render={() =>
                   !store.getState().auth.isAuthenticated ? (
                     <Redirect to="/login" />
                   ) : (
-                    <Card />
+                    <Comment />
                   )
                 }
               />
@@ -43,7 +43,6 @@ class App extends Component {
           </Fragment>
         </Router>
       </Provider>
-      
     );
   }
 }
