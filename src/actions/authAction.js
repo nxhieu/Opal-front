@@ -9,12 +9,12 @@ import {
   CLEAR_ERRORS
 } from "./types";
 
-//Register a user
+// Due to the use of the use of redux-thunk in middleware, function get passed in method dispatch. after api calls, method dispatch get called and dispatch the object to reducer
+//When a function contains api call. we will have to use async function (OR USE PROMISE)
 export const register = formData => async dispatch => {
-  //Need content type header whenever u make  request
-  //put your
+  //put request to the backend (api call). We have to use
   try {
-    const res = await fetch("http://localhost:8080/auth/register", {
+    const res = await fetch(`${window.apiAddress}/auth/register`, {
       method: "PUT",
       body: JSON.stringify(formData),
       headers: {
@@ -26,6 +26,7 @@ export const register = formData => async dispatch => {
       console.log("error");
     }
     const data = await res.json();
+    //dispatch to reducer (the type here is just a string to specify condition, the payload is data from api calls)
     dispatch({ type: REGISTER_SUCCESS, payload: data });
     console.log(data);
   } catch (error) {
@@ -35,7 +36,7 @@ export const register = formData => async dispatch => {
 // Log in user
 export const login = formData => async dispatch => {
   try {
-    const res = await fetch("http://localhost:8080/auth/login", {
+    const res = await fetch(`${window.apiAddress}/auth/login`, {
       method: "POST",
       body: JSON.stringify(formData),
       headers: {

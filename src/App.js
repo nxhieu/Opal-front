@@ -38,12 +38,21 @@ class App extends Component {
               {/* <Route exact path="/Card" component={Card} /> */}
 
               <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
+              <Route
+                exact
+                path="/login"
+                render={() =>
+                  !store.getState().auth.isAuthenticated ? (
+                    <Login />
+                  ) : (
+                    <Redirect to="/Card" />
+                  )
+                }
+              />
             </Switch>
           </Fragment>
         </Router>
       </Provider>
-      
     );
   }
 }

@@ -28,6 +28,13 @@ export default (state = initialState, action) => {
         token: action.payload.token,
         isAuthenticated: true
       };
+    case USER_LOADED:
+      return {
+        ...state,
+        userId: action.payload.userId,
+        token: action.payload.token,
+        isAuthenticated: true
+      };
     case REGISTER_FAIL:
     case AUTH_ERROR:
     case LOGIN_FAIL:
