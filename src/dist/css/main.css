@@ -13,6 +13,8 @@
 
   .main-nav {
     display: flex;
+    position: fixed;
+    width: 100%;
     background: linear-gradient(90deg, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 46%, rgba(102,77,153,1) 97%);
     color: #f4f4f4;
     padding: 0.8rem;
@@ -25,6 +27,7 @@
   .main-nav .logo ul {
     display: flex;
     list-style: none;
+    
   }
   
   .main-nav .logo ul li {
@@ -33,11 +36,6 @@
     padding-left: 20px;
   }
 
-  .main-nav .logo .logoparagraph {
-    float: left;
-    align-items: center;
-    color: red;
-  }
 
   /* ======== NAVBAR RIGHT ITEMS PROPS ========*/
 
@@ -89,7 +87,7 @@
 
 /* ======== BUTTON PROPS ========*/
 
-.btn-light, .btn-darl {
+.btn-light, .btn-dark {
   font-size: 20px;
   display: inline-block;
   padding: 0.7rem 2rem;
@@ -121,4 +119,132 @@
   background:rgba(85,70,130,1);
 }
 
+/* ======== BLOGPOST PROPS ========*/
+
+.blogpost-container{
+  
+  display: inline-block;
+  background:linear-gradient(90deg, rgba(121,74,135,0.4) 0%, rgba(117,74,134,0.3) 19%, rgba(85,70,130,0.2) 83%);
+  border:1px solid grey;
+  border-radius: 10px;
+  min-width: 400px;
+  max-width: 650px;
+  width: 40%;
+  margin-top: 100px;
+  margin-left: 80px;
+  margin-right: 0px;
+  -webkit-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  -moz-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+}
+
+.blogpost-container p{
+  padding-top:5px;
+}
+
+.blogpost-user-img{
+  border-radius: 50%;
+  border: double 5px transparent;
+  background-image: linear-gradient(white, white), radial-gradient(circle at top left, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 20%, rgba(102,77,153,1) 97%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  -webkit-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  -moz-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  
+}
+
+
+.blogpost-header {
+  font-size: 20px;
+  color: whitesmoke;
+  display: block;
+  background:linear-gradient(90deg, rgba(121,74,135,0.5) 0%, rgba(117,74,134,0.5) 19%, rgba(85,70,130,1) 83%);
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  padding: 15px;
+  
+}
+.blogpost-edit{
+
+  display: inline-flex;
+  position: absolute;
+  margin-left:25%;
+  color: black;
+  align-items: center;
+
+
+}
+
+.blogpost-date-posted{
+  display:inherit;
+
+  font-size:15px;
+  margin-left:10px;
+
+}
+
+.blogpost-body{
+  padding: 15px;
+}
+
+.blogpost-body ul{
+  
+  list-style: none;
+  margin-left:20px;
+  padding:10px;
+  border-width: 3px;
+  border-style: solid;
+  border-image: 
+    linear-gradient(
+      to bottom, 
+      rgba(121,171,181,1) 6%,
+      rgba(16,133,181,1) 46%,
+      rgba(102,77,153,1) 97%
+    ) 1 100%;
+}
+.blogpost-footer{
+  color: whitesmoke;
+  background:linear-gradient(90deg, rgba(121,74,135,0.5) 0%, rgba(117,74,134,0.5) 19%, rgba(85,70,130,1) 83%);
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+  padding: 15px;
+  
+}
+
+.blogpost-header ul,.blogpost-footer ul{
+  display: inline-flex;
+  align-items: center;
+}
+
+.blogpost-header li,.blogpost-footer li{
+  display: inline-flex;
+  list-style: none;
+  align-items: center;
+  padding-left:20px;
+  
+}
+
+/* ======== BLOGPOST BUTTON PROPS ========*/
+.btn-like {
+  background: rgba(255, 255, 255,0);
+  background-image: url(../../img/blogpost/feedback/like.png);
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  height: 30px;
+  width: 30px;
+  border: none;
+}
+
+.btn-comment{
+  background: rgba(255, 255, 255,0);
+  background-image: url(../../img/blogpost/feedback/comment.png);
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  height: 30px;
+  width: 30px;
+  border: none;
+}
 /*# sourceMappingURL=main.css.map */

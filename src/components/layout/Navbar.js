@@ -27,7 +27,7 @@ class Navbar extends Component {
               </Link>
             </li>
             <li>
-              <h2>HEAD PAGE</h2>
+              <h2>O P A L</h2>
             </li>
           </ul>
         </div>
