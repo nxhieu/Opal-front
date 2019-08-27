@@ -10,6 +10,7 @@ import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Posts from "./components/post/posts";
+import Blogpost from "./components/layout/Blogpost";
 import PrivateRoute from "./route/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -23,6 +24,7 @@ class App extends Component {
         <Router>
           <Fragment>
             <Navbar />
+            <Blogpost />
             <Switch>
               <Route
                 exact
