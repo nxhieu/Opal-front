@@ -21,7 +21,7 @@ class Register extends Component {
     //if registering was succesful navigate to /card
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
-      this.props.history.push("/Card");
+      this.props.history.push("/post");
     }
   }
 

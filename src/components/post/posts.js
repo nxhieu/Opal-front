@@ -2,24 +2,25 @@ import React, { Component } from "react";
 
 export class posts extends Component {
   state = {
-    name: "hieu",
-    file: null
+    email: "hieu",
+    file: ""
   };
-  onFileChange(event) {
-    this.setState({ file: event.target.files[0] });
-  }
+  onFileChange = event => {
+    this.setState({
+      file: URL.createObjectURL(event.target.files[0])
+    });
+    console.log(this.state.file);
+  };
 
   render() {
-    const { name } = this.state;
+    const { email } = this.state;
     return (
       <div>
         <form>
-          <p>{name}</p>
-          <input
-            onChange={this.onFileChange.bind(this)}
-            type="file"
-            accept="image/*"
-          />
+          <p>{email}</p>
+          <input onChange={this.onFileChange} type="file" accept="image/*" />
+          <p>{this.state.file}</p>
+          <img src={this.state.file} alt="post" width="100" />
         </form>
       </div>
     );
