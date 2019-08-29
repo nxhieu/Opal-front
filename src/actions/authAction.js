@@ -44,10 +44,10 @@ export const login = formData => async dispatch => {
         "Content-type": "application/json"
       }
     });
+    const data = await res.json();
     if (res.status !== 200) {
       dispatch({ type: LOGIN_FAIL, payload: "error" });
     } else {
-      const data = await res.json();
       dispatch({ type: LOGIN_SUCCESS, payload: data });
     }
   } catch (err) {
