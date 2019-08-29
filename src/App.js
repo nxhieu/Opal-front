@@ -19,7 +19,6 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {console.log(store.getState().auth.isAuthenticated)}
         <Router>
           <Fragment>
             <Navbar />

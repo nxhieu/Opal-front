@@ -52,7 +52,7 @@ export const login = formData => async dispatch => {
   } catch (err) {
     dispatch({
       type: LOGIN_FAIL,
-      payload: err.response.message
+      payload: err.message
     });
   }
 };
@@ -61,24 +61,19 @@ export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
 };
 
-
-//
+//have not implemented yet. load user when there is a valid token
 export const loaduser = () => async dispatch => {
-
   try {
-
     //
-    const res = await fetch(`${window.apiAddress}/auth/loaduser`,{
+    const res = await fetch(`${window.apiAddress}/auth/loaduser`, {
       method: "POST",
       headers: {
-        "Authorization" : "bearer " + localStorage.getItem('token')
+        Authorization: "bearer " + localStorage.getItem("token")
       }
-    })
+    });
     const data = await res.json();
-    dispatch({ type: USER_LOADED, payload: data});
-
+    dispatch({ type: USER_LOADED, payload: data });
   } catch (error) {
-    dispatch({ type: AUTH_ERROR});
+    dispatch({ type: AUTH_ERROR });
   }
-
-}
+};

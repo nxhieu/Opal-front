@@ -44,7 +44,7 @@ class Navbar extends Component {
           ) : (
             <ul>
               <li>
-                <Link to="/Card"> Your Cards</Link>
+                <Link to="/posts"> Your Posts </Link>
               </li>
               <li>
                 <a onClick={onLogout} href="/">
