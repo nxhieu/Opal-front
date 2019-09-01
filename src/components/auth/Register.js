@@ -1,6 +1,8 @@
+//Register component
 import React, { Component } from "react";
 import { register } from "../../actions/authAction";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import "../../dist/css/main.css";
 
 class Register extends Component {
@@ -13,18 +15,22 @@ class Register extends Component {
     password: "",
     password2: ""
   };
-  // useEffect(() => {
-  //   // if (isAuthenticated) {
-  //   //   //redirect in react
-  //   //   console.log("ay");
-  //   // }
-  // }, []);
-  //change state when user type int
+
+  //lifecycle method invoked when updating happens in the props or state
+  componentDidUpdate() {
+    //if registering was succesful navigate to /card
+    const { isAuthenticated } = this.props.authState;
+    if (isAuthenticated) {
+      this.props.history.push("/post");
+    }
+  }
+
+  //change state whenever user type in
   onChange = e => this.setState({ [e.target.name]: e.target.value });
   // submit the form
   onSubmit = e => {
     e.preventDefault();
-
+    // spread operator to take out the state
     const {
       address,
       phone,
@@ -146,22 +152,26 @@ class Register extends Component {
             />
           </div>
           <div className="btnstyle">
-          <input
-            type="submit"
-            value="Register"
-            className="btn btn-primary btn-block"
-          />
+            <input
+              type="submit"
+              value="Register"
+              className="btn btn-primary btn-block"
+            />
           </div>
         </form>
       </div>
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   Auth: state.isAuthenticated
-// });
-export default connect(
-  null,
-  { register }
-)(Register);
+//function that return the prop from store
+const mapStateToProps = state => ({
+  authState: state.auth
+});
+//use withRouter from 'react-router-dom' to wrap the component so that component has access to history object
+// use connect from 'react-redux' to map State and functions from the authReducer to component. REMEMBER THE FIRST ARGUMENT PASSING THE STATE TO PROPS . THE SECOND ARGUMENT (e.g {register}) map function the props of Register component
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { register }
+  )(Register)
+);

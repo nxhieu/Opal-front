@@ -9,6 +9,7 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Posts from "./components/post/posts";
 import PrivateRoute from "./route/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -19,26 +20,36 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        {console.log(store.getState().auth.isAuthenticated)}
         <Router>
           <Fragment>
             <Navbar />
             <Switch>
               <Route
                 exact
-                path="/Comment"
+                path="/post"
                 render={() =>
                   !store.getState().auth.isAuthenticated ? (
                     <Redirect to="/login" />
                   ) : (
-                    <Comment />
+                    <Posts />
                   )
                 }
               />
+
               {/* <Route exact path="/Card" component={Card} /> */}
 
               <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
+              <Route
+                exact
+                path="/login"
+                render={() =>
+                  !store.getState().auth.isAuthenticated ? (
+                    <Login />
+                  ) : (
+                    <Redirect to="/Card" />
+                  )
+                }
+              />
             </Switch>
           </Fragment>
         </Router>

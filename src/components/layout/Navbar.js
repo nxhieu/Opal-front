@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { logout } from "../../actions/authAction";
 import { connect } from "react-redux";
 import "../../dist/css/main.css";
-import logo from "../../img/logo.png"; 
+import logo from "../../img/logo.png";
 
 class Navbar extends Component {
   componentDidMount() {}
@@ -22,10 +22,12 @@ class Navbar extends Component {
         <div className="logo">
           <ul>
             <li>
-            <Link to="/"><img src={logo} width="80"/></Link>
+              <Link to="/">
+                <img src={logo} width="80" />
+              </Link>
             </li>
             <li>
-              <h2>O P A L</h2>
+              <h2>HEAD PAGE</h2>
             </li>
           </ul>
         </div>
@@ -42,7 +44,7 @@ class Navbar extends Component {
           ) : (
             <ul>
               <li>
-                <Link to="/Card"> Your Cards</Link>
+                <Link to="/posts"> Your Posts </Link>
               </li>
               <li>
                 <a onClick={onLogout} href="/">
