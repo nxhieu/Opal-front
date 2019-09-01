@@ -34,6 +34,7 @@ class App extends Component {
                   )
                 }
               />
+
               {/* <Route exact path="/Card" component={Card} /> */}
 
               <Route exact path="/register" component={Register} />
