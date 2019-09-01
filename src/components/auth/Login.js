@@ -47,7 +47,7 @@ export class Login extends Component {
               required
             />
           </div>
-          <div className="form-group"> 
+          <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -57,12 +57,12 @@ export class Login extends Component {
               required
             />
           </div>
-          <div className ="btn btnstyle">
-          <input
-            type="submit"
-            value="Login"
-            className="btn btn-primary btn-block"
-          />
+          <div className="btn btnstyle">
+            <input
+              type="submit"
+              value="Login"
+              className="btn btn-primary btn-block"
+            />
           </div>
         </form>
       </div>

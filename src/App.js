@@ -13,7 +13,7 @@ import PrivateRoute from "./route/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./dist/css/main.css";
-import Comment from "./components/comment/creatComment";
+import Comment from "./components/comment/createComment";
 
 class App extends Component {
   render() {
