@@ -19,10 +19,10 @@ export class posts extends Component {
     console.log(this.state.file);
   };
 
-  onSubmit = e => {
+  postImage = e => {
     e.preventDefault();
     const file = this.state.file;
-    this.props.getUri(file);
+    this.props.postImage(file);
   };
 
   render() {
