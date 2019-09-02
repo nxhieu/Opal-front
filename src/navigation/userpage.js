@@ -8,7 +8,6 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import Home from "./navigation/home"
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -32,14 +31,24 @@ class App extends Component {
     return (
       <Provider store={store}>
         {console.log(store.getState().auth.isAuthenticated)}
-        <Router basename={'/'}>
+        <Router basename={'/navigation/'}>
           <Fragment>
-            <Navbar />
+            <Navbar />  
+            <div className = "blogpost-column">
+              <Blogpost />
+              <Blogpost />
+              <Blogpost />
+              
+              </div>
+            <div className ="leaderboard-column">
+              <Leaderboard />
+              <div className="analog-clock"><AnalogClock theme={Themes.navy}  /> </div>
+              <div className="calendar"><Calendar /></div>
+              </div>
             <Switch>
               <Route
                 exact
                 path="/post"
-                component={Home}
                 render={() =>
                   !store.getState().auth.isAuthenticated ? (
                     <Redirect to="/login" />

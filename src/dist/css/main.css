@@ -13,7 +13,7 @@
 
   .main-nav {
     display: flex;
-    position: fixed;
+    /*position: fixed;*/
     width: 100%;
     background: linear-gradient(90deg, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 46%, rgba(102,77,153,1) 97%);
     color: #f4f4f4;
@@ -129,10 +129,6 @@
   border-radius: 10px;
   min-width: 400px;
   max-width: 650px;
-  width: 40%;
-  margin-top: 100px;
-  margin-left: 80px;
-  margin-right: 0px;
   -webkit-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
   -moz-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
   box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
@@ -246,5 +242,83 @@
   height: 30px;
   width: 30px;
   border: none;
+}
+
+.blogpost-column {
+  display: block;
+  float: left;
+  align-content: center;
+  width: 40%;
+  margin-top: 200px;
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-bottom: 20px;
+}
+
+.leaderboard-column {
+  display: block;
+  float: right;
+  align-content: center;
+  width: 40%;
+  margin-top: 200px;
+  margin-left: 80px;
+  margin-right: 0px;
+ 
+}
+
+.leaderboard-container {
+  display: block;
+  background:linear-gradient(90deg, rgba(121,74,135,0.4) 0%, rgba(117,74,134,0.3) 19%, rgba(85,70,130,0.2) 83%);;
+  border-radius: 10px;
+  margin:20px;
+  border: solid grey 1px;
+  width: 50%;
+  min-width: 300px;
+  -webkit-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  -moz-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+
+}
+
+.leaderboard-header {
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  border-bottom: solid blueviolet 1px;
+  color: whitesmoke;
+  display: block;
+  background:linear-gradient(90deg, rgba(121,74,135,0.5) 0%, rgba(117,74,134,0.5) 19%, rgba(85,70,130,1) 83%);
+  
+}
+
+.leaderboard-header ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin-left: 20px;
+
+}
+
+.leaderboard-header img{
+  margin-right:20px;
+}
+
+.leaderboard-content {
+  display: block;
+  font:20px;
+  font-style: italic;
+  margin-left:20px;
+  padding:10px;
+  font:bold;
+}
+
+.leaderboard-content li{
+  display: flex;
+  padding:10px;
+}
+
+.analog-clock {
+  position: block;
+  margin: 10px;
+  align-items: center;
 }
 /*# sourceMappingURL=main.css.map */
