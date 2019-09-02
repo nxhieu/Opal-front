@@ -2,8 +2,9 @@
 Component => Action => Reducer => Component
 2.  We take advantage of redux-thunk to pass in middleware. Our action creators will return a function with dispatch as a parameter instead of a direct action. A typical action creator for this project would be : 
 export const register = () => async dispatch => {
+	}
 	
-}
+	
 3. Reducer file will contain initialState and reducer function that dispatches the state to Redux store. 
 
 4. Inside reducer.js, reducer function will take advantage of switch function to avoid repeating code and improve code readability. 
