@@ -1,68 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. Since we use redux (state management tool) for our front end, the workflow for our project would be as follow:
+Component => Action => Reducer => Component
+2.  We take advantage of redux-thunk to pass in middleware. Our action creators will return a function with dispatch as a parameter instead of a direct action. A typical action creator for this project would be : 
+export const register = () => async dispatch => {
+	
+}
+3. Reducer file will contain initialState and reducer function that dispatches the state to Redux store. 
+4. Inside reducer.js, reducer function will take advantage of switch function to avoid repeating code and improve code readability. 
+5. All reducers will be separated in term of features (e.g. authReducer.js, postReducer.js, commentReducer.js) 
+6. All reducers from different features will be pooled using combineReducers({
+}) 
+7. Or component will be managed by react-router-dom switch function. All private component cant only accessed if authenticated 
+<Route exact path = “/post” render = { () => ! authenticated ? (<Redirect to=”/login”>) : (<Posts>) }
+8) For every AJAX calls to rest API, we implement by using fetch function instead or more convenient function like AXIOS from axios library in order to learn about HTTP. 
+>>>Back-end
+9) Our react app follows Model View Controller  pattern. It may slow down our development speed but it will pay off in the future if we need to scale our application. 
 
-## Available Scripts
+10) Route will be put in a separate file and get imported in app.js to register.  Inside route.js file, the middleware  will be pooled using express.Router().  This is done to avoid putting too much code in our app.js. 
 
-In the project directory, you can run:
+11. In every function, we have to implement error handling. 
 
-### `npm start`
+12. The controller will get the data from front-end using body-parser to put data to req.data, save the data to the mongo altas or get the data from the mongo
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+13. All private route is protected by is-Auth middleware that checks whether a user has a valid webtoken to gain access to the route.   
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+14. app.js use the middleware to make show all the routes will be connected
 
-### `npm test`
+15. The models defines the collection by using the mongoose library
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
