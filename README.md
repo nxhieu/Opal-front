@@ -5,14 +5,21 @@ export const register = () => async dispatch => {
 	
 }
 3. Reducer file will contain initialState and reducer function that dispatches the state to Redux store. 
+
 4. Inside reducer.js, reducer function will take advantage of switch function to avoid repeating code and improve code readability. 
+
 5. All reducers will be separated in term of features (e.g. authReducer.js, postReducer.js, commentReducer.js) 
+
 6. All reducers from different features will be pooled using combineReducers({
 }) 
+
 7. Or component will be managed by react-router-dom switch function. All private component cant only accessed if authenticated 
 <Route exact path = “/post” render = { () => ! authenticated ? (<Redirect to=”/login”>) : (<Posts>) }
+	
 8) For every AJAX calls to rest API, we implement by using fetch function instead or more convenient function like AXIOS from axios library in order to learn about HTTP. 
+
 >>>Back-end
+
 9) Our react app follows Model View Controller  pattern. It may slow down our development speed but it will pay off in the future if we need to scale our application. 
 
 10) Route will be put in a separate file and get imported in app.js to register.  Inside route.js file, the middleware  will be pooled using express.Router().  This is done to avoid putting too much code in our app.js. 
