@@ -22,20 +22,28 @@ class Leaderboard extends Component {
             </ul>
             </div>
                <div className="leaderboard-content">
-            <ol>
-                 <li>
-                     <img src={crowngold} width="25" alt="defaultCrown" />
+           
+           
+           <ul className="leaderboard-crown">
+               <li> 
+                    <img src={crowngold} width="25" alt="defaultCrown" />
+               </li>
+               <li> 
+                    <img src={crownsilver} width="25" alt="defaultCrown" />
+               </li>
+               <li> 
+                     <img src={crownbronze} width="25" alt="defaultCrown" />
+               </li>
+           </ul>
+            <ol className="leaderboard-user">
+                 <li className="leaderboard-user-gold">
                     <p>Kjisddu (1035)</p>
-                    
                  </li>
-                 <li>
-                     <img src={crownsilver} width="25" alt="defaultCrown" />
+                 <li className="leaderboard-user-silver">
                     <p>Lidkul (963)</p>
                  </li>
-                 <li>
-                    <img src={crownbronze} width="25" alt="defaultCrown" />
+                 <li className="leaderboard-user-bronze">
                       <p>Odis(760)</p>
-                     
                  </li>
                  <li>
                       <p>Defovim(723)</p>

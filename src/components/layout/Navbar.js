@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { logout } from "../../actions/authAction";
 import { connect } from "react-redux";
 import "../../dist/css/main.css";
-import logo from "../../img/logo.png";
+import logo from "../../img/UI/logo.png";
+import bell from "../../img/UI/notification.png"
 
 class Navbar extends Component {
   componentDidMount() {}
@@ -35,6 +36,9 @@ class Navbar extends Component {
           {!isAuthenticated ? (
             <ul>
               <li>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
                 <Link to="/login">Login</Link>
               </li>
               <li>
@@ -43,6 +47,9 @@ class Navbar extends Component {
             </ul>
           ) : (
             <ul>
+              <li>
+                <img src={bell} width="50" /> 
+              </li>
               <li>
                 <Link to="/Card"> Your Cards</Link>
               </li>

@@ -1,24 +1,26 @@
 import React, { Fragment, Component } from "react";
 import Calendar from 'react-calendar';
 import AnalogClock, { Themes } from 'react-analog-clock'; //https://github.com/zackargyle/react-analog-clock
-
+//https://www.npmjs.com/package/react-hamburger-menu
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect
 } from "react-router-dom";
-import Home from "./navigation/home"
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import Posts from "./components/post/posts";
-import Blogpost from "./components/layout/Blogpost";
-import Leaderboard from "./components/layout/Leaderboard";
+import About from "./components/navigation/about";
+import UserSettingsPage from "./components/navigation/usersettingspage";
+import Userpage from "./components/navigation/userpage";
+import Footer from "./components/layout/Footer";
 import PrivateRoute from "./route/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./dist/css/main.css";
+import Card from "./components/navigation/card";
+//https://www.telerik.com/kendo-react-ui/components/dropdowns/dropdownlist/
 
 class App extends Component {
 
@@ -28,26 +30,47 @@ class App extends Component {
  
   onChange = date => this.setState({ date })
 
+  handleClick() {
+    this.setState({
+        open: !this.state.open
+    });
+}
+
   render() {
     return (
       <Provider store={store}>
         {console.log(store.getState().auth.isAuthenticated)}
-        <Router basename={'/'}>
+        <Router basename={'/'} >
           <Fragment>
+          <Redirect to="/about" component={About}/>
             <Navbar />
             <Switch>
               <Route
                 exact
-                path="/post"
-                component={Home}
+                path="/userpage"  component={Userpage}
+                  
                 render={() =>
                   !store.getState().auth.isAuthenticated ? (
                     <Redirect to="/login" />
                   ) : (
-                    <Posts />
+                    <UserSettingsPage />
                   )
                 }
               />
+
+            <Route
+                exact
+                path="/about" component={About}
+                  
+                render={() =>
+                  !store.getState().auth.isAuthenticated ? (
+                    <Redirect to="/about" />
+                  ) : (
+                    <UserSettingsPage />
+                  )
+                }
+              />
+
               {/* <Route exact path="/Card" component={Card} /> */}
 
               <Route exact path="/register" component={Register} />
@@ -58,13 +81,14 @@ class App extends Component {
                   !store.getState().auth.isAuthenticated ? (
                     <Login />
                   ) : (
-                    <Redirect to="/Card" />
+                    <Redirect to="/Card" /*component={Card}*//>
                   )
                 }
               />
             </Switch>
           </Fragment>
         </Router>
+        <Footer/>
       </Provider>
     );
   }

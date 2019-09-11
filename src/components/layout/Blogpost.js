@@ -5,12 +5,16 @@ import ReactDom from "react-dom";
 import { Link } from "react-router-dom";
 //import BlogpostPopup from "./components/layout/BlogpostPopup";
 import "../../dist/css/main.css";
+import HamburgerMenu from 'react-hamburger-menu';
 import iconuser from "../../img/blogpost/testavatars/muser.png";
 import editpost from "../../img/blogpost/feedback/editpost.png";
+import BlogpostEdit  from "./BlogpostEdit";
 
 
 class Blogpost extends Component {
+   
     render(){
+        
 
        return(
        
@@ -26,7 +30,7 @@ class Blogpost extends Component {
                         <p className="blogpost-date-posted">on 26th Aug</p>
                         </div>
                         <div className="blogpost-edit">
-                            <img src={editpost} width="25" alt="btnPostEdit"/> 
+                            <BlogpostEdit/>
                         </div>
                     </li>
                 </ul>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+import "../../dist/css/main.css";
 
-export class posts extends Component {
+export class UserSettingsPage extends Component {
   state = {
     email: "hieu",
     file: ""
@@ -15,16 +16,16 @@ export class posts extends Component {
   render() {
     const { email } = this.state;
     return (
-      <div>
+      <div className="user-avatar">
         <form>
           <p>{email}</p>
           <input onChange={this.onFileChange} type="file" accept="image/*" />
           <p>{this.state.file}</p>
-          <img src={this.state.file} alt="post" width="100" />
+          <img src={this.state.file} alt="post" width="200" />
         </form>
       </div>
     );
   }
 }
 
-export default posts;
+export default UserSettingsPage;

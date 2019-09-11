@@ -66,3 +66,21 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+---
+
+1. The design choice need to be the same. If there would by different UI chunks everywhere it may be unnapealing as a result.
+2. Do not attempt to integrate GUI into another project, it's recommended to start over especially when the project is very different.
+3. Avoid writing long messy codes in the components, re-use code and where it's necessary by installing react add-ons instead.
+4. Avoid repetitive code. It's a time waste for everyone.
+5. Do not attempt to code components you wouldn't use in the future, only code components which are essential for your application.
+6. Do not modify the code that already works well and it's simplified enough to make sense and the only way to make it better is to rewrite it. Expand upon it instead.
+7. Every class chould provide one functionality, not multiple.
+8. Make clean code or at least attempt to.
+9. It's highly recommended to test your code while you write it becouse if there is a mistake it will be very difficult to find.
+10. It's recommended to reduce dependencies on the components as well as variables. Make multiple for each because it may be a problem as the project progresses.
+11. Create event handlers so your app doesn't crash, create a message instead what telling programmer what exactly goes wrong.
+12. Learn more tools, learn more addons, go on the internet and explore, there could be a lot of handy things.
+13. Do not make your code disordered and it may contain bugs because of syntaxis. Learn to maintain a structure
+14. Do not guess by programming, reasearch and understand what you're writing. It will help you to avoid not knowing why it doesn't work.
+15. Try to encapsulute the code that potentially might change in the future.

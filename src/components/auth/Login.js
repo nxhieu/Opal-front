@@ -12,7 +12,7 @@ export class Login extends Component {
     //if login was succesful navigate to /card
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
-      this.props.history.push("/post");
+      this.props.history.push("/userpage");
     }
   }
 
@@ -63,12 +63,12 @@ export class Login extends Component {
               required
             />
           </div>
-          <div className="btn btnstyle">
+          
+          <div>
             <input
               type="submit"
               value="Login"
-              className="btn btn-primary btn-block"
-            />
+              className="btn btnstyle"/>
           </div>
         </form>
       </div>

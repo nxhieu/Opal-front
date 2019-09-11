@@ -1,72 +1,55 @@
-import React, { Component, PropTypes } from 'react';
-import { View, UIManager, findNodeHandle, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-//https://www.youtube.com/watch?v=uH1SPubLhQo
+import React, { Component} from "react";
+import { Link } from "react-router-dom";
+import Downshift from "downshift";
+import HamburgerButton from "./HamburgerButton";
 
-const ICON_SIZE = 24
 
-export default class PopupMenu extends Component {
-    static propTypes = {
-      // array of strings, will be list items of Menu
-      actions:  PropTypes.arrayOf(PropTypes.string).isRequired,
-      onPress: PropTypes.func.isRequired
-    }
-  
-    constructor (props) {
-      super(props)
-      this.state = {
-        icon: null
-      }
-    }
-  
-    onError () {
-      console.log('Popup Error')
-    }
-  
-    onPress = () => {
-      if (this.state.icon) {
-        UIManager.showPopupMenu(
-          findNodeHandle(this.state.icon),
-          this.props.actions,
-          this.onError,
-          this.props.onPress
-        )
-      }
-    }
-  
-    render () {
-      return (
-        <View>
-          <TouchableOpacity onPress={this.onPress}>
-            <Icon
-              name='more-vert'
-              size={ICON_SIZE}
-              color={'grey'}
-              ref={this.onRef} />
-          </TouchableOpacity>
-        </View>
-      )
-    }
-  
-    onRef = icon => {
-      if (!this.state.icon) {
-        this.setState({icon})
-      }
-    }
+const items = ["Edit", "Delete"];
 
-    render () {
-        return (
-          <View>
-            <PopupMenu actions={['Edit', 'Remove']} onPress={this.onPopupEvent} />
-          </View>
-        )
-      }
+//https://medium.com/@AmyScript/downshift-the-answer-to-building-accessible-and-visually-flexible-custom-react-input-components-aed1553e1e36
+
+export default class BlogpostEdit extends Component {
+  render () 
+ 
+  {
+    return (
     
-      onPopupEvent = (eventName, index) => {
-        if (eventName !== 'itemSelected') return
-        if (index === 0) this.onEdit()
-        else this.onRemove()
-      }
-  }
-
+      <Downshift>
+        {({
+          getItemProps,
+          getMenuProps,
+          getToggleButtonProps,
+          isOpen,
+          highlightedIndex,
+          selectedItem
+          
+        }) => (
+          <div>
+           
+           <button {...getToggleButtonProps()} className="button-edit">
+             <HamburgerButton/>
+             </button>
+            {isOpen ? (
+              <ul className="menu"{...getMenuProps()}>
+                {items.map((item, index) => (
+                  <li classname ="item"
+                    highlighted={highlightedIndex === index}
+                    selected={selectedItem === item}
+                    {...getItemProps({
+                      key: item,
+                      index,
+                      item
+                    })}
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        )}
+      </Downshift>
   
+  );
+}
+}
