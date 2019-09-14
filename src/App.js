@@ -53,7 +53,7 @@ class App extends Component {
                   !store.getState().auth.isAuthenticated ? (
                     <Redirect to="/login" />
                   ) : (
-                    <UserSettingsPage />
+                    <About/>
                   )
                 }
               />
@@ -66,12 +66,12 @@ class App extends Component {
                   !store.getState().auth.isAuthenticated ? (
                     <Redirect to="/about" />
                   ) : (
-                    <UserSettingsPage />
+                    <About />
                   )
                 }
               />
 
-              {/* <Route exact path="/Card" component={Card} /> */}
+              <Route exact path="/Card" component={Card} /> 
 
               <Route exact path="/register" component={Register} />
               <Route
@@ -81,7 +81,7 @@ class App extends Component {
                   !store.getState().auth.isAuthenticated ? (
                     <Login />
                   ) : (
-                    <Redirect to="/Card" /*component={Card}*//>
+                    <Redirect to="/Card" />
                   )
                 }
               />

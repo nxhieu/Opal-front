@@ -7,6 +7,8 @@ import { connect } from "react-redux";
 import "../../dist/css/main.css";
 import logo from "../../img/UI/logo.png";
 import bell from "../../img/UI/notification.png"
+import Downshift from "downshift";
+import NotificationMenu from "./NotificationMenu";
 
 class Navbar extends Component {
   componentDidMount() {}
@@ -47,11 +49,16 @@ class Navbar extends Component {
             </ul>
           ) : (
             <ul>
-              <li>
-                <img src={bell} width="50" /> 
+              <li >
+                <NotificationMenu/>
+                
+              </li>
+              
+              <li >
+                <Link to="/usersettings">Settings</Link>
               </li>
               <li>
-                <Link to="/Card"> Your Cards</Link>
+                <Link to="/card"> Your Cards</Link>
               </li>
               <li>
                 <a onClick={onLogout} href="/">

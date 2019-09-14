@@ -12,6 +12,19 @@ import BlogpostEdit  from "./BlogpostEdit";
 
 
 class Blogpost extends Component {
+
+    
+  componentDidMount() { //runs off the render menthod
+    fetch("https://swapi.co/api/people/2")
+      .then(res => res.json()) //turns into javascript object.
+      .then(data => {
+          this.setState({
+            isLoaded: true,
+            posts: data,
+
+          })
+      });
+  }
    
     render(){
         

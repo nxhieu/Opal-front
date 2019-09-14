@@ -29,7 +29,7 @@
     position: fixed;
     z-index:  1; 
     width: 100%;
-    background: linear-gradient(90deg, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 46%, rgba(102,77,153,1) 97%);
+    background:  url(../../img/background/noise.png), linear-gradient(90deg, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 46%, rgba(102,77,153,1) 97%);
     color: #f4f4f4;
     padding: 0.8rem;
     align-items: center;
@@ -73,6 +73,39 @@
   .main-nav .left-nav ul li a:hover {
     background: linear-gradient(180deg, rgba(0,0,139,0.5) 40%, rgba(214,220,222,0.2) 100%);
     cursor: pointer; 
+  }
+
+  .notification-bell {
+    background: rgba(255, 255, 255,0);
+    background-image: url(../../img/UI/notification.png);
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    height: 50px;
+    width: 100px;
+    border: none;
+    margin-right: 20px;
+  }
+
+  .notification-bell:hover{
+    background: linear-gradient(180deg, rgba(0,0,139,0.5) 40%, rgba(214,220,222,0.2) 100%), url(../../img/UI/notification-hover.png);
+    cursor: pointer; 
+    background-size: 50px 50px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    
+  }
+
+  .notification-menu{
+    position:absolute;
+    font-size: 20px;
+    width: 150px;
+    height: 600px;
+    background:  url(../../img/background/noise.png), linear-gradient(90deg, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 80%);
+    border: 1px solid rgb(29, 27, 27);
+    border-radius: 4px;
+    margin-top: 50px;
+    padding-left: 50px;
   }
 
   /* ======== FORM PROPS ========*/
@@ -121,7 +154,6 @@
 
 .btnstyle {
   margin-top: 40px;
-
 }
 
 
@@ -180,7 +212,7 @@
   font-size: 40px;
 }
 
-/*EDITPOST BUTTON */
+/*======== EDITPOST BUTTON ========*/
 
 .button-edit{
   color: whitesmoke;
@@ -196,16 +228,26 @@
   font-size: 15px;
   width: 150px;
   background: rgba(85,70,130,1);
-  border: 1px solid gray;
+  border: 1px solid rgb(29, 27, 27);
   border-radius: 4px;
   margin-left: 400px;
   margin-top: 10px;
-  padding-left: 20px;
+  
 }
+
+.menu  li{
+  padding-right: 20px;
+  align-items: center;
+  justify-content: space-between; 
+}
+
+.menu li:hover{
+  background:linear-gradient(0deg,rgba(85,70,130,1), rgb(43, 35, 66));
+}
+
 
 .blogpost-date-posted{
   display:inherit;
-
   font-size:15px;
   margin-left:10px;
 
@@ -264,7 +306,7 @@
   width: 70%;
   max-width: 550px;
   min-width: 300px;
-  margin: 30px;
+  margin-left: 22%;
   -webkit-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
   -moz-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
   box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
@@ -345,6 +387,7 @@
   border: solid grey 1px;
   width: 50%;
   min-width: 300px;
+  max-width: 400px;
   -webkit-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
   -moz-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
   box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
@@ -419,6 +462,22 @@
 
 /* ======== MISC REACT ADD-ON PROPS ========*/
 
+/*WELCOME MESSAGE*/
+.welcome {
+  display: inline-flex;
+  background:linear-gradient(90deg, rgba(121,74,135,0.4) 0%, rgba(117,74,134,0.3) 19%, rgba(85,70,130,0.2) 83%);
+  justify-content: center;
+  vertical-align: middle;
+  border: 1px solid blueviolet;
+  margin-left:6%;
+  width: 300px;
+  height: 60px;
+  border-radius:10px;
+  -webkit-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  -moz-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+}
+
 /* FLIPCLOCK */
 .flipClock {
   display: flex;
@@ -427,6 +486,9 @@
   margin-top: 30px;
   margin-bottom: 30px;
   margin-left: 25px;
+  -webkit-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  -moz-box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
+  box-shadow: 10px 10px 33px -19px rgba(0,0,0,0.71);
 }
 
 .flipUnitContainer {
@@ -592,6 +654,7 @@
 
 .calendar {
   padding-left: 20px;
+  
 }
 
 /* ======== LOADING POST ANIMATION ========*/
@@ -607,7 +670,7 @@
   position: fixed;
   z-index:  1; 
   width: 100%;
-  background: linear-gradient(90deg, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 46%, rgba(102,77,153,1) 97%);
+  background:  url(../../img/background/noise.png), linear-gradient(90deg, rgba(121,171,181,1) 6%, rgba(16,133,181,1) 46%, rgba(102,77,153,1) 97%);
   color: #f4f4f4;
   padding: 0.8em;
   left: 0;

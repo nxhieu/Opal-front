@@ -54,7 +54,7 @@ export default class InfiniteScroll extends Component {
   loadPosts = () => {
     this.setState({ isLoading: true }, () => {
       request
-        .get('https://randomuser.me/api/?results=10')
+        .get('https://randomuser.me/api/?results=3')
         .then((results) => {
           // Creates a massaged array of user data
           const nextPosts = results.body.results.map(post => ({

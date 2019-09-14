@@ -21,6 +21,7 @@ import { Provider } from "react-redux";
 import store from "../../store";
 import InfiniteScroll from "../layout/Infinitescroll";
 import "../../dist/css/main.css";
+import Welcome from "../layout/Welcome";
 class Userpage extends Component {
 
   state = {
@@ -46,7 +47,8 @@ class Userpage extends Component {
               
               </div>
             <div className ="leaderboard-column">
-              <Leaderboard />
+              <div className="welcome"><Welcome/></div>
+              <Leaderboard/>
               <FlipClock/>
               <div className="calendar"><Calendar /></div>
               </div>
