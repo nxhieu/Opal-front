@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { postImage } from "../../actions/postImageAction";
 
-export class posts extends Component {
+export class Postimage extends Component {
   state = {
     email: "hieu",
     file: null,
@@ -54,4 +54,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { postImage }
-)(posts);
+)(Postimage);

@@ -11,11 +11,24 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import PostImage from "./components/postImage/postImage";
 import Posts from "./components/posts/posts";
+import Userpage from "./components/userpage/userpage";
+import About from "./components/about/about";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./dist/css/main.css";
 
 class App extends Component {
+  state = {
+    date: new Date()
+  };
+
+  onChange = date => this.setState({ date });
+
+  handleClick() {
+    this.setState({
+      open: !this.state.open
+    });
+  }
   render() {
     return (
       <Provider store={store}>
@@ -25,11 +38,11 @@ class App extends Component {
             <Switch>
               <Route
                 exact
-                path="/post"
+                path="/"
                 render={() =>
                   !store.getState().auth.isAuthenticated ? (
                     <div>
-                      <Posts/>
+                      <Posts />
                     </div>
                   ) : (
                     <div>
@@ -39,8 +52,7 @@ class App extends Component {
                   )
                 }
               />
-
-              {/* <Route exact path="/Card" component={Card} /> */}
+              <Route exact path="/userpage" component={Userpage} />
 
               <Route exact path="/register" component={Register} />
               <Route
@@ -50,10 +62,11 @@ class App extends Component {
                   !store.getState().auth.isAuthenticated ? (
                     <Login />
                   ) : (
-                    <Redirect to="/Card" />
+                    <Redirect to="/" />
                   )
                 }
               />
+              <Route exact path="/about" component={About} />
             </Switch>
           </Fragment>
         </Router>

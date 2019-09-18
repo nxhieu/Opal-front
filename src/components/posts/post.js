@@ -12,7 +12,7 @@ export class post extends Component {
     const { post } = this.props;
     console.log(post);
     return (
-      <div className="post">
+      <div className="post-form">
         <h2>{post.email}</h2>
         <img
           src={`https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/${post.imageUrl}`}

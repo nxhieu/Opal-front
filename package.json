@@ -3,15 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "downshift": "^3.2.14",
+    "lodash.debounce": "^4.0.8",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-analog-clock": "^2.1.0",
+    "react-calendar": "^2.19.1",
+    "react-hamburger-menu": "^1.1.1",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.3.2",
+    "superagent": "^5.1.0",
+    "react-motion": "^0.5.2"
   },
   "scripts": {
     "start": "react-scripts start -p build-css",
