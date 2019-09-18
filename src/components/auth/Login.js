@@ -39,11 +39,9 @@ export class Login extends Component {
     const { email, password } = this.state;
     return (
       <div className="form-container">
-        <h1>
-          Account <span className="text-primary">Login</span>
-        </h1>
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
+        <h2>Sign in</h2>
+        <div className="form-group">
+          <form onSubmit={onSubmit}>
             <label htmlFor="email">Email Address</label>
             <input
               type="email"
@@ -52,8 +50,6 @@ export class Login extends Component {
               onChange={onChange}
               required
             />
-          </div>
-          <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -62,15 +58,11 @@ export class Login extends Component {
               onChange={onChange}
               required
             />
-          </div>
-          <div className="btn btnstyle">
-            <input
-              type="submit"
-              value="Login"
-              className="btn btn-primary btn-block"
-            />
-          </div>
-        </form>
+            <div>
+              <input type="submit" value="Login" className="btn" />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
