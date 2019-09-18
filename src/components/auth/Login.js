@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { login } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "../../dist/css/main.css";
+import "../../dist/css/auth.css";
 
 export class Login extends Component {
   state = { email: "", password: "" };

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { register } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "../../dist/css/main.css";
+import "../../dist/css/auth.css";
 
 class Register extends Component {
   state = {

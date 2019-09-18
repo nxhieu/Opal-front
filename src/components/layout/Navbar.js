@@ -4,8 +4,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../actions/authAction";
 import { connect } from "react-redux";
-import "../../dist/css/main.css";
-import logo from "../../img/logo.png";
+import "../../dist/css/navbar.css";
+import logo from "../../img/UI/logo.png";
+import Downshift from "downshift";
+import NotificationMenu from "./NotificationMenu";
 
 class Navbar extends Component {
   componentDidMount() {}
@@ -23,19 +25,20 @@ class Navbar extends Component {
           <ul>
             <li>
               <Link to="/">
-                <img src={logo} width="80" />
+                <img src={logo} alt="Logo" />
+                &nbsp;HEAD PAGE
               </Link>
-            </li>
-            <li>
-              <h2>HEAD PAGE</h2>
             </li>
           </ul>
         </div>
-        <div className="left-nav">
+        <div className="right-nav">
           {!isAuthenticated ? (
             <ul>
               <li>
-                <Link to="/login">Login</Link>
+                <Link to="/about">About</Link>
+              </li>
+              <li>
+                <Link to="/login">Log in</Link>
               </li>
               <li>
                 <Link to="/register">Register</Link>
@@ -44,11 +47,17 @@ class Navbar extends Component {
           ) : (
             <ul>
               <li>
-                <Link to="/posts"> Your Posts </Link>
+                <NotificationMenu />
+              </li>
+              <li>
+                <Link to="/usersettings">Settings</Link>
+              </li>
+              <li>
+                <Link to="/posts"> Your Posts</Link>
               </li>
               <li>
                 <a onClick={onLogout} href="/">
-                  Logout
+                  Log out
                 </a>
               </li>
             </ul>
