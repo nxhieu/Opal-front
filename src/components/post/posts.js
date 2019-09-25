@@ -10,6 +10,7 @@ export class posts extends Component {
     message: ""
   };
   onFileChange = event => {
+    event.preventDefault();
     // this.setState({
     //   fileUrl: URL.createObjectURL(event.target.files[0])
     // });
@@ -22,7 +23,7 @@ export class posts extends Component {
   onSubmit = e => {
     e.preventDefault();
     const file = this.state.file;
-    this.props.getUri(file);
+    this.props.postImage(file);
   };
 
   render() {

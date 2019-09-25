@@ -10,6 +10,7 @@ import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Posts from "./components/post/posts";
+import CommentPage from "./components/commentBoard/commentPage";
 import PrivateRoute from "./route/PrivateRoute";
 import { Provider } from "react-redux";
 import store from "./store";
@@ -34,6 +35,8 @@ class App extends Component {
                   )
                 }
               />
+
+              <Route exact path="/comment" component={CommentPage} />
 
               {/* <Route exact path="/Card" component={Card} /> */}
 
