@@ -4,27 +4,16 @@ import React, { Component } from "react";
 import ReactDom from "react-dom";
 import { Link } from "react-router-dom";
 //import BlogpostPopup from "./components/layout/BlogpostPopup";
-import "../../dist/css/main.css";
+import "../../../dist/css/main.css";
 import HamburgerMenu from "react-hamburger-menu";
-import iconuser from "../../img/blogpost/testavatars/muser.png";
-import editpost from "../../img/blogpost/feedback/editpost.png";
+import iconuser from "../../../img/blogpost/testavatars/muser.png";
+import editpost from "../../../img/blogpost/feedback/editpost.png";
 import BlogpostEdit from "./BlogpostEdit";
-import logo from "../../img/UI/logo.png";
+import logo from "../../../img/UI/logo.png";
 
 class Blogpost extends Component {
-  componentDidMount() {
-    //runs off the render menthod
-    fetch("https://swapi.co/api/people/2")
-      .then(res => res.json()) //turns into javascript object.
-      .then(data => {
-        this.setState({
-          isLoaded: true,
-          posts: data
-        });
-      });
-  }
-
   render() {
+    const { email, imageUrl } = this.props.post;
     return (
       <div className="blogpost-container">
         <div className="blogpost-header">
@@ -39,7 +28,7 @@ class Blogpost extends Component {
             </li>
             <li>
               <div>
-                <p>Administrator</p>
+                <p>{email}</p>
                 <p className="blogpost-date-posted">on 26th Aug</p>
               </div>
             </li>
@@ -51,21 +40,9 @@ class Blogpost extends Component {
           </ul>
         </div>
         <div className="blogpost-body">
-          {/* <p><b>This is a first test template for website posts! There are some design features:</b></p>
-           <ul>
-               <li>
-                    Header featuring username and user image!
-               </li>
-               <li>
-                    Content box!
-               </li>
-               <li>
-                    Comment and like button!
-               </li>
-           </ul>
-
-           <p><b>And thats all for now.</b></p> */}
-          <img src={logo} />
+          <img
+            src={`https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/${imageUrl}`}
+          />
         </div>
         <div className="blogpost-footer">
           <ul>

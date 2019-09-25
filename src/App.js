@@ -18,12 +18,6 @@ import store from "./store";
 import "./dist/css/main.css";
 
 class App extends Component {
-  state = {
-    date: new Date()
-  };
-
-  onChange = date => this.setState({ date });
-
   handleClick() {
     this.setState({
       open: !this.state.open

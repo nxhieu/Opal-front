@@ -1,19 +1,14 @@
-import React, { Component} from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import Downshift from "downshift";
 import HamburgerButton from "./HamburgerButton";
-
 
 const items = ["Edit", "Delete"];
 
 //https://medium.com/@AmyScript/downshift-the-answer-to-building-accessible-and-visually-flexible-custom-react-input-components-aed1553e1e36
 
 export default class BlogpostEdit extends Component {
-  render () 
- 
-  {
+  render() {
     return (
-    
       <Downshift>
         {({
           getItemProps,
@@ -22,17 +17,16 @@ export default class BlogpostEdit extends Component {
           isOpen,
           highlightedIndex,
           selectedItem
-          
         }) => (
           <div>
-           
-           <button {...getToggleButtonProps()} className="button-edit">
-             <HamburgerButton/>
-             </button>
+            <button {...getToggleButtonProps()} className="button-edit">
+              <HamburgerButton />
+            </button>
             {isOpen ? (
-              <ul className="menu"{...getMenuProps()}>
+              <ul className="menu" {...getMenuProps()}>
                 {items.map((item, index) => (
-                  <li classname ="item"
+                  <li
+                    classname="item"
                     highlighted={highlightedIndex === index}
                     selected={selectedItem === item}
                     {...getItemProps({
@@ -49,7 +43,6 @@ export default class BlogpostEdit extends Component {
           </div>
         )}
       </Downshift>
-  
-  );
-}
+    );
+  }
 }

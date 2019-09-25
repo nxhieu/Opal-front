@@ -6,7 +6,7 @@ import { logout } from "../../actions/authAction";
 import { connect } from "react-redux";
 import "../../dist/css/navbar.css";
 import logo from "../../img/UI/logo.png";
-import NotificationMenu from "./NotificationMenu";
+import NotificationMenu from "../userpage/notificationmenu/NotificationMenu";
 
 class Navbar extends Component {
   componentDidMount() {}

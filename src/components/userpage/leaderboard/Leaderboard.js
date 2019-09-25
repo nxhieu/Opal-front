@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import ReactDom from "react-dom";
-import { Link } from "react-router-dom";
-import crown from "../../img/leaderboard/crown.png";
-import crowngold from "../../img/leaderboard/stages/crowngold.png";
-import crownsilver from "../../img/leaderboard/stages/crownsilver.png";
-import crownbronze from "../../img/leaderboard/stages/crownbronze.png";
+import crown from "../../../img/leaderboard/crown.png";
+import crowngold from "../../../img/leaderboard/stages/crowngold.png";
+import crownsilver from "../../../img/leaderboard/stages/crownsilver.png";
+import crownbronze from "../../../img/leaderboard/stages/crownbronze.png";
 
 class Leaderboard extends Component {
   render() {
