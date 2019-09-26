@@ -8,12 +8,15 @@ import {
 export const postImage = file => async dispatch => {
   try {
     //get request to the back end (backend then call s3 and send back the presigned URl from S3 bucket)
-    const res = await fetch(`${window.apiAddress}/post/getUri`, {
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
+    const res = await fetch(
+      `${window.apiAddress}/post/getUri?type=${file.type}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
       }
-    });
+    );
     const awsUrl = await res.json();
     //post image to our bucket using our presigned URL
     await fetch(awsUrl.url, {
