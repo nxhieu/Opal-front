@@ -4,7 +4,7 @@ import request from "superagent";
 import debounce from "lodash.debounce";
 import { connect } from "react-redux";
 import { BlogpostEdit } from "./BlogpostEdit";
-import { getPosts } from "../../../actions/postAction";
+import { getPosts, increasePage } from "../../../actions/postAction";
 import Blogpost from "./Blogpost";
 import loading from "../../../img/UI/loading.gif";
 import "../../../dist/css/main.css";
@@ -33,11 +33,11 @@ export class Blogposts extends Component {
 
       // Checks that the page has scrolled to the bottom
       if (
-        window.innerHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight
+        window.innerHeight + window.pageYOffset >=
+        document.body.offsetHeight - 2
       ) {
-        this.props.dispatch({ type: "GETPOSTS_ANOTHERPAGE" });
-        this.props.loadPosts();
+        this.props.increasePage();
+        this.loadPosts();
       }
     }, 1000);
   }
@@ -107,5 +107,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPosts }
+  { getPosts, increasePage }
 )(Blogposts);

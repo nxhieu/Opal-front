@@ -3,10 +3,11 @@ import {
   GETPOSTS_SUCCESS,
   DELETEPOST_FAIL,
   DELETEPOST_SUCCESS,
-  GETPOSTS_REQUEST
+  GETPOSTS_REQUEST,
+  GETPOSTS_ANOTHERPAGE
 } from "./types";
 
-export const getPosts = (itemsPerPage, currentPage) => async dispatch => {
+export const getPosts = currentPage => async dispatch => {
   try {
     //run the loading image
     dispatch({ type: GETPOSTS_REQUEST });
@@ -45,4 +46,8 @@ export const deletePost = post => async dispatch => {
   } catch (error) {
     dispatch({ type: DELETEPOST_FAIL, payload: error.message });
   }
+};
+
+export const increasePage = () => dispatch => {
+  dispatch({ type: GETPOSTS_ANOTHERPAGE });
 };
