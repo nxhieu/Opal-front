@@ -9,7 +9,7 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import PostImage from "./components/postImage/postImage";
+
 import Userpage from "./components/userpage/userpage";
 import About from "./components/about/about";
 import { Provider } from "react-redux";
@@ -36,9 +36,7 @@ class App extends Component {
                   !store.getState().auth.isAuthenticated ? (
                     <div></div>
                   ) : (
-                    <div>
-                      <PostImage />
-                    </div>
+                    <div></div>
                   )
                 }
               />

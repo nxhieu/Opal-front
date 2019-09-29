@@ -13,7 +13,7 @@ import logo from "../../../img/UI/logo.png";
 
 class Blogpost extends Component {
   render() {
-    const { email, imageUrl } = this.props.post;
+    const { email, imageUrl, _user } = this.props.post;
     return (
       <div className="blogpost-container">
         <div className="blogpost-header">

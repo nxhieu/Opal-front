@@ -48,30 +48,6 @@ export class Blogposts extends Component {
   }
 
   loadPosts = () => {
-    // this.setState({ isLoading: true }, () => {
-    //   request
-    //     .get("https://randomuser.me/api/?results=3")
-    //     .then(results => {
-    //       // Creates a messaged array of user data
-    //       const nextPosts = results.body.results.map(post => ({}));
-
-    //       // Merges the next users into our existing users
-    //       this.setState({
-    //         // Note: Depending on the API you're using, this value may
-    //         // be returned as part of the payload to indicate that there
-    //         // is no additional data to be loaded
-    //         hasMore: this.state.posts.length < 4,
-    //         isLoading: false,
-    //         posts: [...this.state.posts, ...nextPosts]
-    //       });
-    //     })
-    //     .catch(err => {
-    //       this.setState({
-    //         error: err.message,
-    //         isLoading: false
-    //       });
-    //     });
-    // });
     const { currentPage } = this.props.postState;
     this.props.getPosts(currentPage);
   };
