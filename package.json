@@ -3,12 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-    "aws-sdk": "^2.521.0",
-=======
     "downshift": "^3.2.14",
     "lodash.debounce": "^4.0.8",
->>>>>>> 6c0fbd2b77beddcac7476ae63f8e9e431a275f64
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -21,13 +17,9 @@
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
-<<<<<<< HEAD
-    "uuid": "^3.3.3"
-=======
     "styled-components": "^4.3.2",
     "superagent": "^5.1.0",
     "react-motion": "^0.5.2"
->>>>>>> 6c0fbd2b77beddcac7476ae63f8e9e431a275f64
   },
   "scripts": {
     "start": "react-scripts start -p build-css",

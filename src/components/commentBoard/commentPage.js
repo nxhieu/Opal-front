@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import Comment from "./comment";
 import Modal from "./modal";
 
 class CommentPage extends Component {
   state = {
-    create: false,
-    image: "",
-    userName: "username"
+    create: false
   };
 
   createEventHandler = () => {
@@ -17,22 +14,12 @@ class CommentPage extends Component {
     this.setState({ create: false });
   };
 
-  handleUpload = event => {
-    this.setState({
-      image: URL.createObjectURL(event.target.files[0])
-    });
-  };
-
   render() {
     return (
       <React.Fragment>
-        {this.state.create && (
-          <Modal onClose={this.cancelEventHandler}>
-            <Comment onUpload={this.handleUpload} />
-          </Modal>
-        )}
-        <Comment />
-        <div>
+        {this.state.create && <Modal onClose={this.cancelEventHandler}></Modal>}
+
+        <div className="first">
           <button onClick={this.createEventHandler}>Create Comment</button>
         </div>
       </React.Fragment>

@@ -9,7 +9,6 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import Posts from "./components/post/posts";
 import CommentPage from "./components/commentBoard/commentPage";
 import PrivateRoute from "./route/PrivateRoute";
 import PostImage from "./components/postImage/postImage";
@@ -38,12 +37,10 @@ class App extends Component {
                 render={() =>
                   !store.getState().auth.isAuthenticated ? (
                     <div>
-                      <Posts />
                     </div>
                   ) : (
                     <div>
                       <PostImage />
-                      <Posts />
                     </div>
                   )
                 }

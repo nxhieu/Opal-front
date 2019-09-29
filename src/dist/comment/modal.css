@@ -40,3 +40,7 @@
     margin: 0 calc((100% - 30rem) / 2);
   }
 }
+
+.first {
+  margin-top: 10rem;
+}
