@@ -10,8 +10,6 @@ import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import CommentPage from "./components/commentBoard/commentPage";
-import PrivateRoute from "./route/PrivateRoute";
-import PostImage from "./components/postImage/postImage";
 import Userpage from "./components/userpage/userpage";
 import About from "./components/about/about";
 import { Provider } from "react-redux";
@@ -36,12 +34,9 @@ class App extends Component {
                 path="/"
                 render={() =>
                   !store.getState().auth.isAuthenticated ? (
-                    <div>
-                    </div>
+                    <div></div>
                   ) : (
-                    <div>
-                      <PostImage />
-                    </div>
+                    <div></div>
                   )
                 }
               />

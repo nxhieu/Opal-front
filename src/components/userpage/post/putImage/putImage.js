@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { postImage } from "../../../../actions/postImageAction";
+import "../../../../dist/css/submit.css";
+import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
 
 export class putImage extends Component {
   state = {
@@ -8,13 +10,14 @@ export class putImage extends Component {
     fileUrl: null
   };
   onFileChange = event => {
-    this.setState({
-      fileUrl: URL.createObjectURL(event.target.files[0])
-    });
-    this.setState({
-      file: event.target.files[0]
-    });
-    console.log(this.state.file);
+    if (event.target.files[0] != null) {
+      this.setState({
+        fileUrl: URL.createObjectURL(event.target.files[0])
+      });
+      this.setState({
+        file: event.target.files[0]
+      });
+    }
   };
 
   onSubmit = e => {
@@ -28,9 +31,27 @@ export class putImage extends Component {
     return (
       <div className="post-form">
         <form onSubmit={this.onSubmit}>
-          <input className="file" onChange={this.onFileChange} type="file" accept="image/*" />
+          <input
+            className="file"
+            onChange={this.onFileChange}
+            type="file"
+            id="file"
+            accept="image/*"
+          />
+          <p>Create a post</p>
 
-          {fileUrl ? <img src={fileUrl} alt="post" width="100" /> : null}
+          <label className="putImage-label" for="file">
+            {" "}
+            {fileUrl ? (
+              <img src={fileUrl} alt="post" width="100" />
+            ) : (
+              <Fragment>
+                <img src={placeholder} width="100"></img>
+                <p>{`Hi ${this.props.authState.firstName}! what are you thinking today ?`}</p>
+              </Fragment>
+            )}
+          </label>
+
           <div className="btnstyle">
             <input
               type="submit"
@@ -44,7 +65,8 @@ export class putImage extends Component {
   }
 }
 const mapStateToProps = state => ({
-  imageState: state.post
+  imageState: state.post,
+  authState: state.auth
 });
 
 export default connect(

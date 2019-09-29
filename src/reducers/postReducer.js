@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         message: action.payload.message,
-        hasMore: action.payload.posts.length <= 10,
+        hasMore: action.payload.posts.length >= 10,
         posts: [...state.posts, ...action.payload.posts],
         isLoading: false
       };

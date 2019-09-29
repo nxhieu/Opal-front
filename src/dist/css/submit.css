@@ -1,0 +1,51 @@
+.post-form {
+  background-color: #f4f4f4;
+  padding: 0.3rem 0 0.8rem 0;
+  margin: 0;
+  border: 1px solid #f4f4f4;
+}
+
+.post-form p {
+  padding: 0 0.2rem;
+  color: white;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.putImage-label {
+  color: #000;
+  height: 20vh;
+  width: 34vw;
+  background-color: #f4f4f4;
+  margin: 0.2rem 0rem;
+  font-size: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnstyle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.btnstyle button {
+  padding: 0.5rem 2rem;
+  margin: 0.5rem 1rem 0rem 0.2rem;
+  border-radius: 1rem;
+}
+
+.putImage-label p {
+  color: #000;
+}
+.putImage-label img {
+  width: 12rem;
+  height: 10rem;
+}
+
+.putImage-label:hover {
+  cursor: pointer;
+}

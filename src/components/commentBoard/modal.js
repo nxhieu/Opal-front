@@ -1,18 +1,9 @@
 import React, { Component } from "react";
 import "../../dist/comment/modal.css";
 import Comment from "./comment";
+import Comments from "./comments";
 
 class Modal extends Component {
-  state = {
-    image: "",
-    userName: "username"
-  };
-
-  handleUpload = event => {
-    this.setState({
-      image: URL.createObjectURL(event.target.files[0])
-    });
-  };
   render() {
     return (
       <React.Fragment>
@@ -21,11 +12,7 @@ class Modal extends Component {
             <span class="close" onClick={this.props.onClose}>
               &times;
             </span>
-            <Comment
-              onClick={this.handleUpload}
-              userName={this.state.userName}
-              image={this.state.image}
-            />
+            <Comments />
           </div>
         </div>
       </React.Fragment>
