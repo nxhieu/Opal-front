@@ -12,9 +12,7 @@ export class putImage extends Component {
   onFileChange = event => {
     if (event.target.files[0] != null) {
       this.setState({
-        fileUrl: URL.createObjectURL(event.target.files[0])
-      });
-      this.setState({
+        fileUrl: URL.createObjectURL(event.target.files[0]),
         file: event.target.files[0]
       });
     }
@@ -43,26 +41,17 @@ export class putImage extends Component {
           <label className="putImage-label" for="file">
             {" "}
             {fileUrl ? (
-              <img src={fileUrl} alt="post" width="100" />
+              <img src={fileUrl} alt="post" />
             ) : (
               <Fragment>
                 <img src={placeholder} width="100"></img>
-                <p>{`Hi ${this.props.authState.firstName}! what are you thinking today ?`}</p>
+                <p>{`Hi ${this.props.authState.firstName}! What are you thinking today ?`}</p>
               </Fragment>
             )}
           </label>
 
           <div className="btnstyle">
-            <button className="btn-emoji">Emoji</button>
-            <label for="file" className="label-image">
-              Choose your image
-            </label>
-
-            <input
-              type="submit"
-              value="post"
-              className="btn btn-primary btn-block"
-            />
+            <input type="submit" value="submit" className="btn-submit" />
           </div>
         </form>
       </div>
