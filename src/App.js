@@ -9,10 +9,8 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-
 import Userpage from "./components/userpage/userpage";
 import About from "./components/about/about";
-import Blogposts from "./components/userpage/post/Blogposts";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./dist/css/main.css";
@@ -30,8 +28,7 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-              <Route exact path="/" component={Blogposts} />
-              <Route exact path="/userpage" component={Userpage} />
+              <Route exact path="/" component={Userpage} />
               <Route exact path="/register" component={Register} />
               <Route
                 exact

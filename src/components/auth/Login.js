@@ -12,7 +12,7 @@ export class Login extends Component {
     //if login was succesful navigate to /card
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
-      this.props.history.push("/userpage");
+      this.props.history.push("/");
     }
   }
 
@@ -62,6 +62,11 @@ export class Login extends Component {
               <input type="submit" value="Login" className="btn" />
             </div>
           </form>
+        </div>
+        <div className="fail_authentication">
+          {this.props.authState.error === "Incorrect username or password" ? (
+            <h6>{this.props.authState.error}</h6>
+          ) : null}
         </div>
       </div>
     );

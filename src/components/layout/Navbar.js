@@ -46,9 +46,9 @@ class Navbar extends Component {
             </ul>
           ) : (
             <ul>
-              <li>
+              {/* <li>
                 <NotificationMenu />
-              </li>
+              </li> */}
               <li>
                 <Link to="/usersettings">Settings</Link>
               </li>

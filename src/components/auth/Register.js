@@ -21,7 +21,8 @@ class Register extends Component {
     //if registering was succesful navigate to /card
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
-      this.props.history.push("/post");
+      this.props.history.push("/");
+      console.log("Regis");
     }
   }
 
@@ -95,7 +96,7 @@ class Register extends Component {
               onChange={this.onChange}
               required
             />
-            {/* <label htmlFor="phone">Phone</label>
+            <label htmlFor="phone">Phone</label>
             <input
               type="text"
               name="phone"
@@ -110,7 +111,7 @@ class Register extends Component {
               value={address}
               onChange={this.onChange}
               required
-            /> */}
+            />
             <label htmlFor="email">Email Address</label>
             <input
               type="email"
@@ -140,6 +141,11 @@ class Register extends Component {
               <input type="submit" value="Register" className="btn" />
             </div>
           </form>
+        </div>
+        <div className="fail_authentication">
+          {this.props.authState.error === "Email is already exist" ? (
+            <h6>{this.props.authState.error}</h6>
+          ) : null}
         </div>
       </div>
     );

@@ -22,14 +22,14 @@ export const register = formData => async dispatch => {
       }
     });
 
-    if (res.status !== 200 && res.status !== 201) {
-      console.log("error");
-    }
     const data = await res.json();
     //after api calls, method dispatch get called and dispatch user data to reducer
     //dispatch to reducer (the type here is just a string to specify condition, the payload is data from api calls)
-    dispatch({ type: REGISTER_SUCCESS, payload: data });
-    console.log(data);
+    if (res.status !== 200 && res.status !== 201) {
+      dispatch({ type: REGISTER_FAIL, payload: "error" });
+    } else {
+      dispatch({ type: REGISTER_SUCCESS, payload: data });
+    }
   } catch (error) {
     console.log(error);
   }
@@ -46,6 +46,7 @@ export const login = formData => async dispatch => {
     });
     const data = await res.json();
     if (res.status !== 200) {
+      console.log("Login fails");
       dispatch({ type: LOGIN_FAIL, payload: "error" });
     } else {
       dispatch({ type: LOGIN_SUCCESS, payload: data });

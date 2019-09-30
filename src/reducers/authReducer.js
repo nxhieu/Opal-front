@@ -42,8 +42,16 @@ export default (state = initialState, action) => {
         isAuthenticated: true
       };
     case REGISTER_FAIL:
+      return {
+        ...state,
+        error: "Email is already exist"
+      };
     case AUTH_ERROR:
     case LOGIN_FAIL:
+      return {
+        ...state,
+        error: "Incorrect username or password"
+      };
     case LOGOUT:
       //REMOVE THE TOKEN FROM STORAGE
       localStorage.removeItem("token");

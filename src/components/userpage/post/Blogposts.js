@@ -56,7 +56,7 @@ export class Blogposts extends Component {
     const { error, hasMore, posts, isLoading } = this.props.postState;
 
     return (
-      <div class="blogposts">
+      <div className="blogposts">
         {posts.map(post => (
           <Fragment>
             <Blogpost key={post._id} post={post} />
