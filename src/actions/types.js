@@ -1,5 +1,4 @@
 //User Auth
-
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const USER_LOADED = "USER_LOADED";
@@ -21,3 +20,7 @@ export const GETPOSTS_SUCCESS = "GETPOSTS_SUCCESS";
 export const GETPOSTS_FAIL = "GETPOSTS_FAIL";
 export const DELETEPOST_SUCCESS = "DELETEPOST_SUCCESS";
 export const DELETEPOST_FAIL = "DELETEPOST_FAIL";
+
+//Comment
+export const COMMENT_SUCCESS = "COMMENT_SUCCESS";
+export const COMMENT_FAIL = "COMMENT_FAIL";

@@ -22,7 +22,10 @@ class Register extends Component {
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
       this.props.history.push("/");
+<<<<<<< HEAD
       console.log("Regis");
+=======
+>>>>>>> a9524cd0b07ecac8f951679d845ae91c5b8e27a0
     }
   }
 

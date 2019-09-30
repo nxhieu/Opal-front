@@ -10,10 +10,21 @@ import iconuser from "../../../img/blogpost/testavatars/muser.png";
 import editpost from "../../../img/blogpost/feedback/editpost.png";
 import BlogpostEdit from "./BlogpostEdit";
 import logo from "../../../img/UI/logo.png";
+import Modal from "../../commentBoard/modal";
 
 class Blogpost extends Component {
+  state = {
+    create: false
+  };
+  createEventHandler = () => {
+    this.setState({ create: true });
+  };
+
+  cancelEventHandler = () => {
+    this.setState({ create: false });
+  };
   render() {
-    const { email, imageUrl, _user } = this.props.post;
+    const { email, imageUrl, _user, _id } = this.props.post;
     return (
       <div className="blogpost-container">
         <div className="blogpost-header">
@@ -54,7 +65,16 @@ class Blogpost extends Component {
             </li>
 
             <li>
-              <button className="btn-comment" />
+              {this.state.create && (
+                <Modal onClose={this.cancelEventHandler}></Modal>
+              )}
+
+              <div className="first">
+                <button
+                  className="btn-comment"
+                  onClick={this.createEventHandler}
+                ></button>
+              </div>
             </li>
             <li>
               <p>300 Comments</p>
