@@ -29,7 +29,7 @@ input[type="file"] {
   background-size: 100%;
 }
 
-.comment .row label {
+.comment form .row label {
   float: left;
   clear: left;
   border-radius: 4px;
@@ -46,6 +46,27 @@ input[type="file"] {
   cursor: pointer;
 }
 
-label:hover {
+.comment form .row img {
+  max-height: 10rem;
+}
+
+.comment form .row label:hover {
   background-color: #0060ac;
+}
+
+.comment form .row [type="submit"] {
+  font-size: 1.13rem;
+  text-decoration: none;
+  border: none;
+  padding: 0.5rem 0.55rem;
+  text-decoration: none;
+  color: #0078d7;
+  background-color: white;
+  /* margin: auto; */
+}
+
+.comment form .row [type="submit"]:hover {
+  cursor: pointer;
+  background: #3c8ef0;
+  color: white;
 }

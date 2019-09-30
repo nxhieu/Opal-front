@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import "../../dist/comment/comment.css";
-import Comment from "./comment";
+import CreateComment from "./createComment";
 import { postImage } from "../../actions/postImageAction";
 
-class Comments extends Component {
+class CommentsList extends Component {
   state = {
     file: null,
     fileUrl: null,
     userName: "username"
   };
 
-  onFileChange = event => {
+  fileChangeHandler = event => {
     if (event.target.files[0] != null) {
       this.setState({
         fileUrl: URL.createObjectURL(event.target.files[0]),
@@ -19,15 +19,21 @@ class Comments extends Component {
     }
   };
 
-  onSubmit = e => {
-    e.preventDefault();
+  submitImageHandler = event => {
+    event.preventDefault();
     const file = this.state.file;
     this.props.postImage(file);
   };
 
   render() {
-    return <Comment />;
+    return (
+      <CreateComment
+        onChange={this.fileChangeHandler}
+        onSubmit={this.submitImageHandler}
+        fileUrl={this.state.fileUrl}
+      />
+    );
   }
 }
 
-export default Comments;
+export default CommentsList;

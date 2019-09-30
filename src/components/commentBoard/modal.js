@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../../dist/comment/modal.css";
-import Comment from "./comment";
-import Comments from "./comments";
+import CommentsList from "./commentsList";
 
 class Modal extends Component {
   render() {
@@ -9,10 +8,11 @@ class Modal extends Component {
       <React.Fragment>
         <div className="background">
           <div className="modal">
-            <span class="close" onClick={this.props.onClose}>
+            <span className="close" onClick={this.props.onClose}>
+              {" "}
               &times;
             </span>
-            <Comments />
+            <CommentsList />
           </div>
         </div>
       </React.Fragment>

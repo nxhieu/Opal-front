@@ -9,7 +9,6 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import CommentPage from "./components/commentBoard/commentPage";
 import Userpage from "./components/userpage/userpage";
 import About from "./components/about/about";
 import { Provider } from "react-redux";
@@ -29,22 +28,8 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={() =>
-                  !store.getState().auth.isAuthenticated ? (
-                    <div></div>
-                  ) : (
-                    <div></div>
-                  )
-                }
-              />
-
-              <Route exact path="/comment" component={CommentPage} />
-
               {/* <Route exact path="/Card" component={Card} /> */}
-              <Route exact path="/userpage" component={Userpage} />
+              <Route exact path="/" component={Userpage} />
 
               <Route exact path="/register" component={Register} />
               <Route

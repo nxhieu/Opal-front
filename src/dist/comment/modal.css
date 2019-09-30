@@ -4,7 +4,7 @@
   height: 100%;
   overflow: auto; /*can scroll if needed*/
   z-index: 1; /*sit on the top*/
-  background: rgb(247, 244, 244);
+  background: white;
   top: 0; /*vh*/
   margin: 0 calc((100% - 50rem) / 2);
 }
