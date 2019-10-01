@@ -16,44 +16,60 @@ import UserSettingsPage from "./components/navigation/usersettingspage";
 import Userpage from "./components/navigation/userpage";
 import Footer from "./components/layout/Footer";
 import PrivateRoute from "./route/PrivateRoute";
+import Posts from "./components/posts/posts";
 import { Provider } from "react-redux";
 import store from "./store";
 import "./dist/css/main.css";
 import Card from "./components/navigation/card";
+import Blogpost from "./components/layout/Blogpost";
+import Newpost from "./components/layout/Newpost";
 //https://www.telerik.com/kendo-react-ui/components/dropdowns/dropdownlist/
 
 class App extends Component {
-
-  state = {
-    date: new Date(),
-  }
+  constructor () {
+    super();
+    this.state = {
+      date: new Date(),
+      isEdit: false,
+      isDelete: false,
+  };
+  this.handleClick = this.handleClick.bind(this);
+}
  
   onChange = date => this.setState({ date })
 
   handleClick() {
     this.setState({
-        open: !this.state.open
+        open: !this.state.open,
+        isEdit: !this.state.isEdit,
+        isDelete: !this.state.isDelete
     });
-}
+  }
 
   render() {
     return (
       <Provider store={store}>
         {console.log(store.getState().auth.isAuthenticated)}
         <Router basename={'/'} >
+          
           <Fragment>
+          <Blogpost
+            handleClick={this.handleClick}
+            isEdit={this.state.isEdit}
+            isDelete={this.state.isDelete}
+          />
           <Redirect to="/about" component={About}/>
             <Navbar />
             <Switch>
               <Route
                 exact
-                path="/userpage"  component={Userpage}
+                path="/post" 
                   
                 render={() =>
                   !store.getState().auth.isAuthenticated ? (
-                    <Redirect to="/login" />
+                    <Posts/>
                   ) : (
-                    <About/>
+                    <Userpage/>
                   )
                 }
               />
@@ -86,8 +102,10 @@ class App extends Component {
                 }
               />
             </Switch>
+             
           </Fragment>
         </Router>
+         
         <Footer/>
       </Provider>
     );

@@ -41,7 +41,7 @@ class Userpage extends Component {
           <Fragment>
             <Navbar />  
             <div className = "blogpost-column">
-              <Newpost />
+           
               <InfiniteScroll/>
               
               

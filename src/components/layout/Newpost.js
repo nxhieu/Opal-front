@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import "../../dist/css/main.css";
 import newpost from "../../img/newpost/newpost.png";

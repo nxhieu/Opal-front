@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "../../dist/css/main.css";
 
+//REGISTER FORM TUTORIAL TAKEN FROM
+//https://www.youtube.com/watch?v=56E8b9prPTs
+
 class Register extends Component {
   state = {
     firstname: "",
@@ -21,7 +24,7 @@ class Register extends Component {
     //if registering was succesful navigate to /card
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
-      this.props.history.push("/userpage");
+      this.props.history.push("/post");
     }
   }
 

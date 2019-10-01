@@ -3,7 +3,7 @@ import "../../dist/css/main.css";
 
 export class UserSettingsPage extends Component {
   state = {
-    email: "hieu",
+    email: "",
     file: ""
   };
   onFileChange = event => {
@@ -21,7 +21,7 @@ export class UserSettingsPage extends Component {
           <p>{email}</p>
           <input onChange={this.onFileChange} type="file" accept="image/*" />
           <p>{this.state.file}</p>
-          <img src={this.state.file} alt="post" width="200" />
+          <img src={this.state.file}  width="200" />
         </form>
       </div>
     );

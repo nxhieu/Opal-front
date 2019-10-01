@@ -7,6 +7,7 @@ class Card extends Component {
     render() {
       return (
         <div>
+            
             <p>dsbdfhbd</p>
 
          </div>

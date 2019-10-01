@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import "../../dist/css/main.css";
+
+//WELCOME BOARD TUTORIALS TAKEN FROM
 //https://www.youtube.com/watch?v=ZKwrOXl5TDI
 //https://stackoverflow.com/questions/52933997/adding-a-greeting-to-a-react-app-based-on-the-time-of-day
 
@@ -33,7 +35,7 @@ import "../../dist/css/main.css";
   }
 
   componentDidMount() { //runs off the render menthod
-    fetch("https://swapi.co/api/people/2")
+    fetch("https://swapi.co/api/people/1")
       .then(res => res.json()) //turns into javascript object.
       .then(data => {
           this.setState({

@@ -2,6 +2,7 @@ import React, { Component, PropTypes }  from "react";
 import ReactDOM, { render } from "react-dom";
 import ReactMotion, { Motion, spring, presets } from "react-motion";
 
+//TUTORIAL TAKEN FROM
 //https://reactjsexample.com/react-hamburger-button/
 
 export default class HamburgerButton extends Component {

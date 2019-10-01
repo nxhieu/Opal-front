@@ -2,10 +2,15 @@ import React, { Component, Fragment } from "react";
 import { render } from "react-dom";
 import request from "superagent";
 import debounce from "lodash.debounce";
-import { BlogpostEdit } from "./BlogpostEdit";
 import Blogpost from "./Blogpost";
+import BlogpostNew from "./BlogpostNew";
 import loading from "../../img/UI/loading.gif";
 import "../../dist/css/main.css";
+
+
+// DEVELOPED BY KIRA KHRISTOSOVA
+// INFINITE SCROLL FEATURE IS TAKEN FROM 
+// https://alligator.io/react/react-infinite-scroll/
 
 export default class InfiniteScroll extends Component {
   constructor(props) {
@@ -16,18 +21,14 @@ export default class InfiniteScroll extends Component {
       error: false,
       hasMore: true,
       isLoading: false,
-      posts: [],
+      posts: []
     };
 
     // Binds our scroll event handler
     window.onscroll = debounce(() => {
       const {
         loadPosts,
-        state: {
-          error,
-          isLoading,
-          hasMore,
-        },
+        state: { error, isLoading, hasMore }
       } = this;
 
       // Bails early if:
@@ -38,8 +39,8 @@ export default class InfiniteScroll extends Component {
 
       // Checks that the page has scrolled to the bottom
       if (
-        window.innerHeight + document.documentElement.scrollTop
-        === document.documentElement.offsetHeight
+        window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.offsetHeight
       ) {
         loadPosts();
       }
@@ -54,73 +55,53 @@ export default class InfiniteScroll extends Component {
   loadPosts = () => {
     this.setState({ isLoading: true }, () => {
       request
-        .get('https://randomuser.me/api/?results=3')
-        .then((results) => {
+        .get("https://randomuser.me/api/?results=3")
+        .then(results => {
           // Creates a massaged array of user data
-          const nextPosts = results.body.results.map(post => ({
-            
-          }));
+          const nextPosts = results.body.results.map(post => ({}));
 
           // Merges the next users into our existing users
           this.setState({
             // Note: Depending on the API you're using, this value may
             // be returned as part of the payload to indicate that there
             // is no additional data to be loaded
-            hasMore: (this.state.posts.length < 4),
+            hasMore: this.state.posts.length < 4,
             isLoading: false,
-            posts: [
-              ...this.state.posts,
-              ...nextPosts,
-            ],
+            posts: [...this.state.posts, ...nextPosts]
           });
         })
-        .catch((err) => {
+        .catch(err => {
           this.setState({
             error: err.message,
-            isLoading: false,
-           });
-        })
+            isLoading: false
+          });
+        });
     });
-  }
+  };
 
   render() {
-    const {
-      error,
-      hasMore,
-      posts,
-      isLoading,
-    } = this.state;
+    const { error, hasMore, posts, isLoading } = this.state;
 
     return (
-      <div>
+      <div class="blogposts">
         {posts.map(post => (
           <Fragment key={post.username}>
-           
-            <div style={{ display: 'flex' }}>
-          
-              <div>
-                <Blogpost/>
-              </div>
-             
-            </div>
+            {/* <div style={{ display: "contents" }}> */}
+            {/* <div> */}
+            <Blogpost />
+            {/* </div> */}
+            {/* </div> */}
           </Fragment>
-          
         ))}
-      
-        {error &&
-          <div style={{ color: '#900' }}>
-            {error}
-          </div>
-        }
-        {isLoading &&
+
+        {error && <div style={{ color: "#900" }}>{error}</div>}
+        {isLoading && (
           <div className="loading">
             <h4>Loading More Posts...</h4>
             <img src={loading} width="80" />
-           </div>
-        }
-        {!hasMore &&
-          <div>No more posts.</div>
-        }
+          </div>
+        )}
+        {!hasMore && <div>No more posts.</div>}
       </div>
     );
   }

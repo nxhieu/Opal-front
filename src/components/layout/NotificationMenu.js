@@ -4,6 +4,9 @@ import Downshift from "downshift";
 
 const items = ["No Posts yet"];
 
+//DOWNSHIFT TUTORIAL TAKEN FROM 
+//https://github.com/downshift-js/downshift
+
 export default class NotificationMenu extends Component {
     render(){
         return( 

@@ -1,5 +1,9 @@
 import React, { Fragment, Component } from "react";
 
+
+//TUTORIAL TAKEN FROM CODEPEN.IO
+//https://codepen.io/Libor_G/pen/JyJzjb
+
 // function component
 const AnimatedCard = ({ animation, digit }) => {
     return(

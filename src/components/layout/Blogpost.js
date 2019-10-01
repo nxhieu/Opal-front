@@ -9,7 +9,7 @@ import HamburgerMenu from 'react-hamburger-menu';
 import iconuser from "../../img/blogpost/testavatars/muser.png";
 import editpost from "../../img/blogpost/feedback/editpost.png";
 import BlogpostEdit  from "./BlogpostEdit";
-
+var currentLikeValue = 1000, totalLikeValue;
 
 class Blogpost extends Component {
 
@@ -24,6 +24,10 @@ class Blogpost extends Component {
 
           })
       });
+  }
+
+  PressLike = () => {
+    totalLikeValue = currentLikeValue + 1;
   }
    
     render(){
@@ -70,10 +74,10 @@ class Blogpost extends Component {
            <div className="blogpost-footer">
                 <ul>
                     <li>
-                        <button className="btn-like"/>
+                        <button className="btn-like" onClick={this.PressLike}/>
                     </li>
-                    <li>
-                        <p>+1000</p>
+                    <li>              
+                        {totalLikeValue} Likes
                     </li>
                     
                     <li>
