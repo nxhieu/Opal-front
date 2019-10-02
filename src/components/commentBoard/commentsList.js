@@ -33,7 +33,11 @@ export class CommentsList extends Component {
     return (
       <div>
         <h1>{comments ? "have" : "no"}</h1>
-        <h1>{this.props.commentState.comments}</h1>
+        <h1>
+          {comments.map(comment => (
+            <h1>{comment._post}</h1>
+          ))}
+        </h1>
         <CreateComment
           onChange={this.fileChangeHandler}
           onSubmit={this.submitImageHandler}
