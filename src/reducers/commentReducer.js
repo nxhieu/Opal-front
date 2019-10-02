@@ -1,6 +1,4 @@
 import {
-  COMMENT_SUCCESS,
-  COMMENT_FAIL,
   GET_COMMENT_REQUEST,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_FAIL
@@ -17,7 +15,6 @@ export default (state = initialState, action) => {
     case GET_COMMENT_SUCCESS:
       return {
         ...state,
-        message: action.payload.message,
         comments: [...state.comments, ...action.payload.comments]
       };
     default:

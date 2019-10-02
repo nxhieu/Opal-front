@@ -9,6 +9,7 @@ export class putImage extends Component {
     file: null,
     fileUrl: null
   };
+
   onFileChange = event => {
     if (event.target.files[0] != null) {
       this.setState({

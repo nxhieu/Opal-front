@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../../dist/comment/createComment.css";
-import { connect } from "react-redux";
 
 class CreateComment extends Component {
   render() {

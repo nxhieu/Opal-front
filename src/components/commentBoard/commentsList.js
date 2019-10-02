@@ -24,16 +24,7 @@ export class CommentsList extends Component {
   submitImageHandler = event => {
     event.preventDefault();
     const file = this.state.file;
-    const post_id = this.state.post_id;
-    this.props.postComment(file, post_id);
-  };
-
-  componentWillMount() {
-    this.loadComment();
-  }
-
-  loadComment = () => {
-    this.props.getComment();
+    this.props.postComment(this.state.post_id, file);
   };
 
   render() {

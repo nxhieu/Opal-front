@@ -11,10 +11,13 @@ import editpost from "../../../img/blogpost/feedback/editpost.png";
 import BlogpostEdit from "./BlogpostEdit";
 import logo from "../../../img/UI/logo.png";
 import Modal from "../../commentBoard/modal";
+import { getComment, postComment } from "../../../actions/commentAction";
+import { connect } from "react-redux";
 
-class Blogpost extends Component {
+export class Blogpost extends Component {
   state = {
-    create: false
+    create: false,
+    post_id: this.props.postState._id
   };
 
   createEventHandler = () => {
@@ -23,6 +26,15 @@ class Blogpost extends Component {
 
   cancelEventHandler = () => {
     this.setState({ create: false });
+  };
+
+  componentWillMount() {
+    this.loadComment();
+  }
+
+  loadComment = () => {
+    this.props.getComment(this.state.post_id);
+    console.log(this.state.post_id);
   };
 
   render() {
@@ -44,25 +56,47 @@ class Blogpost extends Component {
           />
         </div>
         <div className="blogpost-footer">
-          <div className="emojis">
-            {/* <button className="btn-like" /> */}
-            <p>+1000</p>
-          </div>
-          <div className="comments">
-            {this.state.create && (
-              <Modal onClose={this.cancelEventHandler}></Modal>
-            )}
-            {/* <div className="first"> */}
-            <button
-              className="btn-comment"
-              onClick={this.createEventHandler}
-            ></button>
-            {/* </div> */}
-            <p>300 Comments</p>
-          </div>
+          <ul>
+            <li>
+              <button className="btn-like" />
+            </li>
+            <li>
+              <p>+1000</p>
+            </li>
+
+            <li>
+              {this.state.create && (
+                <Modal
+                  onClose={this.cancelEventHandler}
+                  onClick={this.loadComment}
+                  post_id={this.props.post._id}
+                ></Modal>
+              )}
+
+              <div className="first">
+                <button
+                  className="btn-comment"
+                  onClick={this.createEventHandler}
+                ></button>
+              </div>
+            </li>
+            <li>
+              <p>300 Comments</p>
+            </li>
+          </ul>
         </div>
       </div>
     );
   }
 }
-export default Blogpost;
+
+const mapStateToProps = state => ({
+  commentState: state.comment,
+  postState: state.post,
+  authState: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { getComment, postComment }
+)(Blogpost);

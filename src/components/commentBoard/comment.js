@@ -4,11 +4,11 @@ import "../../dist/comment/createComment.css";
 class Comment extends Component {
   state = {};
   render() {
-    const { email, imageUrl, _user, _post } = this.props.comment;
+    const { _user, _post, email, imageUrl } = this.props.comment;
     return (
       <div className="comment">
         <div className="row">
-          <span>Comment as {_user}</span>
+          <span>Comment as {email}</span>
         </div>
         <div className="row">
           {
