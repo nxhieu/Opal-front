@@ -16,6 +16,7 @@ class Blogpost extends Component {
   state = {
     create: false
   };
+
   createEventHandler = () => {
     this.setState({ create: true });
   };
@@ -23,6 +24,7 @@ class Blogpost extends Component {
   cancelEventHandler = () => {
     this.setState({ create: false });
   };
+
   render() {
     const { email, imageUrl, _user, _id } = this.props.post;
     return (

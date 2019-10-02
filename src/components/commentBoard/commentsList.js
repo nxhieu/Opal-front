@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import "../../dist/comment/comment.css";
+import { connect } from "react-redux";
+import { getComment, postComment } from "../../actions/commentAction";
 import CreateComment from "./createComment";
-import { postImage } from "../../actions/postImageAction";
+import Comment from "./comment";
 
-class CommentsList extends Component {
+export class CommentsList extends Component {
   state = {
     file: null,
     fileUrl: null,
@@ -22,18 +23,43 @@ class CommentsList extends Component {
   submitImageHandler = event => {
     event.preventDefault();
     const file = this.state.file;
-    this.props.postImage(file);
+    this.props.postComment(file);
+  };
+
+  componentWillMount() {
+    this.loadComment();
+  }
+
+  loadComment = () => {
+    this.props.getComment();
   };
 
   render() {
+    const { comments } = this.props.commentState;
     return (
-      <CreateComment
-        onChange={this.fileChangeHandler}
-        onSubmit={this.submitImageHandler}
-        fileUrl={this.state.fileUrl}
-      />
+      <div>
+        <CreateComment
+          onChange={this.fileChangeHandler}
+          onSubmit={this.submitImageHandler}
+          fileUrl={this.state.fileUrl}
+        />
+        {comments.map(comment => (
+          <div>
+            <Comment key={comment._id} comment={comment} />
+          </div>
+        ))}
+      </div>
     );
   }
 }
 
-export default CommentsList;
+const mapStateToProps = state => ({
+  commentState: state.comment,
+  postState: state.post,
+  authState: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { getComment, postComment }
+)(CommentsList);
