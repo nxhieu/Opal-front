@@ -6,7 +6,7 @@ import {
   GET_COMMENT_FAIL
 } from "./types";
 
-export const postComment = file => async dispatch => {
+export const postComment = (postId, file) => async dispatch => {
   try {
     const res = await fetch(
       `${window.apiAddress}/post/getUri?type=${file.type}`,
@@ -29,7 +29,7 @@ export const postComment = file => async dispatch => {
 
     const commentRes = await fetch(`${window.apiAddress}/comment/comment`, {
       method: "POST",
-      body: JSON.stringify({ imageUrl: awsUrl.key }),
+      body: JSON.stringify({ imageUrl: awsUrl.key, postId: postId }),
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-type": "application/json"
@@ -41,11 +41,12 @@ export const postComment = file => async dispatch => {
   }
 };
 
-export const getComment = () => async dispatch => {
+export const getComment = postId => async dispatch => {
   try {
     dispatch({ type: GET_COMMENT_REQUEST });
     const res = await fetch(`${window.apiAddress}/comment/getCommentList`, {
       method: "GET",
+      body: JSON.stringify({ postId: postId }),
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-type": "application/json"
@@ -54,7 +55,7 @@ export const getComment = () => async dispatch => {
     const data = await res.json();
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: GET_COMMENT_FAIL, payload: error.message });
+    dispatch({ type: GET_COMMENT_FAIL, payload: error });
     console.log(error);
   }
 };

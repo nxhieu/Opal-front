@@ -11,10 +11,13 @@ import editpost from "../../../img/blogpost/feedback/editpost.png";
 import BlogpostEdit from "./BlogpostEdit";
 import logo from "../../../img/UI/logo.png";
 import Modal from "../../commentBoard/modal";
+import { getComment, postComment } from "../../../actions/commentAction";
+import { connect } from "react-redux";
 
-class Blogpost extends Component {
+export class Blogpost extends Component {
   state = {
-    create: false
+    create: false,
+    post_id: this.props.postState._id
   };
 
   createEventHandler = () => {
@@ -23,6 +26,15 @@ class Blogpost extends Component {
 
   cancelEventHandler = () => {
     this.setState({ create: false });
+  };
+
+  componentWillMount() {
+    this.loadComment();
+  }
+
+  loadComment = () => {
+    this.props.getComment(this.state.post_id);
+    console.log(this.state.post_id);
   };
 
   render() {
@@ -68,7 +80,11 @@ class Blogpost extends Component {
 
             <li>
               {this.state.create && (
-                <Modal onClose={this.cancelEventHandler}></Modal>
+                <Modal
+                  onClose={this.cancelEventHandler}
+                  onClick={this.loadComment}
+                  post_id={this.props.post._id}
+                ></Modal>
               )}
 
               <div className="first">
@@ -87,4 +103,14 @@ class Blogpost extends Component {
     );
   }
 }
-export default Blogpost;
+
+const mapStateToProps = state => ({
+  commentState: state.comment,
+  postState: state.post,
+  authState: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { getComment, postComment }
+)(Blogpost);

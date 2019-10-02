@@ -15,7 +15,6 @@ export default (state = initialState, action) => {
     case GET_COMMENT_SUCCESS:
       return {
         ...state,
-        message: action.payload.message,
         comments: [...state.comments, ...action.payload.comments]
       };
     default:
