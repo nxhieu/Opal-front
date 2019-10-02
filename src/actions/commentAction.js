@@ -1,6 +1,6 @@
 import {
-  COMMENT_SUCCESS,
-  COMMENT_FAIL,
+  GETURI_SUCCESS,
+  GETURI_FAIL,
   GET_COMMENT_REQUEST,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_FAIL
@@ -35,9 +35,9 @@ export const postComment = file => async dispatch => {
         "Content-type": "application/json"
       }
     });
-    dispatch({ type: COMMENT_SUCCESS, payload: awsUrl });
+    dispatch({ type: GETURI_SUCCESS, payload: awsUrl });
   } catch (error) {
-    dispatch({ type: COMMENT_FAIL });
+    dispatch({ type: GETURI_FAIL });
   }
 };
 
