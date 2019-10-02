@@ -12,7 +12,7 @@ class Modal extends Component {
               {" "}
               &times;
             </span>
-            <CommentsList />
+            <CommentsList post_id={this.props.post_id} />
           </div>
         </div>
       </React.Fragment>

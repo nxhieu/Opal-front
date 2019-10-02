@@ -8,7 +8,8 @@ export class CommentsList extends Component {
   state = {
     file: null,
     fileUrl: null,
-    userName: "username"
+    userName: "username",
+    post_id: this.props.post_id
   };
 
   fileChangeHandler = event => {
@@ -23,7 +24,8 @@ export class CommentsList extends Component {
   submitImageHandler = event => {
     event.preventDefault();
     const file = this.state.file;
-    this.props.postComment(file);
+    const post_id = this.state.post_id;
+    this.props.postComment(file, post_id);
   };
 
   componentWillMount() {
@@ -42,6 +44,7 @@ export class CommentsList extends Component {
           onChange={this.fileChangeHandler}
           onSubmit={this.submitImageHandler}
           fileUrl={this.state.fileUrl}
+          post_id={this.state.post_id}
         />
         {comments.map(comment => (
           <div>
