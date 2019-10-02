@@ -16,8 +16,7 @@ import { connect } from "react-redux";
 
 export class Blogpost extends Component {
   state = {
-    create: false,
-    post_id: this.props.postState._id
+    create: false
   };
 
   createEventHandler = () => {
@@ -28,13 +27,13 @@ export class Blogpost extends Component {
     this.setState({ create: false });
   };
 
-  componentWillMount() {
-    this.loadComment();
-  }
+  // componentWillMount() {
+  //   this.loadComment();
+  // }
 
   loadComment = () => {
-    this.props.getComment(this.state.post_id);
-    console.log(this.state.post_id);
+    this.props.getComment(this.props.post._id);
+    console.log(this.props.post._id);
   };
 
   render() {
@@ -105,9 +104,7 @@ export class Blogpost extends Component {
 }
 
 const mapStateToProps = state => ({
-  commentState: state.comment,
-  postState: state.post,
-  authState: state.auth
+  commentState: state.comment
 });
 
 export default connect(

@@ -46,7 +46,7 @@ export const getComment = postId => async dispatch => {
     dispatch({ type: GET_COMMENT_REQUEST });
     const res = await fetch(`${window.apiAddress}/comment/getCommentList`, {
       method: "GET",
-      body: JSON.stringify({ postId: postId }),
+      //   body: JSON.stringify({ postId: postId }),
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-type": "application/json"
@@ -55,7 +55,7 @@ export const getComment = postId => async dispatch => {
     const data = await res.json();
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: GET_COMMENT_FAIL, payload: error });
-    console.log(error);
+    dispatch({ type: GET_COMMENT_FAIL, payload: "fail" });
+    console.log("fail");
   }
 };

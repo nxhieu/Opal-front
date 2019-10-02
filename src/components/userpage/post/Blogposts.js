@@ -57,6 +57,7 @@ export class Blogposts extends Component {
 
     return (
       <div class="blogposts">
+        <h1>{}</h1>
         {posts.map(post => (
           <Fragment>
             <Blogpost key={post._id} post={post} />

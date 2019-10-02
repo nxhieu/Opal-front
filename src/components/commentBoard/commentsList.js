@@ -29,8 +29,11 @@ export class CommentsList extends Component {
 
   render() {
     const { comments } = this.props.commentState;
+    const { posts } = this.props.postState;
     return (
       <div>
+        <h1>{comments ? "have" : "no"}</h1>
+        <h1>{this.props.commentState.comments}</h1>
         <CreateComment
           onChange={this.fileChangeHandler}
           onSubmit={this.submitImageHandler}
