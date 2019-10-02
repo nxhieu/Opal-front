@@ -38,7 +38,7 @@ export class putImage extends Component {
           />
           <p>Create a post</p>
 
-          <label className="putImage-label" for="file">
+          <label className="putImage-label" htmlFor="file">
             {" "}
             {fileUrl ? (
               <img src={fileUrl} alt="post" />
@@ -51,15 +51,11 @@ export class putImage extends Component {
           </label>
 
           <div className="btnstyle">
-<<<<<<< HEAD
-            <input type="submit" value="submit" className="btn-submit" />
-=======
             <input
               type="submit"
               value="post"
               className="btn btn-primary btn-block"
             />
->>>>>>> a9524cd0b07ecac8f951679d845ae91c5b8e27a0
           </div>
         </form>
       </div>

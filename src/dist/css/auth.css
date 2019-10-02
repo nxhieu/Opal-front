@@ -1,6 +1,7 @@
 /* ======== FORM PROPS ========*/
 
 .form-container {
+  background-color: white;
   font-family: inherit;
   font-size: 1.25rem;
   color: black;

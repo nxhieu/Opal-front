@@ -28,27 +28,13 @@ class Blogpost extends Component {
     return (
       <div className="blogpost-container">
         <div className="blogpost-header">
-          <ul>
-            <li>
-              <img
-                className="blogpost-user-img"
-                src={iconuser}
-                width="50"
-                alt="Avatar"
-              />
-            </li>
-            <li>
-              <div>
-                <p>{email}</p>
-                <p className="blogpost-date-posted">on 26th Aug</p>
-              </div>
-            </li>
-            <li>
-              <div className="blogpost-edit">
-                <BlogpostEdit />
-              </div>
-            </li>
-          </ul>
+          {/* <div className> */}
+          <p>{email}</p>
+          <p id="date-post">26-Aug-2019</p>
+          {/* </div> */}
+          {/* <div className="blogpost-edit">
+            <BlogpostEdit />
+          </div> */}
         </div>
         <div className="blogpost-body">
           <img
@@ -56,30 +42,22 @@ class Blogpost extends Component {
           />
         </div>
         <div className="blogpost-footer">
-          <ul>
-            <li>
-              <button className="btn-like" />
-            </li>
-            <li>
-              <p>+1000</p>
-            </li>
-
-            <li>
-              {this.state.create && (
-                <Modal onClose={this.cancelEventHandler}></Modal>
-              )}
-
-              <div className="first">
-                <button
-                  className="btn-comment"
-                  onClick={this.createEventHandler}
-                ></button>
-              </div>
-            </li>
-            <li>
-              <p>300 Comments</p>
-            </li>
-          </ul>
+          <div className="emojis">
+            {/* <button className="btn-like" /> */}
+            <p>+1000</p>
+          </div>
+          <div className="comments">
+            {this.state.create && (
+              <Modal onClose={this.cancelEventHandler}></Modal>
+            )}
+            {/* <div className="first"> */}
+            <button
+              className="btn-comment"
+              onClick={this.createEventHandler}
+            ></button>
+            {/* </div> */}
+            <p>300 Comments</p>
+          </div>
         </div>
       </div>
     );

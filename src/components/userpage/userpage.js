@@ -3,7 +3,6 @@ import Leaderboard from "./leaderboard/Leaderboard";
 import Blogposts from "./post/Blogposts";
 import PutImage from "./post/putImage/putImage";
 import "../../dist/css/main.css";
-import "../../dist/css/flipclock.css";
 import "../../dist/css/userPage.css";
 import Welcome from "./welcome/Welcome";
 

@@ -28,13 +28,9 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-<<<<<<< HEAD
-              <Route exact path="/" component={Userpage} />
-=======
               {/* <Route exact path="/Card" component={Card} /> */}
               <Route exact path="/" component={Userpage} />
 
->>>>>>> a9524cd0b07ecac8f951679d845ae91c5b8e27a0
               <Route exact path="/register" component={Register} />
               <Route
                 exact

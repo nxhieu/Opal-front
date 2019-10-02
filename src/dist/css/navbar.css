@@ -1,7 +1,7 @@
 /* ======== NAVBAR PROPS ========*/
 .main-nav {
   display: flex;
-  padding: 1rem 2rem;
+  padding: 0.85rem 2rem;
   align-items: center;
   justify-content: space-between;
   color: #0078d7;

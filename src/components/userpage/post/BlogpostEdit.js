@@ -26,7 +26,7 @@ export default class BlogpostEdit extends Component {
               <ul className="menu" {...getMenuProps()}>
                 {items.map((item, index) => (
                   <li
-                    classname="item"
+                    className="item"
                     highlighted={highlightedIndex === index}
                     selected={selectedItem === item}
                     {...getItemProps({
