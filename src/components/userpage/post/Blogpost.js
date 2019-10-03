@@ -17,7 +17,7 @@ import { connect } from "react-redux";
 export class Blogpost extends Component {
   state = {
     create: false,
-    post_id: this.props.postState._id
+    post_id: this.props.post._id
   };
 
   createEventHandler = () => {
@@ -34,6 +34,7 @@ export class Blogpost extends Component {
 
   loadComment = () => {
     this.props.getComment(this.state.post_id);
+    console.log(this.state.create);
     console.log(this.state.post_id);
   };
 

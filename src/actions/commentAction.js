@@ -26,7 +26,7 @@ export const postComment = (postId, file) => async dispatch => {
         "Content-Type": file.type
       }
     });
-    console.log(post_id);
+
     await fetch(`${window.apiAddress}/comment/comment`, {
       method: "POST",
       body: JSON.stringify({ imageUrl: awsUrl.key, postId: postId }),
@@ -35,26 +35,34 @@ export const postComment = (postId, file) => async dispatch => {
         "Content-type": "application/json"
       }
     });
-    dispatch({ type: COMMENT_SUCCESS, payload: awsUrl });
+    dispatch({ type: GETURI_SUCCESS, payload: awsUrl });
     console.log("comsucc");
   } catch (error) {
     console.log("commfail");
-    dispatch({ type: COMMENT_FAIL });
+    dispatch({ type: GETURI_FAIL });
   }
 };
 
 export const getComment = postId => async dispatch => {
   try {
+    console.log("action");
     dispatch({ type: GET_COMMENT_REQUEST });
-    const res = await fetch(`${window.apiAddress}/comment/getCommentList`, {
-      method: "GET",
-      body: JSON.stringify({ postId: postId }),
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-type": "application/json"
+    console.log("action1");
+    // const res = await fetch(`${window.apiAddress}/comment/getCommentList`, {
+    const res = await fetch(
+      // `${window.apiAddress}/comment/getCommentList`,
+      `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
+      {
+        method: "GET",
+        // body: JSON.stringify({ postId: postId }),
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-type": "application/json"
+        }
       }
-    });
+    );
     const data = await res.json();
+    console.log("after action");
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_COMMENT_FAIL, payload: error });

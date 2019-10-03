@@ -15,7 +15,11 @@ export default (state = initialState, action) => {
     case GET_COMMENT_SUCCESS:
       return {
         ...state,
-        comments: [...state.comments, ...action.payload.comments]
+        comments: [...state.comments, action.payload.comments]
+      };
+    case GET_COMMENT_REQUEST:
+      return {
+        ...state
       };
     default:
       return state;
