@@ -47,14 +47,11 @@ export const getComment = postId => async dispatch => {
   try {
     console.log("action");
     dispatch({ type: GET_COMMENT_REQUEST });
-    console.log("action1");
-    // const res = await fetch(`${window.apiAddress}/comment/getCommentList`, {
+    console.log("afteractionreq");
     const res = await fetch(
-      // `${window.apiAddress}/comment/getCommentList`,
       `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
       {
         method: "GET",
-        // body: JSON.stringify({ postId: postId }),
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
           "Content-type": "application/json"
@@ -65,7 +62,7 @@ export const getComment = postId => async dispatch => {
     console.log("after action");
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: GET_COMMENT_FAIL, payload: error });
-    console.log(error);
+    dispatch({ type: GET_COMMENT_FAIL, payload: "fail" });
+    console.log("fail");
   }
 };
