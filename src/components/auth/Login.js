@@ -12,7 +12,7 @@ export class Login extends Component {
     //if login was succesful navigate to /card
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
-      this.props.history.push("/userpage");
+      this.props.history.push("/");
     }
   }
 

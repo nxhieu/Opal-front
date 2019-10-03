@@ -38,7 +38,7 @@ export class putImage extends Component {
           />
           <p>Create a post</p>
 
-          <label className="putImage-label" for="file">
+          <label className="putImage-label" htmlFor="file">
             {" "}
             {fileUrl ? (
               <img src={fileUrl} alt="post" />

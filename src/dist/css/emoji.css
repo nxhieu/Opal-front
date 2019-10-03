@@ -1,0 +1,17 @@
+.emoji-form {
+  padding: 0.2rem;
+}
+
+.emoji-form input[type="text"] {
+  display: none;
+}
+
+.emojis-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.emojis-img img {
+  max-height: 2rem;
+}

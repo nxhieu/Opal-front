@@ -30,8 +30,7 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-              <Route exact path="/" component={Blogposts} />
-              <Route exact path="/userpage" component={Userpage} />
+              <Route exact path="/" component={Userpage} />
               <Route exact path="/register" component={Register} />
               <Route
                 exact

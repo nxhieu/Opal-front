@@ -9,11 +9,21 @@ import HamburgerMenu from "react-hamburger-menu";
 import iconuser from "../../../img/blogpost/testavatars/muser.png";
 import editpost from "../../../img/blogpost/feedback/editpost.png";
 import BlogpostEdit from "./BlogpostEdit";
-import logo from "../../../img/UI/logo.png";
+import Emojis from "../emoji/Emojis";
 
 class Blogpost extends Component {
+  state = {
+    isShowEmoji: false
+  };
+
+  onShowEmoji = () => {
+    this.setState({ isShowEmoji: !this.state.isShowEmoji });
+  };
+
   render() {
     const { email, imageUrl, _user } = this.props.post;
+    const { isShowEmoji } = this.state;
+
     return (
       <div className="blogpost-container">
         <div className="blogpost-header">
@@ -47,8 +57,9 @@ class Blogpost extends Component {
         <div className="blogpost-footer">
           <ul>
             <li>
-              <button className="btn-like" />
+              <button className="btn-like" onClick={this.onShowEmoji} />
             </li>
+            <li>{isShowEmoji ? <Emojis /> : null}</li>
             <li>
               <p>+1000</p>
             </li>
