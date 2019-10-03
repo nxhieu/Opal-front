@@ -12,7 +12,6 @@ class Modal extends Component {
               {" "}
               &times;
             </span>
-            <button onClick={this.props.onClick}>try</button>
             <CommentsList post_id={this.props.post_id} />
           </div>
         </div>

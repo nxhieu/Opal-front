@@ -11,29 +11,23 @@ import editpost from "../../../img/blogpost/feedback/editpost.png";
 import BlogpostEdit from "./BlogpostEdit";
 import logo from "../../../img/UI/logo.png";
 import Modal from "../../commentBoard/modal";
-import { getComment, postComment } from "../../../actions/commentAction";
+import { getComment, closeComment } from "../../../actions/commentAction";
 import { connect } from "react-redux";
 
 export class Blogpost extends Component {
   state = {
-    create: false
+    openModal: false,
+    post_id: this.props.post._id
   };
 
   createEventHandler = () => {
-    this.setState({ create: true });
+    this.setState({ openModal: true });
+    this.props.getComment(this.state.post_id);
   };
 
   cancelEventHandler = () => {
-    this.setState({ create: false });
-  };
-
-  // componentWillMount() {
-  //   this.loadComment();
-  // }
-
-  loadComment = () => {
-    this.props.getComment(this.props.post._id);
-    console.log(this.props.post._id);
+    this.setState({ openModal: false });
+    this.props.closeComment();
   };
 
   render() {
@@ -78,7 +72,7 @@ export class Blogpost extends Component {
             </li>
 
             <li>
-              {this.state.create && (
+              {this.state.openModal && (
                 <Modal
                   onClose={this.cancelEventHandler}
                   onClick={this.loadComment}
@@ -86,7 +80,7 @@ export class Blogpost extends Component {
                 ></Modal>
               )}
 
-              <div className="first">
+              <div>
                 <button
                   className="btn-comment"
                   onClick={this.createEventHandler}
@@ -109,5 +103,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getComment, postComment }
+  { getComment, closeComment }
 )(Blogpost);

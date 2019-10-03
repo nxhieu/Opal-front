@@ -3,7 +3,8 @@ import {
   GETURI_FAIL,
   GET_COMMENT_REQUEST,
   GET_COMMENT_SUCCESS,
-  GET_COMMENT_FAIL
+  GET_COMMENT_FAIL,
+  CLOSE_COMMENT
 } from "./types";
 
 export const postComment = (postId, file) => async dispatch => {
@@ -48,7 +49,6 @@ export const getComment = postId => async dispatch => {
       `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
       {
         method: "GET",
-        //   body: JSON.stringify({ postId: postId }),
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
           "Content-type": "application/json"
@@ -59,6 +59,9 @@ export const getComment = postId => async dispatch => {
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_COMMENT_FAIL, payload: "fail" });
-    console.log("fail");
   }
+};
+
+export const closeComment = () => async dispatch => {
+  dispatch({ type: CLOSE_COMMENT });
 };

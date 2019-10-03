@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import "../../dist/comment/createComment.css";
+import "../../dist/comment/comment.css";
+import CreateComment from "./createComment";
 
 class Comment extends Component {
   state = {};
   render() {
-    const { _user, _post, email, imageUrl } = this.props.comment;
+    const { email, imageUrl, _id } = this.props.comment;
     return (
       <div className="comment">
         <div className="row">
-          <span>Comment as {email}</span>
+          <span>{email}</span>
         </div>
         <div className="row">
           {
@@ -17,6 +18,18 @@ class Comment extends Component {
             />
           }
         </div>
+        <div className="row">
+          <label htmlFor={_id}>
+            <i className="reply" />
+            &nbsp; Reply
+          </label>
+          <button id={_id} onClick={this.props.onClick} />>
+        </div>
+        {this.props.reply && (
+          <div className="row">
+            <CreateComment />
+          </div>
+        )}
       </div>
     );
   }

@@ -9,7 +9,8 @@ export class CommentsList extends Component {
     file: null,
     fileUrl: null,
     userName: "username",
-    post_id: this.props.post_id
+    post_id: this.props.post_id,
+    replyComment: false
   };
 
   fileChangeHandler = event => {
@@ -27,25 +28,37 @@ export class CommentsList extends Component {
     this.props.postComment(this.state.post_id, file);
   };
 
+  replyCommentHandler = () => {
+    this.setState({ replyComment: true });
+  };
+
+  // componentWillMount() {
+  //   this.loadComment();
+  // }
+
+  // loadComment = () => {
+  //   this.props.getComment(this.state.post_id);
+  // };
+
   render() {
     const { comments } = this.props.commentState;
-    const { posts } = this.props.postState;
     return (
       <div>
-        <h1>{comments ? "have" : "no"}</h1>
-        <h1>
-          {comments.map(comment => (
-            <h1>{comment._post}</h1>
-          ))}
-        </h1>
+        <h1>{this.state.post_id}</h1>
         <CreateComment
           onChange={this.fileChangeHandler}
           onSubmit={this.submitImageHandler}
           fileUrl={this.state.fileUrl}
+          email={this.props.authState.email}
         />
         {comments.map(comment => (
           <div>
-            <Comment key={comment._id} comment={comment} />
+            <Comment
+              reply={this.state.replyComment}
+              onClick={this.replyCommentHandler}
+              key={comment._id}
+              comment={comment}
+            />
           </div>
         ))}
       </div>

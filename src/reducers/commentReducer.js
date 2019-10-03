@@ -1,9 +1,9 @@
 import {
   GET_COMMENT_REQUEST,
   GET_COMMENT_SUCCESS,
-  GET_COMMENT_FAIL
+  GET_COMMENT_FAIL,
+  CLOSE_COMMENT
 } from "../actions/types";
-import { access } from "fs";
 
 const initialState = {
   message: "",
@@ -27,6 +27,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         message: action.payload.message
+      };
+    case CLOSE_COMMENT:
+      return {
+        ...state,
+        comments: []
       };
     default:
       return state;
