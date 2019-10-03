@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { register } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import "../../dist/css/main.css";
+import "../../dist/css/auth.css";
 
 class Register extends Component {
   state = {
@@ -21,7 +21,7 @@ class Register extends Component {
     //if registering was succesful navigate to /card
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
-      this.props.history.push("/post");
+      this.props.history.push("/");
     }
   }
 
@@ -76,11 +76,9 @@ class Register extends Component {
     } = this.state;
     return (
       <div className="form-container">
-        <h1>
-          Account <span className="text-primary">Register</span>
-        </h1>
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
+        <h2>Create a new account</h2>
+        <div className="form-group">
+          <form onSubmit={this.onSubmit}>
             <label htmlFor="firstname"> First Name</label>
             <input
               type="text"
@@ -89,8 +87,6 @@ class Register extends Component {
               onChange={this.onChange}
               required
             />
-          </div>
-          <div className="form-group">
             <label htmlFor="lastname">Last Name</label>
             <input
               type="text"
@@ -99,9 +95,7 @@ class Register extends Component {
               onChange={this.onChange}
               required
             />
-          </div>
-          <div className="form-group">
-            <label htmlFor="phone">Phone</label>
+            {/* <label htmlFor="phone">Phone</label>
             <input
               type="text"
               name="phone"
@@ -109,8 +103,6 @@ class Register extends Component {
               onChange={this.onChange}
               required
             />
-          </div>
-          <div className="form-group">
             <label htmlFor="address">Address</label>
             <input
               type="text"
@@ -118,9 +110,7 @@ class Register extends Component {
               value={address}
               onChange={this.onChange}
               required
-            />
-          </div>
-          <div className="form-group">
+            /> */}
             <label htmlFor="email">Email Address</label>
             <input
               type="email"
@@ -129,8 +119,6 @@ class Register extends Component {
               onChange={this.onChange}
               required
             />
-          </div>
-          <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -140,8 +128,6 @@ class Register extends Component {
               required
               minLength="6"
             />
-          </div>
-          <div className="form-group">
             <label htmlFor="password2">Confirm Password</label>
             <input
               type="password"
@@ -150,15 +136,11 @@ class Register extends Component {
               onChange={this.onChange}
               required
             />
-          </div>
-          <div className="btnstyle">
-            <input
-              type="submit"
-              value="Register"
-              className="btn btn-primary btn-block"
-            />
-          </div>
-        </form>
+            <div>
+              <input type="submit" value="Register" className="btn" />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

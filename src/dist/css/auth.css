@@ -1,0 +1,110 @@
+/* ======== FORM PROPS ========*/
+
+.form-container {
+  background: white;
+  font-family: inherit;
+  font-size: 1.25rem;
+  color: black;
+  width: fit-content;
+  height: fit-content;
+  margin: 9rem auto;
+  border: 3px solid lightblue;
+  padding: 1rem 2rem;
+  overflow: hidden;
+  display: block;
+}
+
+.form-container h2 {
+  margin: 1.875rem 0;
+  font-size: 24px;
+  color: #0060ac;
+  width: fit-content;
+}
+
+.form-group label {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #0f327c;
+  float: left;
+  clear: left;
+  width: 190px;
+  text-align: left;
+  margin: 8px 0;
+  height: 26px;
+  padding: 2px 0;
+}
+
+.form-group input {
+  clear: left;
+  float: left;
+  width: 230px;
+  font-size: 0.875rem;
+  border-radius: 3px;
+  border: 1px solid rgb(197, 197, 197);
+  height: 26px;
+  padding: 2px 5px;
+}
+
+.form-group input[type="submit"] {
+  float: left;
+  clear: left;
+  color: white;
+  border: none;
+  padding: 5px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.125rem;
+  background-color: #0078d7;
+  margin: 1.875rem 0 1.25rem 0;
+  width: fit-content;
+  height: fit-content;
+  cursor: pointer;
+}
+
+.form-group input[type="submit"]:hover {
+  background-color: #0060ac;
+}
+
+/* ======== BUTTON PROPS ========*/
+
+.btn:hover {
+  background-color: #0060ac;
+}
+
+@media only screen and (max-width: 768px) {
+  .form-container {
+    margin: 8rem auto;
+    border: 0.1rem solid rgb(236, 236, 236);
+    padding: 0 30px;
+    overflow: hidden;
+    display: block;
+  }
+
+  .form-container h2 {
+    margin: 30px 0;
+    font-size: 1.2rem;
+    color: #0060ac;
+    width: fit-content;
+  }
+
+  .form-group label {
+    font-size: 0.9rem;
+    width: 190px;
+    text-align: left;
+    margin: 8px 0;
+    height: 24px;
+    padding: 2px 0;
+  }
+
+  .form-group input {
+    border: 0.1rem solid rgb(197, 197, 197);
+    height: 24px;
+    padding: 2px 5px;
+  }
+
+  .form-group input[type="submit"] {
+    padding: 5px 25px;
+    font-size: 0.9rem;
+    margin: 26px 0 20px 0;
+  }
+}

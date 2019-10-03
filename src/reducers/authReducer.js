@@ -12,6 +12,8 @@ import {
 const initialState = {
   token: null,
   userId: null,
+  email: null,
+  firstName: null,
   isAuthenticated: false,
   error: null
 };
@@ -26,6 +28,8 @@ export default (state = initialState, action) => {
         ...state,
         userId: action.payload.userId,
         token: action.payload.token,
+        email: action.payload.email,
+        firstName: action.payload.firstName,
         isAuthenticated: true
       };
     case USER_LOADED:
@@ -33,6 +37,8 @@ export default (state = initialState, action) => {
         ...state,
         userId: action.payload.userId,
         token: action.payload.token,
+        email: action.payload.email,
+        firstName: action.payload.firstName,
         isAuthenticated: true
       };
     case REGISTER_FAIL:
@@ -48,6 +54,8 @@ export default (state = initialState, action) => {
         token: null,
         isAuthenticated: false,
         userId: null,
+        firstName: null,
+        email: null,
         error: action.payload
       };
     default:
