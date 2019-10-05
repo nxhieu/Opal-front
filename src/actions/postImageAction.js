@@ -2,7 +2,8 @@ import {
   GETURI_FAIL,
   GETURI_SUCCESS,
   DELETEPOST_SUCCESS,
-  DELETEPOST_FAIL
+  DELETEPOST_FAIL,
+  CREATEPOST_SUCCESS
 } from "./types";
 
 export const postImage = file => async dispatch => {
@@ -35,9 +36,10 @@ export const postImage = file => async dispatch => {
         "Content-type": "application/json"
       }
     });
-
+    const createdpost = await blogRes.json();
+    console.log(createdpost);
     //const
-    dispatch({ type: GETURI_SUCCESS, payload: awsUrl });
+    dispatch({ type: CREATEPOST_SUCCESS, payload: createdpost });
   } catch (error) {
     dispatch({ type: GETURI_FAIL });
   }

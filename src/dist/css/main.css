@@ -98,7 +98,7 @@ h3 {
   /* -webkit-box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71);
   -moz-box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71);
   box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71); */
-  margin-top: 40px;
+  margin-top: 3rem;
   margin-bottom: 1rem;
 }
 
@@ -121,10 +121,11 @@ h3 {
 }
 
 .blogpost-header {
-  display: inline-block;
+  display: flex;
+  justify-content: space-between;
   font-size: 1.2rem;
   color: whitesmoke;
-  display: block;
+
   /* background: linear-gradient(
     90deg,
     rgba(121, 74, 135, 0.5) 0%,
@@ -145,8 +146,6 @@ h3 {
 
 .button-edit {
   color: white;
-  position: absolute;
-  margin-left: 21rem;
   background: none;
   border: none;
   font-size: 40px;
@@ -160,8 +159,8 @@ h3 {
   background: rgba(85, 70, 130, 1);
   border: 1px solid rgb(29, 27, 27);
   border-radius: 4px;
-  margin-left: 400px;
-  margin-top: 10px;
+  margin-left: 3rem;
+  margin-top: 0.3rem;
 }
 
 .menu li {
@@ -182,6 +181,11 @@ h3 {
 
 .blogpost-body {
   margin: 0 auto;
+}
+
+.blogpost-body .blogpost-image {
+  width: 100%;
+  max-width: 40rem;
 }
 
 .blogpost-footer {
@@ -246,13 +250,17 @@ h3 {
 /* ======== BLOGPOST BUTTON PROPS ========*/
 .btn-like {
   background: rgba(255, 255, 255, 0);
-  background-image: url(../../img/blogpost/feedback/like.png);
+  /* background-image: url(../../img/blogpost/feedback/like.png); */
   background-size: 25px 25px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   height: 25px;
   width: 25px;
   border: none;
+}
+
+.btn-like img {
+  max-height: 2rem;
 }
 
 .btn-comment {

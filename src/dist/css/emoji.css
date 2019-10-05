@@ -1,5 +1,7 @@
 .emoji-form {
   padding: 0.2rem;
+  position: absolute;
+  margin: 0 0 100rem 2rem;
 }
 
 .emoji-form input[type="text"] {
@@ -10,8 +12,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  z-index: 3;
 }
 
 .emojis-img img {
   max-height: 2rem;
+
+  z-index: 3;
 }

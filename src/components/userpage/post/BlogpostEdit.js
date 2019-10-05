@@ -1,43 +1,71 @@
 import React, { Component } from "react";
 import Downshift from "downshift";
+import EditModal from "./editpost/editmodal";
+import { connect } from "react-redux";
 import HamburgerButton from "./HamburgerButton";
-
-const items = ["Edit", "Delete"];
+import { deletePost } from "../../../actions/postAction";
 
 //https://medium.com/@AmyScript/downshift-the-answer-to-building-accessible-and-visually-flexible-custom-react-input-components-aed1553e1e36
 
-export default class BlogpostEdit extends Component {
+export class BlogpostEdit extends Component {
+  state = {
+    create: false
+  };
+  createEventHandler = () => {
+    this.setState({ create: !this.state.create });
+  };
+
+  /*editPost = e => {
+    e.preventDefault();
+    const file = this.state.file;
+    this.props.editPost(file);
+  };*/
+
+  delPost = e => {
+    e.preventDefault();
+    this.props.deletePost(this.props.post);
+  };
+
   render() {
     return (
       <Downshift>
-        {({
-          getItemProps,
-          getMenuProps,
-          getToggleButtonProps,
-          isOpen,
-          highlightedIndex,
-          selectedItem
-        }) => (
+        {({ getToggleButtonProps, isOpen }) => (
           <div>
             <button {...getToggleButtonProps()} className="button-edit">
               <HamburgerButton />
             </button>
             {isOpen ? (
-              <ul className="menu" {...getMenuProps()}>
-                {items.map((item, index) => (
-                  <li
-                    classname="item"
-                    highlighted={highlightedIndex === index}
-                    selected={selectedItem === item}
-                    {...getItemProps({
-                      key: item,
-                      index,
-                      item
-                    })}
-                  >
-                    {item}
-                  </li>
-                ))}
+              <ul className="menu">
+                {this.props.authState.userId === this.props.post._user ? (
+                  <div>
+                    <li classname="item">
+                      {this.state.create && (
+                        <EditModal
+                          key={this.props.post}
+                          onClose={this.createEventHandler}
+                          post={this.props.post}
+                        ></EditModal>
+                      )}
+                      <button
+                        type="edit"
+                        className="btn-item"
+                        onClick={this.createEventHandler}
+                      >
+                        Edit
+                      </button>
+                    </li>
+
+                    <li classname="item">
+                      <button
+                        type="delete"
+                        className="btn-item"
+                        onClick={this.delPost}
+                      >
+                        Delete
+                      </button>
+                    </li>
+                  </div>
+                ) : null}
               </ul>
             ) : null}
           </div>
@@ -46,3 +74,13 @@ export default class BlogpostEdit extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  postState: state.post,
+  authState: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { deletePost }
+)(BlogpostEdit);

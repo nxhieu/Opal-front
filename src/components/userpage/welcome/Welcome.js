@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import "../../../dist/css/main.css";
+
 //https://www.youtube.com/watch?v=ZKwrOXl5TDI
 //https://stackoverflow.com/questions/52933997/adding-a-greeting-to-a-react-app-based-on-the-time-of-day
 
@@ -15,42 +17,18 @@ if (hours < 12) {
   timeOfDay = "night";
 }
 
-class Welcome extends Component {
-  constructor(props) {
-    //saves the state, so data doesn't dissapear.
-    super(props);
-    this.state = {
-      users: [],
-      isLoaded: false
-    };
-  }
-
-  componentDidMount() {
-    //runs off the render menthod
-    fetch("https://swapi.co/api/people/2")
-      .then(res => res.json()) //turns into javascript object.
-      .then(data => {
-        this.setState({
-          isLoaded: true,
-          users: data
-        });
-      });
-  }
-
+export class Welcome extends Component {
   render() {
-    var { isLoaded, users } = this.state;
-
-    if ((isLoaded, users)) {
-      return (
-        <h3>
-          Good {timeOfDay}, {this.state.users.name}
-        </h3>
-      ); //when dada hasn't been loaded.
-    } else {
-      //displays when data is loaded.
-      return <h3>Loading...</h3>;
-    }
+    return (
+      <Fragment>
+        <h3>{`Good ${timeOfDay} ${this.props.authState.firstName}!`}</h3>
+      </Fragment>
+    );
   }
 }
 
-export default Welcome;
+const mapStateToProps = state => ({
+  authState: state.auth
+});
+
+export default connect(mapStateToProps)(Welcome);

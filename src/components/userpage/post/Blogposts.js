@@ -4,7 +4,7 @@ import request from "superagent";
 import debounce from "lodash.debounce";
 import { connect } from "react-redux";
 import { BlogpostEdit } from "./BlogpostEdit";
-import { getPosts, increasePage } from "../../../actions/postAction";
+import { getPosts, increasePage, clearPost } from "../../../actions/postAction";
 import Blogpost from "./Blogpost";
 import loading from "../../../img/UI/loading.gif";
 import "../../../dist/css/main.css";
@@ -43,24 +43,27 @@ export class Blogposts extends Component {
   }
 
   componentWillMount() {
+    this.props.clearPost();
     // Loads some users on initial load
     this.loadPosts();
   }
 
+  componentWillUnmount() {
+    this.props.clearPost();
+    window.removeEventListener("scroll", window.onscroll);
+  }
+
   loadPosts = () => {
-    const { currentPage } = this.props.postState;
-    this.props.getPosts(currentPage);
+    this.props.getPosts(this.props.postState.currentPage);
   };
 
   render() {
     const { error, hasMore, posts, isLoading } = this.props.postState;
 
     return (
-      <div class="blogposts">
+      <div className="blogposts">
         {posts.map(post => (
-          <Fragment>
-            <Blogpost key={post._id} post={post} />
-          </Fragment>
+          <Blogpost key={post._id} post={post} />
         ))}
 
         {error && <div style={{ color: "#900" }}>{error}</div>}
@@ -83,5 +86,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPosts, increasePage }
+  { getPosts, increasePage, clearPost }
 )(Blogposts);
