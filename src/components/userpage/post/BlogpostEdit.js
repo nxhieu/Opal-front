@@ -18,15 +18,17 @@ export default class BlogpostEdit extends Component {
           highlightedIndex,
           selectedItem
         }) => (
-          <div>
-            <button {...getToggleButtonProps()} className="button-edit">
+          <div className="blogpost-edit">
+            <button
+              {...getToggleButtonProps()}
+              className="blogpost-edit-button"
+            >
               <HamburgerButton />
             </button>
             {isOpen ? (
-              <ul className="menu" {...getMenuProps()}>
+              <ul className="edit-button-menu" {...getMenuProps()}>
                 {items.map((item, index) => (
                   <li
-                    className="item"
                     highlighted={highlightedIndex === index}
                     selected={selectedItem === item}
                     {...getItemProps({

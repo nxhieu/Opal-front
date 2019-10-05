@@ -4,7 +4,9 @@ import {
   DELETEPOST_SUCCESS,
   DELETEPOST_FAIL,
   GETPOSTS_REQUEST,
-  GETPOSTS_ANOTHERPAGE
+  GETPOSTS_ANOTHERPAGE,
+  GET_SORTEDRANK_SUCCESS,
+  GET_RANK_FAIL
 } from "./../actions/types";
 import { access } from "fs";
 
