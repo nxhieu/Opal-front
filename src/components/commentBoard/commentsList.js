@@ -8,12 +8,11 @@ export class CommentsList extends Component {
   state = {
     file: null,
     fileUrl: null,
-    userName: "username",
-    post_id: this.props.post_id,
-    replyComment: false
+    post_id: this.props.post_id
   };
 
   fileChangeHandler = event => {
+    console.log("H");
     if (event.target.files[0] != null) {
       this.setState({
         fileUrl: URL.createObjectURL(event.target.files[0]),
@@ -25,11 +24,7 @@ export class CommentsList extends Component {
   submitImageHandler = event => {
     event.preventDefault();
     const file = this.state.file;
-    this.props.postComment(this.state.post_id, file);
-  };
-
-  replyCommentHandler = () => {
-    this.setState({ replyComment: true });
+    this.props.postComment(this.state.post_id, file, 0);
   };
 
   // componentWillMount() {
@@ -53,12 +48,7 @@ export class CommentsList extends Component {
         />
         {comments.map(comment => (
           <div>
-            <Comment
-              reply={this.state.replyComment}
-              onClick={this.replyCommentHandler}
-              key={comment._id}
-              comment={comment}
-            />
+            <Comment key={comment._id} comment={comment} />
           </div>
         ))}
       </div>

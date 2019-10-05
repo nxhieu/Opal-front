@@ -1,9 +1,38 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { getComment, postComment } from "../../actions/commentAction";
 import "../../dist/comment/comment.css";
-import CreateComment from "./createComment";
+import CreateReply from "./createReply";
 
-class Comment extends Component {
-  state = {};
+export class Comment extends Component {
+  state = {
+    replyComment: false,
+    post_id: this.props.comment._post,
+    parents_id: this.props.comment.parentsID,
+    replyfileUrl: null,
+    replyfile: null
+  };
+
+  replychangeHandler = event => {
+    console.log("here");
+    if (event.target.files[0] != null) {
+      this.setState({
+        replyfileUrl: URL.createObjectURL(event.target.files[0]),
+        replyfile: event.target.files[0]
+      });
+    }
+  };
+
+  replysubmitImageHandler = event => {
+    event.preventDefault();
+    const file = this.state.file;
+    this.props.postComment(this.state.post_id, file, 0);
+  };
+
+  replyCommentHandler = () => {
+    this.setState({ replyComment: true });
+  };
+
   render() {
     const { email, imageUrl, _id } = this.props.comment;
     return (
@@ -23,11 +52,16 @@ class Comment extends Component {
             <i className="reply" />
             &nbsp; Reply
           </label>
-          <button id={_id} onClick={this.props.onClick} />>
+          <button id={_id} onClick={this.replyCommentHandler} />
         </div>
-        {this.props.reply && (
+        {this.state.replyComment && (
           <div className="row">
-            <CreateComment />
+            <CreateReply
+              onChange={this.replychangeHandler}
+              onSubmit={this.replysubmitImageHandler}
+              replyfileUrl={this.state.replyfileUrl}
+              email={this.props.authState.email}
+            />
           </div>
         )}
       </div>
@@ -35,4 +69,13 @@ class Comment extends Component {
   }
 }
 
-export default Comment;
+const mapStateToProps = state => ({
+  commentState: state.comment,
+  postState: state.post,
+  authState: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { getComment, postComment }
+)(Comment);

@@ -7,7 +7,7 @@ import {
   CLOSE_COMMENT
 } from "./types";
 
-export const postComment = (postId, file) => async dispatch => {
+export const postComment = (postId, file, parentsId) => async dispatch => {
   try {
     const res = await fetch(
       `${window.apiAddress}/post/getUri?type=${file.type}`,
@@ -30,7 +30,11 @@ export const postComment = (postId, file) => async dispatch => {
 
     const commentRes = await fetch(`${window.apiAddress}/comment/comment`, {
       method: "POST",
-      body: JSON.stringify({ imageUrl: awsUrl.key, postId: postId }),
+      body: JSON.stringify({
+        imageUrl: awsUrl.key,
+        postId: postId,
+        parentsId: parentsId
+      }),
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
         "Content-type": "application/json"
