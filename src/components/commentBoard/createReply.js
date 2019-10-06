@@ -5,17 +5,16 @@ class CreateReply extends Component {
   render() {
     return (
       <div className="comment">
-        <h1>{this.props.replyfileUrl}</h1>
         <form onSubmit={this.props.onSubmit}>
           <div className="row">
             <span>Comment as {this.props.email}</span>
             <input
-              id="comment_uploadFile"
+              id="reply_uploadFile"
               type="file"
               accept="image/*"
               onChange={this.props.onChange}
             />
-            <label htmlFor="comment_uploadFile">
+            <label htmlFor="reply_uploadFile">
               <i className="addimage"></i>
               &nbsp; Choose a Image
             </label>
@@ -25,7 +24,7 @@ class CreateReply extends Component {
           </div>
           {this.props.replyfileUrl && (
             <div className="row">
-              <input type="submit" value="Comment" />
+              <input type="submit" value="Reply" />
             </div>
           )}
         </form>

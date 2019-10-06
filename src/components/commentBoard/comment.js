@@ -8,13 +8,11 @@ export class Comment extends Component {
   state = {
     replyComment: false,
     post_id: this.props.comment._post,
-    parents_id: this.props.comment.parentsID,
     replyfileUrl: null,
     replyfile: null
   };
 
   replychangeHandler = event => {
-    console.log("here");
     if (event.target.files[0] != null) {
       this.setState({
         replyfileUrl: URL.createObjectURL(event.target.files[0]),
@@ -25,8 +23,13 @@ export class Comment extends Component {
 
   replysubmitImageHandler = event => {
     event.preventDefault();
-    const file = this.state.file;
-    this.props.postComment(this.state.post_id, file, 0);
+    const replyfile = this.state.replyfile;
+    const parentsID = parseInt(this.state.parents_id) + 1;
+    this.props.postComment(
+      this.state.post_id,
+      replyfile,
+      this.props.comment._id
+    );
   };
 
   replyCommentHandler = () => {
