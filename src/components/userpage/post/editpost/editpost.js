@@ -40,7 +40,7 @@ export class editpost extends Component {
             id="editfile"
             accept="image/*"
           />
-          <p>Create a post</p>
+          <p>Edit your post</p>
 
           <label className="putImage-label" htmlFor="editfile">
             {" "}
@@ -49,13 +49,15 @@ export class editpost extends Component {
             ) : (
               <Fragment>
                 <img src={placeholder} width="100"></img>
-                <p>{`Hi ! What are you thinking today ?`}</p>
+                <p>{` Change your post here !`}</p>
               </Fragment>
             )}
           </label>
 
           <div className="btnstyle">
-            <input type="submit" value="submit" className="btn-submit" />
+            {this.state.file && (
+              <input type="submit" value="submit" className="btn-submit" />
+            )}
           </div>
         </form>
       </div>

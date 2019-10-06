@@ -15,12 +15,6 @@ export class BlogpostEdit extends Component {
     this.setState({ create: !this.state.create });
   };
 
-  /*editPost = e => {
-    e.preventDefault();
-    const file = this.state.file;
-    this.props.editPost(file);
-  };*/
-
   delPost = e => {
     e.preventDefault();
     this.props.deletePost(this.props.post);
@@ -34,38 +28,36 @@ export class BlogpostEdit extends Component {
             <button {...getToggleButtonProps()} className="button-edit">
               <HamburgerButton />
             </button>
-            {isOpen ? (
+            {isOpen && this.props.authState.userId === this.props.post._user ? (
               <ul className="menu">
-                {this.props.authState.userId === this.props.post._user ? (
-                  <div>
-                    <li classname="item">
-                      {this.state.create && (
-                        <EditModal
-                          key={this.props.post}
-                          onClose={this.createEventHandler}
-                          post={this.props.post}
-                        ></EditModal>
-                      )}
-                      <button
-                        type="edit"
-                        className="btn-item"
-                        onClick={this.createEventHandler}
-                      >
-                        Edit
-                      </button>
-                    </li>
+                <div>
+                  <li classname="item">
+                    {this.state.create && (
+                      <EditModal
+                        key={this.props.post}
+                        onClose={this.createEventHandler}
+                        post={this.props.post}
+                      ></EditModal>
+                    )}
+                    <button
+                      type="edit"
+                      className="btn-item"
+                      onClick={this.createEventHandler}
+                    >
+                      Edit
+                    </button>
+                  </li>
 
-                    <li classname="item">
-                      <button
-                        type="delete"
-                        className="btn-item"
-                        onClick={this.delPost}
-                      >
-                        Delete
-                      </button>
-                    </li>
-                  </div>
-                ) : null}
+                  <li classname="item">
+                    <button
+                      type="delete"
+                      className="btn-item"
+                      onClick={this.delPost}
+                    >
+                      Delete
+                    </button>
+                  </li>
+                </div>
               </ul>
             ) : null}
           </div>

@@ -12,49 +12,38 @@ import "../../../dist/css/main.css";
 export class Blogposts extends Component {
   constructor(props) {
     super(props);
-
-    // Sets up our initial state
-    // this.state = {
-    //   error: false,
-    //   hasMore: true,
-    //   isLoading: false,
-    //   posts: []
-    // };
-
-    // Binds our scroll event handler
-    window.onscroll = debounce(() => {
-      const { error, isLoading, hasMore } = this.props.postState;
-
-      // Bails early if:
-      // * there's an error
-      // * it's already loading
-      // * there's nothing left to load
-      if (error || isLoading || !hasMore) return;
-
-      // Checks that the page has scrolled to the bottom
-      if (
-        window.innerHeight + window.pageYOffset >=
-        document.body.offsetHeight - 2
-      ) {
-        this.props.increasePage();
-        this.loadPosts();
-      }
-    }, 1000);
   }
-
   componentWillMount() {
     this.props.clearPost();
+  }
+
+  componentDidMount() {
+    this.onScroll = this.handleScroll.bind(this);
+    window.addEventListener("scroll", this.onScroll, false);
+
     // Loads some users on initial load
-    this.loadPosts();
+    this.loadPosts(1);
   }
 
   componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll, false);
     this.props.clearPost();
-    window.removeEventListener("scroll", window.onscroll);
   }
 
-  loadPosts = () => {
-    this.props.getPosts(this.props.postState.currentPage);
+  handleScroll = debounce(e => {
+    const { error, isLoading, hasMore } = this.props.postState;
+    if (error || isLoading || !hasMore) return;
+    if (
+      window.innerHeight + window.pageYOffset >=
+      document.body.offsetHeight - 2
+    ) {
+      this.props.increasePage();
+      this.loadPosts(this.props.postState.currentPage);
+    }
+  }, 1000);
+
+  loadPosts = currentPage => {
+    this.props.getPosts(currentPage);
   };
 
   render() {
@@ -63,7 +52,7 @@ export class Blogposts extends Component {
     return (
       <div className="blogposts">
         {posts.map(post => (
-          <Blogpost key={post._id} post={post} />
+          <Blogpost key={post._id} post={post} userId={this.props.userId} />
         ))}
 
         {error && <div style={{ color: "#900" }}>{error}</div>}

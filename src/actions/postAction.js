@@ -7,10 +7,12 @@ import {
   GETPOSTS_ANOTHERPAGE,
   POSTEMOJI_SUCCESS,
   POSTEMOJI_FAIL,
+  DELETEEMOJI_SUCCESS,
   CLEARPOSTS_SUCCESS,
   EDITPOST_FAIL,
   EDITPOST_SUCCESS
 } from "./types";
+import { async } from "q";
 
 export const getPosts = currentPage => async dispatch => {
   try {
@@ -26,7 +28,9 @@ export const getPosts = currentPage => async dispatch => {
       }
     );
     const data = await res.json();
-    dispatch({ type: GETPOSTS_SUCCESS, payload: data });
+    setTimeout(() => {
+      dispatch({ type: GETPOSTS_SUCCESS, payload: data });
+    }, 1000);
   } catch (error) {
     dispatch({ type: GETPOSTS_FAIL, payload: error.message });
     console.log(error);
@@ -98,27 +102,97 @@ export const deletePost = post => async dispatch => {
 
 export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
   try {
-    if (post.emoji.length === 0) {
-      post.emoji = [{ user: userId, firstName, emoji }];
+    let copyPost = Object.assign({}, post);
+    console.log(emoji, copyPost, userId);
+    console.log(copyPost.emoji.length);
+    //check if post has any emoji react yet
+    if (copyPost.emoji.length === 0) {
+      copyPost.emoji.push({ user: userId, firstName, emoji });
+      await fetch(`${window.apiAddress}/post/postEmoji`, {
+        method: "POST",
+        body: JSON.stringify({ emoji, postId: post._id, userId, firstName }),
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-type": "application/json"
+        }
+      });
+      dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
     } else {
-      console.log("here");
-      let emojiIndex = post.emoji.findIndex(emoji => emoji.user === userId);
-      post.emoji[emojiIndex].emoji = emoji;
-    }
-    const res = await fetch(`${window.apiAddress}/post/postEmoji`, {
-      method: "POST",
-      body: JSON.stringify({ emoji, postId: post._id, userId, firstName }),
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-type": "application/json"
+      //find poition of emoji in the emoji array (return a number if found, return null if not found)
+      let emojiIndex = copyPost.emoji.findIndex(emoji => emoji.user === userId);
+      // console.log(emojiIndex);
+      if (emojiIndex >= 0) {
+        if (copyPost.emoji[emojiIndex].emoji !== emoji) {
+          copyPost.emoji[emojiIndex].emoji = emoji;
+          await fetch(`${window.apiAddress}/post/postEmoji`, {
+            method: "POST",
+            body: JSON.stringify({
+              emoji,
+              postId: post._id,
+              userId,
+              firstName
+            }),
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("token"),
+              "Content-type": "application/json"
+            }
+          });
+          dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
+        }
+      } else {
+        copyPost.emoji.push({ user: userId, firstName, emoji });
+        await fetch(`${window.apiAddress}/post/postEmoji`, {
+          method: "POST",
+          body: JSON.stringify({ emoji, postId: post._id, userId, firstName }),
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-type": "application/json"
+          }
+        });
+        dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
       }
-    });
+    }
+    // await fetch(`${window.apiAddress}/post/postEmoji`, {
+    //   method: "POST",
+    //   body: JSON.stringify({ emoji, postId: post._id, userId, firstName }),
+    //   headers: {
+    //     Authorization: "Bearer " + localStorage.getItem("token"),
+    //     "Content-type": "application/json"
+    //   }
+    // });
 
-    dispatch({ type: POSTEMOJI_SUCCESS, payload: post });
+    // dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
   } catch (error) {
+    console.log(error);
     dispatch({ type: POSTEMOJI_FAIL, payload: error.message });
   }
 };
+
+//Delete Emoji
+export const deleteEmoji = (emoji, post, userId) => async dispatch => {
+  let copyPost = Object.assign({}, post);
+  console.log(copyPost);
+  if (copyPost.emoji.length > 0) {
+    let emojiIndex = copyPost.emoji.findIndex(emoji => emoji.user === userId);
+    if (emojiIndex => 0 && copyPost.emoji[emojiIndex].emoji === emoji) {
+      copyPost.emoji.splice(emojiIndex, 1);
+
+      await fetch(`${window.apiAddress}/post/deleteEmoji`, {
+        method: "DELETE",
+        body: JSON.stringify({ postId: post._id, userId }),
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-type": "application/json"
+        }
+      });
+
+      dispatch({ type: DELETEEMOJI_SUCCESS, payload: copyPost });
+    }
+  }
+  console.log(emoji, copyPost, userId);
+};
+
+//Utility function
 
 export const increasePage = () => dispatch => {
   dispatch({ type: GETPOSTS_ANOTHERPAGE });

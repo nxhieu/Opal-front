@@ -9,7 +9,8 @@ import {
   CLEARPOSTS_SUCCESS,
   CREATEPOST_SUCCESS,
   EDITPOST_SUCCESS,
-  EDITPOST_FAIL
+  EDITPOST_FAIL,
+  DELETEEMOJI_SUCCESS
 } from "./../actions/types";
 import { access } from "fs";
 
@@ -83,6 +84,7 @@ export default (state = initialState, action) => {
         )
       };
     case POSTEMOJI_SUCCESS:
+    case DELETEEMOJI_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -90,6 +92,7 @@ export default (state = initialState, action) => {
           post._id === action.payload._id ? action.payload : post
         )
       };
+    case EDITPOST_FAIL:
     default:
       return state;
   }

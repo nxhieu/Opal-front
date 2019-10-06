@@ -2,10 +2,13 @@ import React, { Fragment, Component } from "react";
 import Leaderboard from "./leaderboard/Leaderboard";
 import Blogposts from "./post/Blogposts";
 import PutImage from "./post/putImage/putImage";
+import { connect } from "react-redux";
+import { loaduser } from "../../actions/authAction";
 import "../../dist/css/main.css";
 import "../../dist/css/flipclock.css";
 import "../../dist/css/userPage.css";
 import Welcome from "./welcome/Welcome";
+import { thisExpression } from "@babel/types";
 
 class Userpage extends Component {
   render() {
@@ -14,8 +17,9 @@ class Userpage extends Component {
         <div className="userPage">
           <div className="blogpost-leaderboard">
             <div className="blogpost-column">
-              <PutImage />
-              <Blogposts />
+              {this.props.authState.isAuthenticated && <PutImage />}
+
+              <Blogposts userId={this.props.authState.userId} />
             </div>
             <div className="leaderboard-column">
               <div className="welcome">
@@ -29,5 +33,11 @@ class Userpage extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  authState: state.auth
+});
 
-export default Userpage;
+export default connect(
+  mapStateToProps,
+  { loaduser }
+)(Userpage);

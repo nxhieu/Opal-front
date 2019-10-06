@@ -12,14 +12,14 @@ export class emojis extends Component {
   };
 
   onChoosingEmoji = emoji => {
-    this.state.currentemoji = emoji;
     this.props.postEmoji(
       emoji,
       this.props.post,
       this.props.authState.userId,
       this.props.authState.firstName
     );
-    this.props.onShowEmoji();
+    this.props.onChangeEmoji(emoji);
+    this.props.onCloseEmoji();
   };
 
   render() {
