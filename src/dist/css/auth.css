@@ -1,6 +1,5 @@
-/* ======== FORM PROPS ========*/
-
 .form-container {
+  background-color: white;
   font-family: inherit;
   font-size: 1.25rem;
   color: black;
@@ -10,7 +9,8 @@
   border: 3px solid rgb(236, 236, 236);
   padding: 1rem 2rem;
   overflow: hidden;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-container h2 {
@@ -64,10 +64,14 @@
   background-color: #0060ac;
 }
 
-/* ======== BUTTON PROPS ========*/
-
 .btn:hover {
   background-color: #0060ac;
+}
+
+.fail_authentication h6 {
+  color: red;
+  /* display: none; */
+  margin: 1rem 0;
 }
 
 @media only screen and (max-width: 768px) {

@@ -9,10 +9,8 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-
 import Userpage from "./components/userpage/userpage";
 import About from "./components/about/about";
-import Blogposts from "./components/userpage/post/Blogposts";
 import { Provider } from "react-redux";
 import { loaduser } from "./actions/authAction";
 import store from "./store";

@@ -5,7 +5,7 @@ import PutImage from "./post/putImage/putImage";
 import { connect } from "react-redux";
 import { loaduser } from "../../actions/authAction";
 import "../../dist/css/main.css";
-import "../../dist/css/flipclock.css";
+import "../../dist/css/leaderboard.css";
 import "../../dist/css/userPage.css";
 import Welcome from "./welcome/Welcome";
 import { thisExpression } from "@babel/types";

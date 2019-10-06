@@ -10,7 +10,9 @@ import {
   CREATEPOST_SUCCESS,
   EDITPOST_SUCCESS,
   EDITPOST_FAIL,
-  DELETEEMOJI_SUCCESS
+  DELETEEMOJI_SUCCESS,
+  GET_SORTEDRANK_SUCCESS,
+  GET_RANK_FAIL
 } from "./../actions/types";
 import { access } from "fs";
 

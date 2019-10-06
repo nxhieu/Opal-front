@@ -1,5 +1,4 @@
 //User Auth
-
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const USER_LOADED = "USER_LOADED";
@@ -7,6 +6,7 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
+export const RESET_FORM = "RESET_FORM";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 //Post Image
@@ -30,3 +30,12 @@ export const DELETEPOST_FAIL = "DELETEPOST_FAIL";
 export const POSTEMOJI_SUCCESS = "POSTEMOJI_SUCCESS";
 export const POSTEMOJI_FAIL = "POSTEMOJI_FAIL";
 export const DELETEEMOJI_SUCCESS = "DELETEMOJI_SUCCESS";
+//Comment
+
+export const GET_COMMENT_REQUEST = "GET_COMMENT_REQUEST";
+export const GET_COMMENT_SUCCESS = "GET_COMMENT_SUCCESS";
+export const GET_COMMENT_FAIL = "GET_COMMENT_FAIL";
+
+export const GET_RANK_REQUEST = "GET_RANK_REQUEST";
+export const GET_RANK_SUCCESS = "GET_RANK_SUCCESS";
+export const GET_RANK_FAIL = "GET_RANK_FAIL";

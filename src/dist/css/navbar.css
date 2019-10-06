@@ -1,7 +1,11 @@
+* {
+  width: 100%;
+}
+
 /* ======== NAVBAR PROPS ========*/
 .main-nav {
   display: flex;
-  padding: 1rem 2rem;
+  padding: 0.85rem 2rem;
   align-items: center;
   justify-content: space-between;
   color: #0078d7;
@@ -10,6 +14,7 @@
   position: fixed;
   top: 0;
   width: calc(100% - 4rem);
+  z-index: 1;
 }
 
 /* ======== NAVBAR LOGO PROPS ========*/
@@ -42,11 +47,6 @@
 .main-nav .right-nav ul li {
   width: auto;
   vertical-align: middle;
-  /* height: 100%; */
-  /* justify-content: center;
-  text-align: center; */
-  /* vertical-align: middle; */
-  /* line-height: 2rem; */
 }
 
 .main-nav .right-nav ul li a {
@@ -69,6 +69,7 @@
 @media only screen and (max-width: 768px) {
   /* ======== NAVBAR PROPS ========*/
   .main-nav {
+    padding: 0.85rem 2rem;
     flex-direction: column;
     width: calc(100% - 4rem);
   }

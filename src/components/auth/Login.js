@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { login } from "../../actions/authAction";
+import { login, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { clearPost } from "../../actions/postAction";
 import { withRouter } from "react-router-dom";
@@ -7,6 +7,10 @@ import "../../dist/css/auth.css";
 
 export class Login extends Component {
   state = { email: "", password: "" };
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
 
   //lifecycle method invoked when updating happens in the props or state
   componentDidUpdate() {
@@ -64,6 +68,11 @@ export class Login extends Component {
             </div>
           </form>
         </div>
+        <div className="fail_authentication">
+          {this.props.authState.error === "Incorrect username or password" ? (
+            <h6>{this.props.authState.error}</h6>
+          ) : null}
+        </div>
       </div>
     );
   }
@@ -77,6 +86,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { login }
+    { login, reset }
   )(Login)
 );

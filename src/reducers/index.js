@@ -2,10 +2,14 @@ import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import postImageReducer from "./postImageReducer";
 import posts from "./postReducer";
+import comments from "./commentReducer";
+import leaderboards from "./leaderboardReducer";
 
 export default combineReducers({
   auth: authReducer,
   postImage: postImageReducer,
-  post: posts
+  post: posts,
+  comment: comments,
+  leaderboard: leaderboards
   //add your reducer here
 });
