@@ -6,6 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  RESET_FORM,
   CLEAR_ERRORS
 } from "../actions/types";
 
@@ -65,6 +66,11 @@ export default (state = initialState, action) => {
         firstName: null,
         email: null,
         error: action.payload
+      };
+    case RESET_FORM:
+      return {
+        ...state,
+        error: null
       };
     default:
       return state;

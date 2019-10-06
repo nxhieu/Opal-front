@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import { login } from "../../actions/authAction";
+import { login, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "../../dist/css/auth.css";
 
 export class Login extends Component {
   state = { email: "", password: "" };
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
 
   //lifecycle method invoked when updating happens in the props or state
   componentDidUpdate() {
@@ -81,6 +85,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { login }
+    { login, reset }
   )(Login)
 );

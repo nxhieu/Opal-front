@@ -1,6 +1,6 @@
 //Register component
 import React, { Component } from "react";
-import { register } from "../../actions/authAction";
+import { register, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "../../dist/css/auth.css";
@@ -15,6 +15,10 @@ class Register extends Component {
     password: "",
     password2: ""
   };
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
 
   //lifecycle method invoked when updating happens in the props or state
   componentDidUpdate() {
@@ -159,6 +163,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { register }
+    { register, reset }
   )(Register)
 );

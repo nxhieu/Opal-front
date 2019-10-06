@@ -3,9 +3,9 @@
   flex-direction: column;
   background: white;
   border-radius: 8px;
-  margin: 1.5rem;
+  margin: 1.5rem 1rem;
   border: solid grey 1px;
-  width: 16rem;
+  width: 17rem;
   -webkit-box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71);
   -moz-box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71);
   box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71);
@@ -39,9 +39,9 @@
 }
 
 .leaderboard-content {
-  font-size: 1rem;
+  font-size: 0.8rem;
   margin-left: 0.5rem;
-  padding: 0.2rem 0;
+  padding: 0.2rem 0.01rem;
   justify-content: space-between;
 }
 

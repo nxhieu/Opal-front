@@ -36,14 +36,15 @@ export class Blogpost extends Component {
   };
 
   render() {
-    const { email, imageUrl, _user, _id } = this.props.post;
+    const { email, imageUrl, createdAt, user, _id } = this.props.post;
     const { isAuthenticated } = this.props.authState;
     return (
       <div className="blogpost-container">
         <div className="blogpost-header">
           <div className="blogpost-header-content">
             <p>{email}</p>
-            <p id="date-post">26-Aug-2019</p>
+            <p id="date-post">on {createdAt.substring(0, 10)}</p>
+            {/* <p id="date-post">26-Aug-2019</p> */}
           </div>
           {isAuthenticated ? <BlogpostEdit /> : null}
         </div>
