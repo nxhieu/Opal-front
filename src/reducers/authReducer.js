@@ -44,7 +44,7 @@ export default (state = initialState, action) => {
     case REGISTER_FAIL:
       return {
         ...state,
-        error: "Email is already exist"
+        error: action.payload.message
       };
     case AUTH_ERROR:
     case LOGIN_FAIL:

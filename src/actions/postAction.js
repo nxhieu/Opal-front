@@ -26,6 +26,7 @@ export const getPosts = currentPage => async dispatch => {
   } catch (error) {
     dispatch({ type: GETPOSTS_FAIL, payload: error.message });
     console.log(error);
+    console.log("hi");
   }
 };
 

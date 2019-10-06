@@ -37,6 +37,7 @@ export class Blogpost extends Component {
 
   render() {
     const { email, imageUrl, _user, _id } = this.props.post;
+    const { isAuthenticated } = this.props.authState;
     return (
       <div className="blogpost-container">
         <div className="blogpost-header">
@@ -44,7 +45,7 @@ export class Blogpost extends Component {
             <p>{email}</p>
             <p id="date-post">26-Aug-2019</p>
           </div>
-          <BlogpostEdit />
+          {isAuthenticated ? <BlogpostEdit /> : null}
         </div>
         <div className="blogpost-body">
           <img
@@ -80,7 +81,8 @@ export class Blogpost extends Component {
 }
 
 const mapStateToProps = state => ({
-  commentState: state.comment
+  commentState: state.comment,
+  authState: state.auth
 });
 
 export default connect(

@@ -142,7 +142,7 @@ class Register extends Component {
           </form>
         </div>
         <div className="fail_authentication">
-          {this.props.authState.error === "Email is already exist" ? (
+          {this.props.authState.error !== "Incorrect username or password" ? (
             <h6>{this.props.authState.error}</h6>
           ) : null}
         </div>

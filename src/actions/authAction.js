@@ -26,7 +26,7 @@ export const register = formData => async dispatch => {
     //after api calls, method dispatch get called and dispatch user data to reducer
     //dispatch to reducer (the type here is just a string to specify condition, the payload is data from api calls)
     if (res.status !== 200 && res.status !== 201) {
-      dispatch({ type: REGISTER_FAIL, payload: "error" });
+      dispatch({ type: REGISTER_FAIL, payload: data });
     } else {
       dispatch({ type: REGISTER_SUCCESS, payload: data });
     }
@@ -46,16 +46,12 @@ export const login = formData => async dispatch => {
     });
     const data = await res.json();
     if (res.status !== 200) {
-      console.log("Login fails");
       dispatch({ type: LOGIN_FAIL, payload: "error" });
     } else {
       dispatch({ type: LOGIN_SUCCESS, payload: data });
     }
   } catch (err) {
-    dispatch({
-      type: LOGIN_FAIL,
-      payload: err
-    });
+    console.log(err);
   }
 };
 // log out user
@@ -66,7 +62,6 @@ export const logout = () => dispatch => {
 //have not implemented yet. load user when there is a valid token
 export const loaduser = () => async dispatch => {
   try {
-    //
     const res = await fetch(`${window.apiAddress}/auth/loaduser`, {
       method: "POST",
       headers: {

@@ -11,14 +11,10 @@ class Leaderboard extends Component {
     this.props.getRank();
   }
 
-  // leaderHandler = e => {
-  //   this.props.getRank();
-  // };
   render() {
     const { count, users } = this.props.leaderboardState;
     return (
       <div className="leaderboard-container">
-        {users.map(user => console.log(user))}
         <div className="leaderboard-header">
           <img src={crown} width="50" alt="defaultCrown" />
           <h2>Leaderboard</h2>
