@@ -78,3 +78,16 @@ input[type="file"] {
   background: #3c8ef0;
   color: white;
 }
+
+@media (max-width: 768px) {
+  .comment form .row img {
+    max-height: 6rem;
+    width: auto;
+    height: auto;
+  }
+
+  .comment form .row [type="submit"],
+  .comment form .row button {
+    font-size: 1rem;
+  }
+}
