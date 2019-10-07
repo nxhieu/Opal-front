@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getComment, postComment } from "../../actions/commentAction";
+import {
+  getComment,
+  postComment,
+  closeComment
+} from "../../actions/commentAction";
 import CreateComment from "./createComment";
 import Comment from "./comment";
 
@@ -9,7 +13,6 @@ export class CommentsList extends Component {
     file: null,
     fileUrl: null,
     post_id: this.props.post_id
-    // print: []
   };
 
   fileChangeHandler = event => {
@@ -31,12 +34,14 @@ export class CommentsList extends Component {
     const { comments } = this.props.commentState;
     return (
       <div>
-        <CreateComment
-          onChange={this.fileChangeHandler}
-          onSubmit={this.submitImageHandler}
-          fileUrl={this.state.fileUrl}
-          email={this.props.authState.email}
-        />
+        {this.props.authState.isAuthenticated ? (
+          <CreateComment
+            onChange={this.fileChangeHandler}
+            onSubmit={this.submitImageHandler}
+            fileUrl={this.state.fileUrl}
+            email={this.props.authState.email}
+          />
+        ) : null}
         {comments.map(comment => (
           <div>
             <Comment key={comment._id} comment={comment} />
@@ -55,5 +60,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getComment, postComment }
+  { getComment, postComment, closeComment }
 )(CommentsList);

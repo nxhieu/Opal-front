@@ -7,17 +7,25 @@ class CreateReply extends Component {
       <div className="comment">
         <form onSubmit={this.props.onSubmit}>
           <div className="row">
-            <span>Comment as {this.props.email}</span>
-            <input
-              id="reply_uploadFile"
-              type="file"
-              accept="image/*"
-              onChange={this.props.onChange}
-            />
-            <label htmlFor="reply_uploadFile">
-              <i className="addimage"></i>
-              &nbsp; Choose a Image
-            </label>
+            {this.props.email ? (
+              <span>Comment as {this.props.email}</span>
+            ) : (
+              <span>Please log in to comment</span>
+            )}
+            {this.props.email ? (
+              <input
+                id="reply_uploadFile"
+                type="file"
+                accept="image/*"
+                onChange={this.props.onChange}
+              />
+            ) : null}
+            {this.props.email ? (
+              <label htmlFor="reply_uploadFile">
+                <i className="addimage"></i>
+                &nbsp; Choose a Image
+              </label>
+            ) : null}
           </div>
           <div className="row">
             {this.props.replyfileUrl && <img src={this.props.replyfileUrl} />}

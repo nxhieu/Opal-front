@@ -24,6 +24,7 @@ class CreateComment extends Component {
           </div>
           {this.props.fileUrl && (
             <div className="row">
+              <button>Cancel</button>
               <input type="submit" value="Comment" />
             </div>
           )}
