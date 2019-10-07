@@ -6,11 +6,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  RESET_FORM,
   CLEAR_ERRORS
 } from "./types";
 
 // Due to the use of the use of redux-thunk in middleware, function get passed in method dispatch.
 //When a function contains api call. we will have to use async function (OR USE PROMISE)
+// REGISTER USER
 export const register = formData => async dispatch => {
   //put request to the backend (api call). We have to use
   try {
@@ -22,19 +24,20 @@ export const register = formData => async dispatch => {
       }
     });
 
-    if (res.status !== 200 && res.status !== 201) {
-      console.log("error");
-    }
     const data = await res.json();
     //after api calls, method dispatch get called and dispatch user data to reducer
     //dispatch to reducer (the type here is just a string to specify condition, the payload is data from api calls)
-    dispatch({ type: REGISTER_SUCCESS, payload: data });
-    console.log(data);
+    if (res.status !== 200 && res.status !== 201) {
+      dispatch({ type: REGISTER_FAIL, payload: data });
+    } else {
+      dispatch({ type: REGISTER_SUCCESS, payload: data });
+    }
   } catch (error) {
     console.log(error);
   }
 };
-// Log in user
+
+// LOG IN USER
 export const login = formData => async dispatch => {
   try {
     const res = await fetch(`${window.apiAddress}/auth/login`, {
@@ -51,13 +54,11 @@ export const login = formData => async dispatch => {
       dispatch({ type: LOGIN_SUCCESS, payload: data });
     }
   } catch (err) {
-    dispatch({
-      type: LOGIN_FAIL,
-      payload: err
-    });
+    console.log(err);
   }
 };
-// log out user
+
+// LOG OUT USER
 export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
 };
@@ -65,7 +66,6 @@ export const logout = () => dispatch => {
 //have not implemented yet. load user when there is a valid token
 export const loaduser = () => async dispatch => {
   try {
-    //
     const res = await fetch(`${window.apiAddress}/auth/loaduser`, {
       method: "GET",
       headers: {
@@ -80,5 +80,13 @@ export const loaduser = () => async dispatch => {
     }
   } catch (error) {
     dispatch({ type: AUTH_ERROR });
+  }
+};
+
+export const reset = () => async dispatch => {
+  try {
+    dispatch({ type: RESET_FORM });
+  } catch (error) {
+    console.log(error);
   }
 };

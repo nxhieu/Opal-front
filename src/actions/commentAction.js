@@ -28,7 +28,7 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
       }
     });
 
-    const commentRes = await fetch(`${window.apiAddress}/comment/comment`, {
+    await fetch(`${window.apiAddress}/comment/comment`, {
       method: "POST",
       body: JSON.stringify({
         imageUrl: awsUrl.key,
@@ -41,14 +41,18 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
       }
     });
     dispatch({ type: GETURI_SUCCESS, payload: awsUrl });
+    console.log("comsucc");
   } catch (error) {
+    console.log("commfail");
     dispatch({ type: GETURI_FAIL });
   }
 };
 
 export const getComment = postId => async dispatch => {
   try {
+    console.log("action");
     dispatch({ type: GET_COMMENT_REQUEST });
+    console.log("afteractionreq");
     const res = await fetch(
       `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
       {
@@ -60,6 +64,7 @@ export const getComment = postId => async dispatch => {
       }
     );
     const data = await res.json();
+    console.log("after action");
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_COMMENT_FAIL, payload: "fail" });

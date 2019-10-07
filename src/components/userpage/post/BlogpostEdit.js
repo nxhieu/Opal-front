@@ -23,41 +23,25 @@ export class BlogpostEdit extends Component {
   render() {
     return (
       <Downshift>
-        {({ getToggleButtonProps, isOpen }) => (
-          <div>
-            <button {...getToggleButtonProps()} className="button-edit">
+        {({ getMenuProps, getToggleButtonProps, isOpen }) => (
+          <div className="blogpost-edit">
+            <button {...getToggleButtonProps()} className="blopost-edit-button">
               <HamburgerButton />
             </button>
             {isOpen && this.props.authState.userId === this.props.post._user ? (
-              <ul className="menu">
-                <div>
-                  <li classname="item">
-                    {this.state.create && (
-                      <EditModal
-                        key={this.props.post}
-                        onClose={this.createEventHandler}
-                        post={this.props.post}
-                      ></EditModal>
-                    )}
-                    <button
-                      type="edit"
-                      className="btn-item"
-                      onClick={this.createEventHandler}
-                    >
-                      Edit
-                    </button>
-                  </li>
+              <ul className="edit-button-menu" {...getMenuProps()}>
+                <li>
+                  {this.state.create && (
+                    <EditModal
+                      key={this.props.post}
+                      onClose={this.createEventHandler}
+                      post={this.props.post}
+                    ></EditModal>
+                  )}
+                  Edit
+                </li>
 
-                  <li classname="item">
-                    <button
-                      type="delete"
-                      className="btn-item"
-                      onClick={this.delPost}
-                    >
-                      Delete
-                    </button>
-                  </li>
-                </div>
+                <li onClick={this.delPost}>Delete</li>
               </ul>
             ) : null}
           </div>

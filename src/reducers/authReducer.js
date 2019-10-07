@@ -6,6 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  RESET_FORM,
   CLEAR_ERRORS
 } from "../actions/types";
 
@@ -42,7 +43,16 @@ export default (state = initialState, action) => {
         isAuthenticated: true
       };
     case REGISTER_FAIL:
+      return {
+        ...state,
+        error: action.payload.message
+      };
+    case AUTH_ERROR:
     case LOGIN_FAIL:
+      return {
+        ...state,
+        error: "Incorrect username or password"
+      };
     case LOGOUT:
       //REMOVE THE TOKEN FROM STORAGE
       localStorage.removeItem("token");
@@ -57,7 +67,11 @@ export default (state = initialState, action) => {
         email: null,
         error: action.payload
       };
-    case AUTH_ERROR:
+    case RESET_FORM:
+      return {
+        ...state,
+        error: null
+      };
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import { BlogpostEdit } from "./BlogpostEdit";
 import { getPosts, increasePage, clearPost } from "../../../actions/postAction";
 import Blogpost from "./Blogpost";
 import loading from "../../../img/UI/loading.gif";
-import "../../../dist/css/main.css";
+import "../../../dist/css/post.css";
 
 export class Blogposts extends Component {
   constructor(props) {
@@ -56,13 +56,13 @@ export class Blogposts extends Component {
         ))}
 
         {error && <div style={{ color: "#900" }}>{error}</div>}
-        {isLoading && (
-          <div className="loading">
+        {this.props.postState.isLoading && (
+          <div className="loading-post">
             <h4>Loading More Posts...</h4>
-            <img src={loading} width="80" />
+            <img src={loading} className="loading-post" />
           </div>
         )}
-        {!hasMore && <div>No more posts.</div>}
+        {!this.props.postState.hasMore && <div>No more posts.</div>}
       </div>
     );
   }

@@ -7,11 +7,13 @@ import { Link } from "react-router-dom";
 import { deleteEmoji } from "../../../actions/postAction";
 import { getComment, closeComment } from "../../../actions/commentAction";
 //import BlogpostPopup from "./components/layout/BlogpostPopup";
-import "../../../dist/css/main.css";
+
 import "../../../dist/css/emoji.css";
+import "../../../dist/css/post.css";
 import HamburgerMenu from "react-hamburger-menu";
 import iconuser from "../../../img/blogpost/testavatars/muser.png";
 import editpost from "../../../img/blogpost/feedback/editpost.png";
+
 import BlogpostEdit from "./BlogpostEdit";
 import Emojis from "../emoji/Emojis";
 import Modal from "../../commentBoard/modal";
@@ -44,8 +46,6 @@ class Blogpost extends Component {
 
   onShowEmoji = emoji => {
     //use call back to prevent asynchrounous error
-    // ["Cry", "EyeRoll", "HeartEyes", "Smile", "Thinking", "VeryAngry"]
-    // if ((emoji !== this.state.initialEmoji) & (emoji === ""))
     this.setState(
       () => ({ isShowEmoji: !this.state.isShowEmoji }),
       () => {
@@ -66,104 +66,76 @@ class Blogpost extends Component {
   };
 
   onChangeEmoji = emoji => {
-    this.setState(
-      () => ({ emoji: emoji, isReact: true }),
-      () => {
-        //check if the emoji clicked on was the one has been chosen before
-        // if (this.state.isReact && this.state.emoji !== "Thumb") {
-        //   this.props.deleteEmoji(
-        //     this.state.emoji,
-        //     this.props.post,
-        //     this.props.authState.userId
-        //   );
-        // }
-      }
-    );
+    this.setState(() => ({ emoji: emoji, isReact: true }));
+  };
+
+  createEventHandler = () => {
+    this.setState({ create: true });
+  };
+  cancelEventHandler = () => {
+    this.setState({ create: false });
+  };
+  loadComment = () => {
+    this.props.getComment(this.props.post._id);
+    console.log(this.props.post._id);
   };
 
   render() {
-    const { email, imageUrl, _user, _id } = this.props.post;
+    const { email, imageUrl, createdAt, user, _id } = this.props.post;
+    const { isAuthenticated } = this.props.authState;
     const { isShowEmoji } = this.state;
     return (
       <div className="blogpost-container">
         <div className="blogpost-header">
-          <ul>
-            <li>
-              <img
-                className="blogpost-user-img"
-                src={iconuser}
-                width="50"
-                alt="Avatar"
-              />
-            </li>
-            <li>
-              <div>
-                <p>{email}</p>
-                <p className="blogpost-date-posted">on 26th Aug</p>
-              </div>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <div className="blogpost-edit">
-                <BlogpostEdit key={this.props.post} post={this.props.post} />
-              </div>
-            </li>
-          </ul>
+          <div className="blogpost-header-content">
+            <p>{email}</p>
+            <p id="date-post">on {createdAt.substring(0, 10)}</p>
+          </div>
+          {isAuthenticated ? (
+            <BlogpostEdit key={this.props.post} post={this.props.post} />
+          ) : null}
         </div>
         <div className="blogpost-body">
           <img
-            className="blogpost-image"
             src={`https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/${imageUrl}`}
           />
         </div>
-
         <div className="blogpost-footer">
-          <ul>
-            <li>
-              <button className="btn-like">
-                <img
-                  src={require(`../../../img/emoji/${this.state.emoji}.png`)}
-                  onClick={this.onShowEmoji}
-                />
+          <div className="emojis">
+            <button className="btn-like" onClick={this.onShowEmoji}>
+              <img
+                src={require(`../../../img/emoji/${this.state.emoji}.png`)}
+                onClick={this.onShowEmoji}
+              />
 
-                <div className="emoji-cont">
-                  {isShowEmoji ? (
-                    <Emojis
-                      onChangeEmoji={this.onChangeEmoji}
-                      onCloseEmoji={this.onCloseEmoji}
-                      onShowEmoji={this.onShowEmoji}
-                      post={this.props.post}
-                    />
-                  ) : null}
-                </div>
-              </button>
-            </li>
-            <li></li>
-            <li>
-              <p>{this.props.post.emoji.length}</p>
-            </li>
-
-            <li>
-              {this.state.openModal && (
-                <Modal
-                  onClose={this.cancelEventHandler}
-                  onClick={this.loadComment}
-                  post_id={this.props.post._id}
-                ></Modal>
-              )}
-
-              <div>
-                <button
-                  className="btn-comment"
-                  onClick={this.createEventHandler}
-                ></button>
+              <div className="emoji-cont">
+                {isShowEmoji ? (
+                  <Emojis
+                    onChangeEmoji={this.onChangeEmoji}
+                    onCloseEmoji={this.onCloseEmoji}
+                    onShowEmoji={this.onShowEmoji}
+                    post={this.props.post}
+                  />
+                ) : null}
               </div>
-            </li>
-            <li>
-              <p>300 Comments</p>
-            </li>
-          </ul>
+            </button>
+            <p>{this.props.post.emoji.length}</p>
+          </div>
+          <div className="comments">
+            {this.state.openModal && (
+              <Modal
+                onClose={this.cancelEventHandler}
+                onClick={this.loadComment}
+                post_id={this.props.post._id}
+              ></Modal>
+            )}
+
+            <button
+              className="btn-comment"
+              onClick={this.createEventHandler}
+            ></button>
+            <p>{this.props.post.emoji.length}</p>
+          </div>
         </div>
       </div>
     );
@@ -180,3 +152,23 @@ export default connect(
   mapStateToProps,
   { getComment, closeComment, deleteEmoji }
 )(Blogpost);
+
+{
+  /* <button className="btn-like">
+<img
+  src={require(`../../../img/emoji/${this.state.emoji}.png`)}
+  onClick={this.onShowEmoji}
+/>
+
+<div className="emoji-cont">
+  {isShowEmoji ? (
+    <Emojis
+      onChangeEmoji={this.onChangeEmoji}
+      onCloseEmoji={this.onCloseEmoji}
+      onShowEmoji={this.onShowEmoji}
+      post={this.props.post}
+    />
+  ) : null}
+</div>
+</button> */
+}

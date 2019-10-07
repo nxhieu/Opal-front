@@ -1,6 +1,6 @@
 //Register component
 import React, { Component } from "react";
-import { register } from "../../actions/authAction";
+import { register, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import "../../dist/css/auth.css";
@@ -15,6 +15,10 @@ class Register extends Component {
     password: "",
     password2: ""
   };
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
 
   //lifecycle method invoked when updating happens in the props or state
   componentDidUpdate() {
@@ -141,6 +145,11 @@ class Register extends Component {
             </div>
           </form>
         </div>
+        <div className="fail_authentication">
+          {this.props.authState.error !== "Incorrect username or password" ? (
+            <h6>{this.props.authState.error}</h6>
+          ) : null}
+        </div>
       </div>
     );
   }
@@ -154,6 +163,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { register }
+    { register, reset }
   )(Register)
 );
