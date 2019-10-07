@@ -1,7 +1,7 @@
 .emoji-form {
   position: relative;
-  bottom: 4.1rem;
-  left: 5.6rem;
+  bottom: 4rem;
+  right: 0.1rem;
   z-index: 0;
 }
 
@@ -13,14 +13,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  width: fit-content;
   z-index: 3;
 }
 
 .emojis-img img {
   height: 2rem;
   width: 2rem;
-  margin-right: 0.1rem;
+  margin-right: 0.2rem;
 }
 
 .emojis-img img:hover {

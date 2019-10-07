@@ -97,12 +97,15 @@ class Blogpost extends Component {
         </div>
         <div className="blogpost-footer">
           <div className="emojis">
-            <button className="btn-like" onClick={this.onShowEmoji}>
-              <img
-                src={require(`../../../img/emoji/${this.state.emoji}.png`)}
-                onClick={this.onShowEmoji}
-              />
-
+            <button className="btn-like">
+              {isAuthenticated ? (
+                <img
+                  src={require(`../../../img/emoji/${this.state.emoji}.png`)}
+                  onClick={this.onShowEmoji}
+                />
+              ) : (
+                <img src={require(`../../../img/emoji/Thumb.png`)} />
+              )}
               {isShowEmoji ? (
                 <Emojis
                   onChangeEmoji={this.onChangeEmoji}
