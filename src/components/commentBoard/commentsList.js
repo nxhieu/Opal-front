@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {
   getComment,
   postComment,
-  closeComment
+  deleteComment
 } from "../../actions/commentAction";
 import CreateComment from "./createComment";
 import Comment from "./comment";
@@ -32,6 +32,7 @@ export class CommentsList extends Component {
 
   render() {
     const { comments } = this.props.commentState;
+
     return (
       <div>
         {this.props.authState.isAuthenticated ? (
@@ -46,8 +47,11 @@ export class CommentsList extends Component {
           <div>
             <Comment
               key={comment._id}
+              post_id={this.state.post_id}
               comment={comment}
               email={this.props.authState.email}
+              postComment={this.props.postComment}
+              deleteComment={this.props.deleteComment}
             />
           </div>
         ))}
@@ -64,5 +68,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getComment, postComment, closeComment }
+  { getComment, postComment, deleteComment }
 )(CommentsList);
