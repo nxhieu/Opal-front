@@ -8,6 +8,7 @@ class CreateComment extends Component {
         <form onSubmit={this.props.onSubmit}>
           <div className="row">
             <span>Comment as {this.props.email}</span>
+            <p>{this.props.email}</p>
             <input
               id="comment_uploadFile"
               type="file"

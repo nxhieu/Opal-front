@@ -4,7 +4,10 @@ import {
   GET_COMMENT_REQUEST,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_FAIL,
-  CLOSE_COMMENT
+  CLOSE_COMMENT,
+  POSTCOMMENT_SUCCESS,
+  POSTCOMMENT_FAIL,
+  CLEAR_COMMENT
 } from "./types";
 
 export const postComment = (postId, file, parentsId) => async dispatch => {
@@ -27,8 +30,8 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
         "Content-Type": file.type
       }
     });
-
-    const commentRes = await fetch(`${window.apiAddress}/comment/comment`, {
+    //create new comment
+    await fetch(`${window.apiAddress}/comment/comment`, {
       method: "POST",
       body: JSON.stringify({
         imageUrl: awsUrl.key,
@@ -40,7 +43,21 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
         "Content-type": "application/json"
       }
     });
-    dispatch({ type: GETURI_SUCCESS, payload: awsUrl });
+    dispatch({ type: CLEAR_COMMENT });
+    //get all new comments back
+    const commentlist = await fetch(
+      `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-type": "application/json"
+        }
+      }
+    );
+    const commentlistdata = await commentlist.json();
+
+    dispatch({ type: GET_COMMENT_SUCCESS, payload: commentlistdata });
   } catch (error) {
     dispatch({ type: GETURI_FAIL });
   }
@@ -66,6 +83,39 @@ export const getComment = postId => async dispatch => {
   }
 };
 
-export const closeComment = () => async dispatch => {
+export const deleteComment = (commentId, postId) => async dispatch => {
+  try {
+    console.log(commentId);
+    await fetch(
+      `${window.apiAddress}/comment/deleteComment?commentId=${commentId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token")
+        }
+      }
+    );
+
+    dispatch({ type: CLEAR_COMMENT });
+
+    const commentlist = await fetch(
+      `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-type": "application/json"
+        }
+      }
+    );
+    const commentlistdata = await commentlist.json();
+
+    dispatch({ type: GET_COMMENT_SUCCESS, payload: commentlistdata });
+  } catch (error) {
+    dispatch({ type: GETURI_FAIL });
+  }
+};
+
+export const closeComment = () => dispatch => {
   dispatch({ type: CLOSE_COMMENT });
 };

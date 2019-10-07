@@ -37,6 +37,9 @@ export class Comment extends Component {
 
   render() {
     const { email, imageUrl, _id } = this.props.comment;
+    console.log(this.props.email);
+    // console.log(this.props.authState.email);
+    // const useremail = this.props.authState.email;
     return (
       <div className="comment">
         <div className="row">
@@ -55,6 +58,13 @@ export class Comment extends Component {
             &nbsp; Reply
           </label>
           <button id={_id} onClick={this.replyCommentHandler} />
+          {this.props.email == email && (
+            <button
+              onClick={() => this.props.deleteComment(_id, this.props.post_id)}
+            >
+              Delete
+            </button>
+          )}
         </div>
         {this.state.replyComment && (
           <div className="row">
@@ -62,13 +72,20 @@ export class Comment extends Component {
               onChange={this.replychangeHandler}
               onSubmit={this.replysubmitImageHandler}
               replyfileUrl={this.state.replyfileUrl}
-              email={this.props.authState.email}
+              email={this.props.email}
             />
           </div>
         )}
         {this.props.comment.child.map(comment => (
           <div className="child-comment">
-            <Comment key={comment._id} comment={comment} />
+            <Comment
+              key={comment._id}
+              post_id={this.props.post_id}
+              comment={comment}
+              email={this.props.email}
+              postComment={this.props.postComment}
+              deleteComment={this.props.deleteComment}
+            />
           </div>
         ))}
       </div>

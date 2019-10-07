@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getComment, postComment } from "../../actions/commentAction";
+import {
+  getComment,
+  postComment,
+  deleteComment
+} from "../../actions/commentAction";
 import CreateComment from "./createComment";
 import Comment from "./comment";
 
@@ -29,17 +33,24 @@ export class CommentsList extends Component {
 
   render() {
     const { comments } = this.props.commentState;
+
     return (
       <div>
         <CreateComment
           onChange={this.fileChangeHandler}
           onSubmit={this.submitImageHandler}
           fileUrl={this.state.fileUrl}
-          email={this.props.authState.email}
         />
         {comments.map(comment => (
           <div>
-            <Comment key={comment._id} comment={comment} />
+            <Comment
+              key={comment._id}
+              post_id={this.state.post_id}
+              comment={comment}
+              email={this.props.authState.email}
+              postComment={this.props.postComment}
+              deleteComment={this.props.deleteComment}
+            />
           </div>
         ))}
       </div>
@@ -55,5 +66,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getComment, postComment }
+  { getComment, postComment, deleteComment }
 )(CommentsList);
