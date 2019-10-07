@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { connect, withRouter } from "react-redux";
 import { postImage } from "../../../../actions/postImageAction";
-import "../../../../dist/css/submit.css";
+import "../../../../dist/css/postImage.css";
 import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
 
 export class putImage extends Component {
@@ -31,33 +31,27 @@ export class putImage extends Component {
   render() {
     const { fileUrl } = this.state;
     return (
-      <div className="post-form">
+      <div className="postImage">
         <form onSubmit={this.onSubmit}>
-          <input
-            className="file"
-            onChange={this.onFileChange}
-            type="file"
-            id="file"
-            accept="image/*"
-          />
-          <p>Create a post</p>
-
-          <label className="putImage-label" htmlFor="file">
-            {" "}
-            {fileUrl ? (
-              <img src={fileUrl} alt="post" />
-            ) : (
-              <Fragment>
-                <img src={placeholder} width="100"></img>
-                <p>{`Hi ${this.props.authState.firstName}! What are you thinking today ?`}</p>
-              </Fragment>
-            )}
-          </label>
-
-          <div className="btnstyle">
-            {this.state.file && (
-              <input type="submit" value="submit" className="btn-submit" />
-            )}
+          <div className="row">
+            <p>Create post by {this.props.authState.email}</p>
+            <input
+              className="file"
+              onChange={this.onFileChange}
+              type="file"
+              id="post_uploadFile"
+              accept="image/*"
+            />
+            <label htmlFor="post_uploadFile">
+              <i className="addimage"></i>
+              &nbsp; Choose a Image
+            </label>
+          </div>
+          <div className="row">
+            {fileUrl && <img src={fileUrl} alt="post" />}
+          </div>
+          <div className="row">
+            {this.state.file && <input type="submit" value="Submit" />}
           </div>
         </form>
       </div>

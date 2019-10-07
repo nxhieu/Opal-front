@@ -62,13 +62,17 @@ export class Comment extends Component {
               onChange={this.replychangeHandler}
               onSubmit={this.replysubmitImageHandler}
               replyfileUrl={this.state.replyfileUrl}
-              email={this.props.authState.email}
+              email={this.props.email}
             />
           </div>
         )}
         {this.props.comment.child.map(comment => (
           <div className="child-comment">
-            <Comment key={comment._id} comment={comment} />
+            <Comment
+              key={comment._id}
+              comment={comment}
+              email={this.props.email}
+            />
           </div>
         ))}
       </div>

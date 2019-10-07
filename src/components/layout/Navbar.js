@@ -38,9 +38,6 @@ class Navbar extends Component {
           {!isAuthenticated ? (
             <ul>
               <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
                 <Link to="/login">Log in</Link>
               </li>
               <li>
@@ -49,15 +46,6 @@ class Navbar extends Component {
             </ul>
           ) : (
             <ul>
-              {/* <li>
-                <NotificationMenu />
-              </li> */}
-              <li>
-                <Link to="/usersettings">Settings</Link>
-              </li>
-              <li>
-                <Link to="/posts"> Your Posts</Link>
-              </li>
               <li>
                 <a onClick={onLogout} href="/">
                   Log out

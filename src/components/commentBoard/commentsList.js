@@ -44,7 +44,11 @@ export class CommentsList extends Component {
         ) : null}
         {comments.map(comment => (
           <div>
-            <Comment key={comment._id} comment={comment} />
+            <Comment
+              key={comment._id}
+              comment={comment}
+              email={this.props.authState.email}
+            />
           </div>
         ))}
       </div>
