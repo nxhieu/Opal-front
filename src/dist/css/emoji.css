@@ -1,7 +1,7 @@
 .emoji-form {
   position: relative;
-  bottom: 5rem;
-  right: 1.5rem;
+  bottom: 4.1rem;
+  left: 5.6rem;
   z-index: 0;
 }
 
@@ -18,12 +18,18 @@
 }
 
 .emojis-img img {
-  max-height: 2rem;
+  height: 2rem;
+  width: 2rem;
+  margin-right: 0.1rem;
 }
 
+.emojis-img img:hover {
+  cursor: pointer;
+}
+/* 
 .emoji-cont {
   width: 15rem;
   height: 3rem;
   position: absolute;
   padding-right: 2rem;
-}
+} */

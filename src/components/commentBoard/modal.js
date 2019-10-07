@@ -9,8 +9,7 @@ class Modal extends Component {
         <div className="background">
           <div className="modal">
             <span className="close" onClick={this.props.onClose}>
-              {" "}
-              &times;
+              &ensp;&times;
             </span>
             <CommentsList post_id={this.props.post_id} />
           </div>

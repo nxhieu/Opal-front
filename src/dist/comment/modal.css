@@ -3,7 +3,7 @@
   width: 50rem;
   overflow-x: hidden;
   height: 100%;
-  z-index: 1; /*sit on the top*/
+  z-index: 2; /*sit on the top*/
   background: white;
   top: 0; /*vh*/
   margin: 0 calc((100% - 50rem) / 2);
@@ -11,6 +11,7 @@
 }
 
 .background {
+  z-index: 2; /*sit on the top*/
   left: 0;
   top: 0;
   background: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
@@ -21,16 +22,17 @@
 }
 
 /* The Close Button */
-.close {
+.background .modal .close {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
   margin: 0 1rem 1rem 1rem;
+  text-align: right;
 }
 
-.close:hover,
-.close:focus {
+.background .modal .close:hover,
+.background .modal .close:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;

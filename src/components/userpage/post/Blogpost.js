@@ -6,14 +6,8 @@ import ReactDom from "react-dom";
 import { Link } from "react-router-dom";
 import { deleteEmoji } from "../../../actions/postAction";
 import { getComment, closeComment } from "../../../actions/commentAction";
-//import BlogpostPopup from "./components/layout/BlogpostPopup";
-
 import "../../../dist/css/emoji.css";
 import "../../../dist/css/post.css";
-import HamburgerMenu from "react-hamburger-menu";
-import iconuser from "../../../img/blogpost/testavatars/muser.png";
-import editpost from "../../../img/blogpost/feedback/editpost.png";
-
 import BlogpostEdit from "./BlogpostEdit";
 import Emojis from "../emoji/Emojis";
 import Modal from "../../commentBoard/modal";
@@ -23,7 +17,8 @@ class Blogpost extends Component {
     isShowEmoji: false,
     emoji: "Thumb",
     isReact: false,
-    initialEmoji: null
+    initialEmoji: null,
+    openModal: false
   };
 
   componentDidMount() {
@@ -70,10 +65,10 @@ class Blogpost extends Component {
   };
 
   createEventHandler = () => {
-    this.setState({ create: true });
+    this.setState({ openModal: true });
   };
   cancelEventHandler = () => {
-    this.setState({ create: false });
+    this.setState({ openModal: false });
   };
   loadComment = () => {
     this.props.getComment(this.props.post._id);
@@ -108,16 +103,14 @@ class Blogpost extends Component {
                 onClick={this.onShowEmoji}
               />
 
-              <div className="emoji-cont">
-                {isShowEmoji ? (
-                  <Emojis
-                    onChangeEmoji={this.onChangeEmoji}
-                    onCloseEmoji={this.onCloseEmoji}
-                    onShowEmoji={this.onShowEmoji}
-                    post={this.props.post}
-                  />
-                ) : null}
-              </div>
+              {isShowEmoji ? (
+                <Emojis
+                  onChangeEmoji={this.onChangeEmoji}
+                  onCloseEmoji={this.onCloseEmoji}
+                  onShowEmoji={this.onShowEmoji}
+                  post={this.props.post}
+                />
+              ) : null}
             </button>
             <p>{this.props.post.emoji.length}</p>
           </div>

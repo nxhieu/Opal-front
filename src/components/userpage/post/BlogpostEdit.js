@@ -25,7 +25,10 @@ export class BlogpostEdit extends Component {
       <Downshift>
         {({ getMenuProps, getToggleButtonProps, isOpen }) => (
           <div className="blogpost-edit">
-            <button {...getToggleButtonProps()} className="blopost-edit-button">
+            <button
+              {...getToggleButtonProps()}
+              className="blogpost-edit-button"
+            >
               <HamburgerButton />
             </button>
             {isOpen && this.props.authState.userId === this.props.post._user ? (
