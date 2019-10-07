@@ -87,3 +87,11 @@
   align-items: center;
   width: fit-content;
 } */
+
+@media (max-width: 768px) {
+  .comment .row img {
+    max-height: 6rem;
+    width: auto;
+    height: auto;
+  }
+}

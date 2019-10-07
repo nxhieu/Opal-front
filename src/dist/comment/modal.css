@@ -40,8 +40,8 @@
 
 @media (max-width: 768px) {
   .modal {
-    width: 30rem;
-    margin: 0 calc((100% - 30rem) / 2);
+    width: 29rem;
+    margin: 0 calc((100% - 29rem) / 2);
   }
 }
 
