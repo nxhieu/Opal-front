@@ -74,8 +74,7 @@ export const getComment = postId => async dispatch => {
       {
         method: "GET",
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-type": "application/json"
+          Authorization: "Bearer " + localStorage.getItem("token")
         }
       }
     );

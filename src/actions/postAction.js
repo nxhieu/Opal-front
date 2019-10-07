@@ -38,6 +38,7 @@ export const getPosts = currentPage => async dispatch => {
 };
 export const editPost = (file, post) => async dispatch => {
   try {
+    console.log("1");
     // request to the back end to delete the current image and get new url (backend then call s3 and send back the presigned URl from S3 bucket)
     const res = await fetch(
       `${window.apiAddress}/post/editImage?type=${file.type}`,
@@ -52,6 +53,7 @@ export const editPost = (file, post) => async dispatch => {
     );
 
     const awsUrl = await res.json();
+    console.log("2");
     //post image to our bucket using our presigned URL
     await fetch(awsUrl.url, {
       method: "PUT",

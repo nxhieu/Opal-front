@@ -28,6 +28,10 @@ export class CommentsList extends Component {
     event.preventDefault();
     const file = this.state.file;
     this.props.postComment(this.state.post_id, file, null);
+    this.setState({
+      fileUrl: null,
+      file: null
+    });
   };
 
   render() {

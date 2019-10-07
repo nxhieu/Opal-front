@@ -9,6 +9,7 @@
 
 .row {
   margin: 1.25rem 0 0 1.25rem;
+  /* display: flex; */
 }
 
 .row:after {
@@ -25,6 +26,8 @@
 
 .comment .row img {
   max-height: 10rem;
+  width: auto;
+  height: auto;
 }
 
 .comment .row [type="submit"] {
@@ -55,17 +58,32 @@
 
 .comment .row label {
   float: left;
-  clear: left;
+  /* clear: left; */
   display: flex;
   align-items: center;
-  justify-content: center;
+  width: fit-content;
+  /* justify-content: center; */
   color: rgb(100, 98, 98);
   border: none;
   font-size: 1.1rem;
   cursor: pointer;
   text-decoration: bold;
+  margin-right: 2rem;
+}
+
+#delete-com {
+  padding-top: 0.15rem;
 }
 
 .comment .row button {
-  border: none;
+  display: none;
 }
+
+/* .comment .row #delete-comment {
+  display: inline;
+  display: flex;
+  text-align: left;
+  float: left;
+  align-items: center;
+  width: fit-content;
+} */

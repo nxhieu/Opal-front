@@ -37,11 +37,11 @@ export class Comment extends Component {
 
   render() {
     const { email, imageUrl, _id } = this.props.comment;
-    console.log(this.props.email);
-    // console.log(this.props.authState.email);
-    // const useremail = this.props.authState.email;
     return (
       <div className="comment">
+        <div className="row">
+          <span>{email}</span>
+        </div>
         <div className="row">
           {
             <img
@@ -56,11 +56,13 @@ export class Comment extends Component {
           </label>
           <button id={_id} onClick={this.replyCommentHandler} />
           {this.props.email == email && (
-            <button
+            <label
+              htmlFor={_id}
+              id="delete-com"
               onClick={() => this.props.deleteComment(_id, this.props.post_id)}
             >
               Delete
-            </button>
+            </label>
           )}
         </div>
         {this.state.replyComment && (

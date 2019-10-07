@@ -71,8 +71,7 @@
   background-color: #0060ac;
 }
 
-.postImage form .row [type="submit"],
-button {
+.postImage form .row [type="submit"] {
   font-size: 1.13rem;
   text-decoration: none;
   border: none;
@@ -86,8 +85,7 @@ button {
   /* margin: auto; */
 }
 
-.postImage form .row [type="submit"]:hover,
-button:hover {
+.postImage form .row [type="submit"]:hover {
   cursor: pointer;
   background: #3c8ef0;
   color: white;

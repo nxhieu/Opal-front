@@ -12,6 +12,7 @@ export class BlogpostEdit extends Component {
     create: false
   };
   createEventHandler = () => {
+    console.log(this.props.post);
     this.setState({ create: !this.state.create });
   };
 
@@ -31,18 +32,16 @@ export class BlogpostEdit extends Component {
             >
               <HamburgerButton />
             </button>
+            {this.state.create && (
+              <EditModal
+                key={this.props.post}
+                onClose={this.createEventHandler}
+                post={this.props.post}
+              ></EditModal>
+            )}
             {isOpen && this.props.authState.userId === this.props.post._user ? (
               <ul className="edit-button-menu" {...getMenuProps()}>
-                <li>
-                  {this.state.create && (
-                    <EditModal
-                      key={this.props.post}
-                      onClose={this.createEventHandler}
-                      post={this.props.post}
-                    ></EditModal>
-                  )}
-                  Edit
-                </li>
+                <li onClick={this.createEventHandler}>Edit</li>
 
                 <li onClick={this.delPost}>Delete</li>
               </ul>

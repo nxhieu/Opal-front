@@ -18,7 +18,8 @@ class Blogpost extends Component {
     emoji: "Thumb",
     isReact: false,
     initialEmoji: null,
-    openModal: false
+    openModal: false,
+    post_id: this.props.post._id
   };
 
   componentDidMount() {
@@ -66,13 +67,12 @@ class Blogpost extends Component {
 
   createEventHandler = () => {
     this.setState({ openModal: true });
+    this.props.getComment(this.state.post_id);
   };
+
   cancelEventHandler = () => {
     this.setState({ openModal: false });
-  };
-  loadComment = () => {
-    this.props.getComment(this.props.post._id);
-    console.log(this.props.post._id);
+    this.props.closeComment();
   };
 
   render() {
@@ -130,7 +130,7 @@ class Blogpost extends Component {
               className="btn-comment"
               onClick={this.createEventHandler}
             ></button>
-            <p>{this.props.post.emoji.length}</p>
+            <p>Comment</p>
           </div>
         </div>
       </div>

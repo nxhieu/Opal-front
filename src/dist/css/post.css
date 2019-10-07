@@ -57,7 +57,7 @@
   font-size: 1rem;
   width: 7rem;
   background: #0078d7;
-  border: 0.05rem solid #0375d3;
+  /* border: 0.05rem solid #0375d3; */
   overflow: hidden;
   z-index: 0;
 }

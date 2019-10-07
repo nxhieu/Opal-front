@@ -1,25 +1,26 @@
-import React, { Component, Fragment } from "react";
+// import React, { Component, Fragment } from "react";
 import Editpost from "./editpost";
+
+//             <editpost post={this.props.post} />
+import React, { Component } from "react";
 import "../../../../dist/css/editmodal.css";
 
-export class editmodal extends Component {
+class editmodal extends Component {
   render() {
     return (
-      <Fragment>
+      <React.Fragment>
         <div className="background">
-          <div className="modal">
+          <div className="editmodal">
             <span className="close" onClick={this.props.onClose}>
-              {" "}
-              &times;
+              &ensp;&times;
             </span>
-            <div className="edit-form">
-              <Editpost post={this.props.post} />
-            </div>
+
+            <Editpost post={this.props.post} />
+            {console.log(this.props.post)}
           </div>
         </div>
-      </Fragment>
+      </React.Fragment>
     );
   }
 }
-
 export default editmodal;

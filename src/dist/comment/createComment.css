@@ -59,7 +59,7 @@ input[type="file"] {
 }
 
 .comment form .row [type="submit"],
-button {
+.comment form .row button {
   font-size: 1.13rem;
   text-decoration: none;
   border: none;
@@ -73,7 +73,7 @@ button {
 }
 
 .comment form .row [type="submit"]:hover,
-button:hover {
+.comment form .row button:hover {
   cursor: pointer;
   background: #3c8ef0;
   color: white;
