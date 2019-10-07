@@ -1,8 +1,8 @@
 .modal {
   position: fixed;
   width: 50rem;
+  overflow-x: hidden;
   height: 100%;
-  overflow: auto; /*can scroll if needed*/
   z-index: 1; /*sit on the top*/
   background: white;
   top: 0; /*vh*/

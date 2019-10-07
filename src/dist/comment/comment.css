@@ -2,6 +2,11 @@
   margin-top: 2rem;
 }
 
+.child-comment {
+  margin-left: 4rem;
+  margin-right: -4rem;
+}
+
 .row {
   margin: 1.25rem 0 0 1.25rem;
 }

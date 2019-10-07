@@ -8,8 +8,8 @@ export class CommentsList extends Component {
   state = {
     file: null,
     fileUrl: null,
-    post_id: this.props.post_id,
-    print: null
+    post_id: this.props.post_id
+    // print: []
   };
 
   fileChangeHandler = event => {
@@ -27,47 +27,10 @@ export class CommentsList extends Component {
     this.props.postComment(this.state.post_id, file, null);
   };
 
-  // listCommentHandler = () => {
-  //   const { comments } = this.props.commentState;
-  //   const commentArr = [];
-
-  // comments.map(comment => {
-  //   if (comment.parentsID == null) {
-  //     commentArr.push(comment);
-  //   }
-  // });
-
-  //   function recurse(comments_array, parents_id) {
-  //     for (let i in comments_array) {
-  //       if (comments_array[i]._id == parents_id) {
-  //         let children = recurse(comments_array, comments_array[i]._id);
-
-  //         if (children.length) {
-  //           comments_array[i].children = children;
-  //         }
-  //         commentArr.push(comments_array[i]);
-  //       }
-  //     }
-  //   }
-
-  //   recurse(comments, null);
-
-  //   this.setState({ print: JSON.stringify(commentArr) });
-  // };
-
-  // componentWillMount() {
-  //   this.loadComment();
-  // }
-
-  // loadComment = () => {
-  //   this.props.getComment(this.state.post_id);
-  // };
-
   render() {
     const { comments } = this.props.commentState;
     return (
       <div>
-        <h1 style={{ color: "black" }}>{this.state.print}</h1>
         <CreateComment
           onChange={this.fileChangeHandler}
           onSubmit={this.submitImageHandler}

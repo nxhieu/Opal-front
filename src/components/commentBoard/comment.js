@@ -24,7 +24,6 @@ export class Comment extends Component {
   replysubmitImageHandler = event => {
     event.preventDefault();
     const replyfile = this.state.replyfile;
-    const parentsID = parseInt(this.state.parents_id) + 1;
     this.props.postComment(
       this.state.post_id,
       replyfile,
@@ -67,6 +66,11 @@ export class Comment extends Component {
             />
           </div>
         )}
+        {this.props.comment.child.map(comment => (
+          <div className="child-comment">
+            <Comment key={comment._id} comment={comment} />
+          </div>
+        ))}
       </div>
     );
   }
@@ -74,7 +78,6 @@ export class Comment extends Component {
 
 const mapStateToProps = state => ({
   commentState: state.comment,
-  postState: state.post,
   authState: state.auth
 });
 
