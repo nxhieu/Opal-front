@@ -4,7 +4,7 @@ import request from "superagent";
 import debounce from "lodash.debounce";
 import { connect } from "react-redux";
 import { BlogpostEdit } from "./BlogpostEdit";
-import { getPosts, increasePage } from "../../../actions/postAction";
+import { getPosts, increasePage, clearPost } from "../../../actions/postAction";
 import Blogpost from "./Blogpost";
 import loading from "../../../img/UI/loading.gif";
 import "../../../dist/css/main.css";
@@ -12,43 +12,37 @@ import "../../../dist/css/main.css";
 export class Blogposts extends Component {
   constructor(props) {
     super(props);
-
-    // Sets up our initial state
-    // this.state = {
-    //   error: false,
-    //   hasMore: true,
-    //   isLoading: false,
-    //   posts: []
-    // };
-
-    // Binds our scroll event handler
-    window.onscroll = debounce(() => {
-      const { error, isLoading, hasMore } = this.props.postState;
-
-      // Bails early if:
-      // * there's an error
-      // * it's already loading
-      // * there's nothing left to load
-      if (error || isLoading || !hasMore) return;
-
-      // Checks that the page has scrolled to the bottom
-      if (
-        window.innerHeight + window.pageYOffset >=
-        document.body.offsetHeight - 2
-      ) {
-        this.props.increasePage();
-        this.loadPosts();
-      }
-    }, 1000);
   }
-
   componentWillMount() {
-    // Loads some users on initial load
-    this.loadPosts();
+    this.props.clearPost();
   }
 
-  loadPosts = () => {
-    const { currentPage } = this.props.postState;
+  componentDidMount() {
+    this.onScroll = this.handleScroll.bind(this);
+    window.addEventListener("scroll", this.onScroll, false);
+
+    // Loads some users on initial load
+    this.loadPosts(1);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll, false);
+    this.props.clearPost();
+  }
+
+  handleScroll = debounce(e => {
+    const { error, isLoading, hasMore } = this.props.postState;
+    if (error || isLoading || !hasMore) return;
+    if (
+      window.innerHeight + window.pageYOffset >=
+      document.body.offsetHeight - 2
+    ) {
+      this.props.increasePage();
+      this.loadPosts(this.props.postState.currentPage);
+    }
+  }, 1000);
+
+  loadPosts = currentPage => {
     this.props.getPosts(currentPage);
   };
 
@@ -56,12 +50,9 @@ export class Blogposts extends Component {
     const { error, hasMore, posts, isLoading } = this.props.postState;
 
     return (
-      <div class="blogposts">
-        <h1>{}</h1>
+      <div className="blogposts">
         {posts.map(post => (
-          <Fragment>
-            <Blogpost key={post._id} post={post} />
-          </Fragment>
+          <Blogpost key={post._id} post={post} userId={this.props.userId} />
         ))}
 
         {error && <div style={{ color: "#900" }}>{error}</div>}
@@ -84,5 +75,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPosts, increasePage }
+  { getPosts, increasePage, clearPost }
 )(Blogposts);

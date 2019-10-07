@@ -4,7 +4,13 @@ import {
   DELETEPOST_SUCCESS,
   DELETEPOST_FAIL,
   GETPOSTS_REQUEST,
-  GETPOSTS_ANOTHERPAGE
+  GETPOSTS_ANOTHERPAGE,
+  POSTEMOJI_SUCCESS,
+  CLEARPOSTS_SUCCESS,
+  CREATEPOST_SUCCESS,
+  EDITPOST_SUCCESS,
+  EDITPOST_FAIL,
+  DELETEEMOJI_SUCCESS
 } from "./../actions/types";
 import { access } from "fs";
 
@@ -19,6 +25,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case CLEARPOSTS_SUCCESS:
+      return {
+        ...state,
+        posts: [],
+        currentPage: 1
+      };
     case GETPOSTS_ANOTHERPAGE:
       return {
         ...state,
@@ -44,6 +56,12 @@ export default (state = initialState, action) => {
         posts: [...state.posts, ...action.payload.posts],
         isLoading: false
       };
+    case CREATEPOST_SUCCESS:
+      return {
+        ...state,
+        posts: [action.payload.post, ...state.posts],
+        isLoading: false
+      };
     case DELETEPOST_SUCCESS:
       return {
         ...state,
@@ -58,6 +76,23 @@ export default (state = initialState, action) => {
         isLoading: false,
         error: true
       };
+    case EDITPOST_SUCCESS:
+      return {
+        ...state,
+        posts: state.posts.map(post =>
+          post._id === action.payload.post._id ? action.payload.post : post
+        )
+      };
+    case POSTEMOJI_SUCCESS:
+    case DELETEEMOJI_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        posts: state.posts.map(post =>
+          post._id === action.payload._id ? action.payload : post
+        )
+      };
+    case EDITPOST_FAIL:
     default:
       return state;
   }

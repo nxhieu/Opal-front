@@ -1,15 +1,14 @@
 import React, { Component, Fragment } from "react";
-import { connect, withRouter } from "react-redux";
-import { postImage } from "../../../../actions/postImageAction";
-import "../../../../dist/css/submit.css";
+import { connect } from "react-redux";
+import { editPost } from "../../../../actions/postAction";
+import "../../../../dist/css/editpost.css";
 import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
 
-export class putImage extends Component {
+export class editpost extends Component {
   state = {
     file: null,
     fileUrl: null
   };
-
   onFileChange = event => {
     if (event.target.files[0] != null) {
       this.setState({
@@ -22,7 +21,7 @@ export class putImage extends Component {
   onSubmit = e => {
     e.preventDefault();
     const file = this.state.file;
-    this.props.postImage(file);
+    this.props.editPost(file, this.props.post);
     this.setState({
       file: null,
       fileUrl: null
@@ -38,19 +37,19 @@ export class putImage extends Component {
             className="file"
             onChange={this.onFileChange}
             type="file"
-            id="file"
+            id="editfile"
             accept="image/*"
           />
-          <p>Create a post</p>
+          <p>Edit your post</p>
 
-          <label className="putImage-label" htmlFor="file">
+          <label className="putImage-label" htmlFor="editfile">
             {" "}
             {fileUrl ? (
               <img src={fileUrl} alt="post" />
             ) : (
               <Fragment>
                 <img src={placeholder} width="100"></img>
-                <p>{`Hi ${this.props.authState.firstName}! What are you thinking today ?`}</p>
+                <p>{` Change your post here !`}</p>
               </Fragment>
             )}
           </label>
@@ -65,12 +64,12 @@ export class putImage extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
-  imageState: state.post,
   authState: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { postImage }
-)(putImage);
+  { editPost }
+)(editpost);

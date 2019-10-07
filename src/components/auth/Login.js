@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { login } from "../../actions/authAction";
 import { connect } from "react-redux";
+import { clearPost } from "../../actions/postAction";
 import { withRouter } from "react-router-dom";
 import "../../dist/css/auth.css";
 

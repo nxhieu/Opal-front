@@ -2,7 +2,7 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/authAction";
+import { logout, loaduser } from "../../actions/authAction";
 import { connect } from "react-redux";
 import "../../dist/css/navbar.css";
 import logo from "../../img/UI/logo.png";
@@ -10,7 +10,11 @@ import smiley from "../../img/Smiling_Face.png";
 import NotificationMenu from "../userpage/notificationmenu/NotificationMenu";
 
 class Navbar extends Component {
-  componentDidMount() {}
+  componentWillMount() {
+    if (localStorage.getItem("token") !== null) {
+      this.props.loaduser();
+    }
+  }
   onLogout = () => {
     this.props.logout();
   };
@@ -18,7 +22,6 @@ class Navbar extends Component {
   render() {
     const { isAuthenticated } = this.props.authState;
     const { onLogout } = this;
-    console.log(isAuthenticated);
     return (
       <div className="main-nav">
         <div className="logo">
@@ -74,5 +77,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, loaduser }
 )(Navbar);

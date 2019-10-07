@@ -67,13 +67,17 @@ export const loaduser = () => async dispatch => {
   try {
     //
     const res = await fetch(`${window.apiAddress}/auth/loaduser`, {
-      method: "POST",
+      method: "GET",
       headers: {
         Authorization: "bearer " + localStorage.getItem("token")
       }
     });
     const data = await res.json();
-    dispatch({ type: USER_LOADED, payload: data });
+    if (res.status === 200) {
+      dispatch({ type: USER_LOADED, payload: data });
+    } else {
+      dispatch({ type: AUTH_ERROR });
+    }
   } catch (error) {
     dispatch({ type: AUTH_ERROR });
   }

@@ -13,7 +13,7 @@ const initialState = {
   token: null,
   userId: null,
   email: null,
-  firstName: null,
+  firstName: "Guest",
   isAuthenticated: false,
   error: null
 };
@@ -32,17 +32,16 @@ export default (state = initialState, action) => {
         firstName: action.payload.firstName,
         isAuthenticated: true
       };
+
     case USER_LOADED:
       return {
         ...state,
         userId: action.payload.userId,
-        token: action.payload.token,
         email: action.payload.email,
         firstName: action.payload.firstName,
         isAuthenticated: true
       };
     case REGISTER_FAIL:
-    case AUTH_ERROR:
     case LOGIN_FAIL:
     case LOGOUT:
       //REMOVE THE TOKEN FROM STORAGE
@@ -58,6 +57,7 @@ export default (state = initialState, action) => {
         email: null,
         error: action.payload
       };
+    case AUTH_ERROR:
     default:
       return state;
   }
