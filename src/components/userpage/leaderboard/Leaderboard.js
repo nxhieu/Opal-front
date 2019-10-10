@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getRank } from "../../../actions/leaderboardAction";
+import PropTypes from "prop-types";
 import crown from "../../../img/leaderboard/crown.png";
 import crowngold from "../../../img/leaderboard/stages/crowngold.png";
 import crownsilver from "../../../img/leaderboard/stages/crownsilver.png";
@@ -53,6 +54,10 @@ class Leaderboard extends Component {
     );
   }
 }
+
+Leaderboard.propTypes = {
+  leaderboardState: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   leaderboardState: state.leaderboard

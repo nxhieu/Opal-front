@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { render } from "react-dom";
-import request from "superagent";
 import debounce from "lodash.debounce";
 import { connect } from "react-redux";
-import { BlogpostEdit } from "./BlogpostEdit";
 import { getPosts, increasePage, clearPost } from "../../../actions/postAction";
 import Blogpost from "./Blogpost";
 import loading from "../../../img/UI/loading.gif";

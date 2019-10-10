@@ -1,8 +1,6 @@
-// import React, { Component, Fragment } from "react";
 import Editpost from "./editpost";
-
-//             <editpost post={this.props.post} />
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "../../../../dist/css/editmodal.css";
 
 class editmodal extends Component {
@@ -14,13 +12,17 @@ class editmodal extends Component {
             <span className="close" onClick={this.props.onClose}>
               &ensp;&times;
             </span>
-
             <Editpost post={this.props.post} />
-            {console.log(this.props.post)}
           </div>
         </div>
       </React.Fragment>
     );
   }
 }
+
+editmodal.propTypes = {
+  onclose: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired
+};
+
 export default editmodal;

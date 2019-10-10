@@ -1,11 +1,11 @@
 //Rendering the blog post
 //https://cmichel.io/how-to-create-a-more-popup-menu-in-react-native it's like a jQuery pop-up menu!
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ReactDom from "react-dom";
-import { Link } from "react-router-dom";
 import { deleteEmoji } from "../../../actions/postAction";
 import { getComment, closeComment } from "../../../actions/commentAction";
+import PropTypes from "prop-types";
 import "../../../dist/css/emoji.css";
 import "../../../dist/css/post.css";
 import BlogpostEdit from "./BlogpostEdit";
@@ -23,9 +23,9 @@ class Blogpost extends Component {
   };
 
   componentDidMount() {
-    //check whether has reacted to a post
+    //check whether user has reacted to a post
     const post = this.props.post;
-    const userId = this.props.userId;
+    const { userId } = this.props.authState;
     const emoji = post.emoji.find(emoji => emoji.user === userId);
     if (emoji) {
       this.setState({
@@ -62,7 +62,7 @@ class Blogpost extends Component {
   };
 
   onChangeEmoji = emoji => {
-    this.setState(() => ({ emoji: emoji, isReact: true }));
+    this.setState({ emoji: emoji, isReact: true });
   };
 
   createEventHandler = () => {
@@ -76,7 +76,7 @@ class Blogpost extends Component {
   };
 
   render() {
-    const { email, imageUrl, createdAt, user, _id } = this.props.post;
+    const { email, imageUrl, createdAt } = this.props.post;
     const { isAuthenticated } = this.props.authState;
     const { isShowEmoji } = this.state;
     return (
@@ -138,6 +138,16 @@ class Blogpost extends Component {
   }
 }
 
+Blogpost.propTypes = {
+  commentState: PropTypes.object.isRequired,
+  authState: PropTypes.object.isRequired,
+  postState: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired,
+  deleteEmoji: PropTypes.func.isRequired,
+  getComment: PropTypes.func.isRequired,
+  closeComment: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   commentState: state.comment,
   authState: state.auth,
@@ -148,23 +158,3 @@ export default connect(
   mapStateToProps,
   { getComment, closeComment, deleteEmoji }
 )(Blogpost);
-
-{
-  /* <button className="btn-like">
-<img
-  src={require(`../../../img/emoji/${this.state.emoji}.png`)}
-  onClick={this.onShowEmoji}
-/>
-
-<div className="emoji-cont">
-  {isShowEmoji ? (
-    <Emojis
-      onChangeEmoji={this.onChangeEmoji}
-      onCloseEmoji={this.onCloseEmoji}
-      onShowEmoji={this.onShowEmoji}
-      post={this.props.post}
-    />
-  ) : null}
-</div>
-</button> */
-}

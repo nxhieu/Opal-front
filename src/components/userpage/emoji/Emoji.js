@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
 
 export class Emoji extends Component {
   render() {
@@ -13,5 +14,9 @@ export class Emoji extends Component {
     );
   }
 }
+
+Emoji.propTypes = {
+  emoji: PropTypes.string.isRequired
+};
 
 export default Emoji;

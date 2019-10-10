@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import Emoji from "./Emoji";
+import PropTypes from "prop-types";
 import "../../../dist/css/emoji.css";
 import { connect } from "react-redux";
 import { postEmoji } from "../../../actions/postAction";
 
-export class emojis extends Component {
+export class Emojis extends Component {
   state = {
     emojis: ["Cry", "EyeRoll", "HeartEyes", "Smile", "Thinking", "VeryAngry"],
     path: null,
@@ -31,7 +32,6 @@ export class emojis extends Component {
           value={this.state.currentemoji}
           htmlFor="emoji"
         >
-          {/* {images} */}
           <div className="emojis-img">
             {this.state.emojis.map(emoji => (
               <Emoji
@@ -47,6 +47,13 @@ export class emojis extends Component {
   }
 }
 
+Emojis.propTypes = {
+  onChangeEmoji: PropTypes.func.isRequired,
+  onCloseEmoji: PropTypes.func.isRequired,
+  postEmoji: PropTypes.func.isRequired,
+  authState: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
   authState: state.auth
 });
@@ -54,4 +61,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { postEmoji }
-)(emojis);
+)(Emojis);

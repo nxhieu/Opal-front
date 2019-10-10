@@ -12,7 +12,6 @@ export class BlogpostEdit extends Component {
     create: false
   };
   createEventHandler = () => {
-    console.log(this.props.post);
     this.setState({ create: !this.state.create });
   };
 

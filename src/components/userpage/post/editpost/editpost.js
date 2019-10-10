@@ -1,14 +1,15 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { editPost } from "../../../../actions/postAction";
+import PropTypes from "prop-types";
 import "../../../../dist/css/postImage.css";
-import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
 
 export class Editpost extends Component {
   state = {
     file: null,
     fileUrl: null
   };
+
   onFileChange = event => {
     if (event.target.files[0] != null) {
       this.setState({
@@ -58,6 +59,11 @@ export class Editpost extends Component {
     );
   }
 }
+
+Editpost.propTypes = {
+  editPost: PropTypes.func.isRequired,
+  authState: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   authState: state.auth

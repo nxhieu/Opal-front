@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { connect, withRouter } from "react-redux";
 import { postImage } from "../../../../actions/postImageAction";
+import PropTypes from "prop-types";
 import "../../../../dist/css/postImage.css";
 import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
 
-export class putImage extends Component {
+class putImage extends Component {
   state = {
     file: null,
     fileUrl: null
@@ -29,12 +30,13 @@ export class putImage extends Component {
   };
 
   render() {
-    const { fileUrl } = this.state;
+    const { fileUrl, file } = this.state;
+    const { email } = this.props.authState;
     return (
       <div className="postImage">
         <form onSubmit={this.onSubmit}>
           <div className="row">
-            <p>Create post by {this.props.authState.email}</p>
+            <p>Create post by {email}</p>
             <input
               className="file"
               onChange={this.onFileChange}
@@ -51,13 +53,19 @@ export class putImage extends Component {
             {fileUrl && <img src={fileUrl} alt="post" />}
           </div>
           <div className="row">
-            {this.state.file && <input type="submit" value="Submit" />}
+            {file && <input type="submit" value="Submit" />}
           </div>
         </form>
       </div>
     );
   }
 }
+
+putImage.propTypes = {
+  postImage: PropTypes.func.isRequired,
+  authState: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
   imageState: state.post,
   authState: state.auth
