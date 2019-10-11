@@ -12,7 +12,6 @@ import Login from "./components/auth/Login";
 import Userpage from "./components/userpage/userpage";
 import About from "./components/about/about";
 import { Provider } from "react-redux";
-import { loaduser } from "./actions/authAction";
 import store from "./store";
 import "./dist/css/main.css";
 

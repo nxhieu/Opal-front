@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import loading from "../../../img/UI/loading.gif";
 import "../../../dist/css/post.css";
 
-export class Blogposts extends Component {
+class Blogposts extends Component {
   constructor(props) {
     super(props);
   }
@@ -19,7 +19,7 @@ export class Blogposts extends Component {
     this.onScroll = this.handleScroll.bind(this);
     window.addEventListener("scroll", this.onScroll, false);
 
-    // Loads some users on initial load
+    // Loads first 10 users on initial load
     this.loadPosts(1);
   }
 
@@ -45,7 +45,7 @@ export class Blogposts extends Component {
   };
 
   render() {
-    const { error, hasMore, posts, isLoading } = this.props.postState;
+    const { error, posts } = this.props.postState;
 
     return (
       <div className="blogposts">

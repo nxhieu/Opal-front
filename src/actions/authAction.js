@@ -14,7 +14,6 @@ import {
 //When a function contains api call. we will have to use async function (OR USE PROMISE)
 // REGISTER USER
 export const register = formData => async dispatch => {
-  //put request to the backend (api call). We have to use
   try {
     const res = await fetch(`${window.apiAddress}/auth/register`, {
       method: "PUT",
@@ -25,8 +24,7 @@ export const register = formData => async dispatch => {
     });
 
     const data = await res.json();
-    //after api calls, method dispatch get called and dispatch user data to reducer
-    //dispatch to reducer (the type here is just a string to specify condition, the payload is data from api calls)
+
     if (res.status !== 200 && res.status !== 201) {
       dispatch({ type: REGISTER_FAIL, payload: data });
     } else {
@@ -63,7 +61,7 @@ export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
 };
 
-//have not implemented yet. load user when there is a valid token
+// LOAD USER IF THERE IS A VALID TOKEN
 export const loaduser = () => async dispatch => {
   try {
     const res = await fetch(`${window.apiAddress}/auth/loaduser`, {

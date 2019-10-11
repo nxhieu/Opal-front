@@ -38,7 +38,7 @@ CreateComment.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   fileUrl: PropTypes.string,
-  email: PropTypes.string
+  email: PropTypes.string.isRequired
 };
 
 export default CreateComment;

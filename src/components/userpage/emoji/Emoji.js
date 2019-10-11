@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-export class Emoji extends Component {
+class Emoji extends Component {
   render() {
     const image = this.props.emoji;
     return (

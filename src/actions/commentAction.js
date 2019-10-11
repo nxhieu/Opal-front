@@ -43,32 +43,18 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
         "Content-type": "application/json"
       }
     });
+    //Clear the current comments inside the post
     dispatch({ type: CLEAR_COMMENT });
-    //get all new comments back
-    const commentlist = await fetch(
-      `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-type": "application/json"
-        }
-      }
-    );
-    const commentlistdata = await commentlist.json();
-
-    dispatch({ type: GET_COMMENT_SUCCESS, payload: commentlistdata });
+    //get all comments of a post back
+    getComment(postId)(dispatch);
   } catch (error) {
-    console.log("commfail");
     dispatch({ type: GETURI_FAIL });
   }
 };
 
 export const getComment = postId => async dispatch => {
   try {
-    console.log("action");
     dispatch({ type: GET_COMMENT_REQUEST });
-    console.log("afteractionreq");
     const res = await fetch(
       `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
       {
@@ -79,7 +65,6 @@ export const getComment = postId => async dispatch => {
       }
     );
     const data = await res.json();
-    console.log("after action");
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: GET_COMMENT_FAIL, payload: "fail" });
@@ -88,7 +73,6 @@ export const getComment = postId => async dispatch => {
 
 export const deleteComment = (commentId, postId) => async dispatch => {
   try {
-    console.log(commentId);
     await fetch(
       `${window.apiAddress}/comment/deleteComment?commentId=${commentId}`,
       {
@@ -98,22 +82,8 @@ export const deleteComment = (commentId, postId) => async dispatch => {
         }
       }
     );
-
     dispatch({ type: CLEAR_COMMENT });
-
-    const commentlist = await fetch(
-      `${window.apiAddress}/comment/getCommentList?postId=${postId}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-type": "application/json"
-        }
-      }
-    );
-    const commentlistdata = await commentlist.json();
-
-    dispatch({ type: GET_COMMENT_SUCCESS, payload: commentlistdata });
+    getComment(postId)(dispatch);
   } catch (error) {
     dispatch({ type: GETURI_FAIL });
   }

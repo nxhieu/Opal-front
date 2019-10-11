@@ -1,15 +1,14 @@
 import React, { Fragment, Component } from "react";
 import Leaderboard from "./leaderboard/Leaderboard";
 import Blogposts from "./post/Blogposts";
-import PutImage from "./post/putImage/putImage";
+import Createpost from "./post/putImage/createPost";
+import Welcome from "./welcome/Welcome";
 import { connect } from "react-redux";
 import { loaduser } from "../../actions/authAction";
+import PropTypes from "prop-types";
 import "../../dist/css/main.css";
 import "../../dist/css/leaderboard.css";
 import "../../dist/css/userPage.css";
-import Welcome from "./welcome/Welcome";
-import PropTypes from "prop-types";
-import { thisExpression } from "@babel/types";
 
 class Userpage extends Component {
   render() {
@@ -18,7 +17,7 @@ class Userpage extends Component {
         <div className="userPage">
           <div className="blogpost-leaderboard">
             <div className="blogpost-column">
-              {this.props.authState.isAuthenticated && <PutImage />}
+              {this.props.authState.isAuthenticated && <Createpost />}
 
               <Blogposts userId={this.props.authState.userId} />
             </div>

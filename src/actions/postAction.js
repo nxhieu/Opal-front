@@ -10,9 +10,26 @@ import {
   DELETEEMOJI_SUCCESS,
   CLEARPOSTS_SUCCESS,
   EDITPOST_FAIL,
-  EDITPOST_SUCCESS
+  EDITPOST_SUCCESS,
+  CREATEPOST_SUCCESS
 } from "./types";
-import { async } from "q";
+import { postImage } from "./postImageAction";
+
+export const createPost = file => async dispatch => {
+  //Call utility function to post image to s3 . then create a post in the database with String Url
+  postImage(file)(dispatch).then(async imageUrl => {
+    const blogRes = await fetch(`${window.apiAddress}/post/upload`, {
+      method: "POST",
+      body: JSON.stringify({ imageUrl }),
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+        "Content-type": "application/json"
+      }
+    });
+    const createdpost = await blogRes.json();
+    dispatch({ type: CREATEPOST_SUCCESS, payload: createdpost });
+  });
+};
 
 export const getPosts = currentPage => async dispatch => {
   try {
@@ -28,6 +45,7 @@ export const getPosts = currentPage => async dispatch => {
       }
     );
     const data = await res.json();
+    //delay loading
     setTimeout(() => {
       dispatch({ type: GETPOSTS_SUCCESS, payload: data });
     }, 1000);
@@ -105,8 +123,6 @@ export const deletePost = post => async dispatch => {
 export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
   try {
     let copyPost = Object.assign({}, post);
-    console.log(emoji, copyPost, userId);
-    console.log(copyPost.emoji.length);
     //check if post has any emoji react yet
     if (copyPost.emoji.length === 0) {
       copyPost.emoji.push({ user: userId, firstName, emoji });
@@ -165,7 +181,6 @@ export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
 
     // dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
   } catch (error) {
-    console.log(error);
     dispatch({ type: POSTEMOJI_FAIL, payload: error.message });
   }
 };

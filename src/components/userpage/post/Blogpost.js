@@ -8,7 +8,7 @@ import { getComment, closeComment } from "../../../actions/commentAction";
 import PropTypes from "prop-types";
 import "../../../dist/css/emoji.css";
 import "../../../dist/css/post.css";
-import BlogpostEdit from "./BlogpostEdit";
+import BlogpostEdit from "./Blogpostdropdownlist";
 import Emojis from "../emoji/Emojis";
 import Modal from "../../commentBoard/modal";
 

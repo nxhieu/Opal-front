@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../dist/css/auth.css";
 
-export class Login extends Component {
+class Login extends Component {
   state = { email: "", password: "" };
 
   componentWillUnmount() {

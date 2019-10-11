@@ -3,7 +3,7 @@ import { Motion, spring, presets } from "react-motion";
 
 //https://reactjsexample.com/react-hamburger-button/
 
-class HamburgerButton extends Component {
+class Blogpostdropdown extends Component {
   constructor() {
     super();
 
@@ -78,4 +78,4 @@ class HamburgerButton extends Component {
   }
 }
 
-export default HamburgerButton;
+export default Blogpostdropdown;

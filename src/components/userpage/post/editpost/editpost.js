@@ -4,7 +4,7 @@ import { editPost } from "../../../../actions/postAction";
 import PropTypes from "prop-types";
 import "../../../../dist/css/postImage.css";
 
-export class Editpost extends Component {
+class Editpost extends Component {
   state = {
     file: null,
     fileUrl: null

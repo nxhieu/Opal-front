@@ -1,11 +1,11 @@
 import React, { Component, Fragment } from "react";
-import { connect, withRouter } from "react-redux";
-import { postImage } from "../../../../actions/postImageAction";
+import { connect } from "react-redux";
+import { createPost } from "../../../../actions/postAction";
 import PropTypes from "prop-types";
 import "../../../../dist/css/postImage.css";
 import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
 
-class putImage extends Component {
+class CreatePost extends Component {
   state = {
     file: null,
     fileUrl: null
@@ -22,7 +22,7 @@ class putImage extends Component {
   onSubmit = e => {
     e.preventDefault();
     const file = this.state.file;
-    this.props.postImage(file);
+    this.props.createPost(file);
     this.setState({
       file: null,
       fileUrl: null
@@ -61,8 +61,8 @@ class putImage extends Component {
   }
 }
 
-putImage.propTypes = {
-  postImage: PropTypes.func.isRequired,
+CreatePost.propTypes = {
+  createPost: PropTypes.func.isRequired,
   authState: PropTypes.object.isRequired
 };
 
@@ -73,5 +73,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { postImage }
-)(putImage);
+  { createPost }
+)(CreatePost);

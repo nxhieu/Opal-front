@@ -27,19 +27,7 @@ export const postImage = file => async dispatch => {
         "Content-Type": file.type
       }
     });
-    // post imageUrl and post inf to backend and store in database
-    const blogRes = await fetch(`${window.apiAddress}/post/upload`, {
-      method: "POST",
-      body: JSON.stringify({ imageUrl: awsUrl.key }),
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-type": "application/json"
-      }
-    });
-    const createdpost = await blogRes.json();
-    console.log(createdpost);
-    //const
-    dispatch({ type: CREATEPOST_SUCCESS, payload: createdpost });
+    return awsUrl.key;
   } catch (error) {
     dispatch({ type: GETURI_FAIL });
   }

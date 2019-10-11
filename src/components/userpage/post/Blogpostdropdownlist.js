@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import Downshift from "downshift";
 import EditModal from "./editpost/editmodal";
 import { connect } from "react-redux";
-import HamburgerButton from "./HamburgerButton";
+import Blogpostdropdown from "./Blogpostdropdown";
 import { deletePost } from "../../../actions/postAction";
 import PropTypes from "prop-types";
 
 //https://medium.com/@AmyScript/downshift-the-answer-to-building-accessible-and-visually-flexible-custom-react-input-components-aed1553e1e36
 
-export class BlogpostEdit extends Component {
+class Blogpostdropdownlist extends Component {
   state = {
     create: false
   };
+
   createEventHandler = () => {
     this.setState({ create: !this.state.create });
   };
@@ -30,7 +31,7 @@ export class BlogpostEdit extends Component {
               {...getToggleButtonProps()}
               className="blogpost-edit-button"
             >
-              <HamburgerButton />
+              <Blogpostdropdown />
             </button>
             {this.state.create && (
               <EditModal
@@ -53,7 +54,7 @@ export class BlogpostEdit extends Component {
   }
 }
 
-BlogpostEdit.propTypes = {
+Blogpostdropdownlist.propTypes = {
   post: PropTypes.object.isRequired,
   authState: PropTypes.object.isRequired
 };
@@ -66,4 +67,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { deletePost }
-)(BlogpostEdit);
+)(Blogpostdropdownlist);
