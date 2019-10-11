@@ -1,18 +1,23 @@
 import React, { Component } from "react";
-import { login } from "../../actions/authAction";
+import { login, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
+import { clearPost } from "../../actions/postAction";
 import { withRouter } from "react-router-dom";
-import "../../dist/css/main.css";
+import "../../dist/css/auth.css";
 
 export class Login extends Component {
   state = { email: "", password: "" };
+
+  componentWillUnmount() {
+    this.props.reset();
+  }
 
   //lifecycle method invoked when updating happens in the props or state
   componentDidUpdate() {
     //if login was succesful navigate to /card
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
-      this.props.history.push("/userpage");
+      this.props.history.push("/");
     }
   }
 
@@ -39,11 +44,9 @@ export class Login extends Component {
     const { email, password } = this.state;
     return (
       <div className="form-container">
-        <h1>
-          Account <span className="text-primary">Login</span>
-        </h1>
-        <form onSubmit={onSubmit}>
-          <div className="form-group">
+        <h2>Sign in</h2>
+        <div className="form-group">
+          <form onSubmit={onSubmit}>
             <label htmlFor="email">Email Address</label>
             <input
               type="email"
@@ -52,8 +55,6 @@ export class Login extends Component {
               onChange={onChange}
               required
             />
-          </div>
-          <div className="form-group">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -62,15 +63,16 @@ export class Login extends Component {
               onChange={onChange}
               required
             />
-          </div>
-          
-          <div>
-            <input
-              type="submit"
-              value="Login"
-              className="btn btnstyle"/>
-          </div>
-        </form>
+            <div>
+              <input type="submit" value="Login" className="btn" />
+            </div>
+          </form>
+        </div>
+        <div className="fail_authentication">
+          {this.props.authState.error === "Incorrect username or password" ? (
+            <h6>{this.props.authState.error}</h6>
+          ) : null}
+        </div>
       </div>
     );
   }
@@ -84,6 +86,6 @@ const mapStateToProps = state => ({
 export default withRouter(
   connect(
     mapStateToProps,
-    { login }
+    { login, reset }
   )(Login)
 );

@@ -1,0 +1,35 @@
+.emoji-form {
+  position: relative;
+  bottom: 4rem;
+  right: 0.1rem;
+  z-index: 0;
+}
+
+.emoji-form input[type="text"] {
+  display: none;
+}
+
+.emojis-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  z-index: 0;
+}
+
+.emojis-img img {
+  height: 2rem;
+  width: 2rem;
+  margin-right: 0.2rem;
+}
+
+.emojis-img img:hover {
+  cursor: pointer;
+}
+/* 
+.emoji-cont {
+  width: 15rem;
+  height: 3rem;
+  position: absolute;
+  padding-right: 2rem;
+} */

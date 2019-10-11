@@ -1,0 +1,55 @@
+.post-form {
+  background-color: #cecece;
+  padding: 0.3rem 0 0.8rem 0;
+  margin: 0;
+  border: 1px solid #f4f4f4;
+}
+
+.post-form .putImage-label img {
+  max-height: 10rem;
+}
+
+.post-form p {
+  padding: 0 0.2rem;
+  color: white;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.putImage-label {
+  color: #000;
+  height: 20vh;
+  width: 35vw;
+  background-color: white;
+  margin: 0.2rem 0rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btnstyle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.btnstyle input[type="submit"] {
+  padding: 0.5rem 3rem;
+  margin: 0.5rem 1rem 0rem 0.2rem;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+.btnstyle input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+.putImage-label p {
+  color: #000;
+}
+
+.putImage-label:hover {
+  cursor: pointer;
+}

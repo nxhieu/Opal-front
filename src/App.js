@@ -1,7 +1,5 @@
 import React, { Fragment, Component } from "react";
-import Calendar from 'react-calendar';
-import AnalogClock, { Themes } from 'react-analog-clock'; //https://github.com/zackargyle/react-analog-clock
-//https://www.npmjs.com/package/react-hamburger-menu
+
 import {
   BrowserRouter as Router,
   Route,
@@ -11,84 +9,22 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import About from "./components/navigation/about";
-import UserSettingsPage from "./components/navigation/usersettingspage";
-import Userpage from "./components/navigation/userpage";
-import Footer from "./components/layout/Footer";
-import PrivateRoute from "./route/PrivateRoute";
-import Posts from "./components/posts/posts";
+import Userpage from "./components/userpage/userpage";
+import About from "./components/about/about";
 import { Provider } from "react-redux";
+import { loaduser } from "./actions/authAction";
 import store from "./store";
 import "./dist/css/main.css";
-import Card from "./components/navigation/card";
-import Blogpost from "./components/layout/Blogpost";
-import Newpost from "./components/layout/Newpost";
-//https://www.telerik.com/kendo-react-ui/components/dropdowns/dropdownlist/
 
 class App extends Component {
-  constructor () {
-    super();
-    this.state = {
-      date: new Date(),
-      isEdit: false,
-      isDelete: false,
-  };
-  this.handleClick = this.handleClick.bind(this);
-}
- 
-  onChange = date => this.setState({ date })
-
-  handleClick() {
-    this.setState({
-        open: !this.state.open,
-        isEdit: !this.state.isEdit,
-        isDelete: !this.state.isDelete
-    });
-  }
-
   render() {
     return (
       <Provider store={store}>
-        {console.log(store.getState().auth.isAuthenticated)}
-        <Router basename={'/'} >
-          
+        <Router>
           <Fragment>
-          <Blogpost
-            handleClick={this.handleClick}
-            isEdit={this.state.isEdit}
-            isDelete={this.state.isDelete}
-          />
-          <Redirect to="/about" component={About}/>
             <Navbar />
             <Switch>
-              <Route
-                exact
-                path="/post" 
-                  
-                render={() =>
-                  !store.getState().auth.isAuthenticated ? (
-                    <Posts/>
-                  ) : (
-                    <Userpage/>
-                  )
-                }
-              />
-
-            <Route
-                exact
-                path="/about" component={About}
-                  
-                render={() =>
-                  !store.getState().auth.isAuthenticated ? (
-                    <Redirect to="/about" />
-                  ) : (
-                    <About />
-                  )
-                }
-              />
-
-              <Route exact path="/Card" component={Card} /> 
-
+              <Route exact path="/" component={Userpage} />
               <Route exact path="/register" component={Register} />
               <Route
                 exact
@@ -97,16 +33,14 @@ class App extends Component {
                   !store.getState().auth.isAuthenticated ? (
                     <Login />
                   ) : (
-                    <Redirect to="/Card" />
+                    <Redirect to="/" />
                   )
                 }
               />
+              <Route exact path="/about" component={About} />
             </Switch>
-             
           </Fragment>
         </Router>
-         
-        <Footer/>
       </Provider>
     );
   }

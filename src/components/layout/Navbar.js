@@ -2,16 +2,18 @@
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { logout } from "../../actions/authAction";
+import { logout, loaduser } from "../../actions/authAction";
 import { connect } from "react-redux";
-import "../../dist/css/main.css";
+import "../../dist/css/navbar.css";
 import logo from "../../img/UI/logo.png";
-import bell from "../../img/UI/notification.png"
-import Downshift from "downshift";
-import NotificationMenu from "./NotificationMenu";
+import smiley from "../../img/Smiling_Face.png";
 
 class Navbar extends Component {
-  componentDidMount() {}
+  componentWillMount() {
+    if (localStorage.getItem("token") !== null) {
+      this.props.loaduser();
+    }
+  }
   onLogout = () => {
     this.props.logout();
   };
@@ -19,29 +21,23 @@ class Navbar extends Component {
   render() {
     const { isAuthenticated } = this.props.authState;
     const { onLogout } = this;
-    console.log(isAuthenticated);
     return (
       <div className="main-nav">
         <div className="logo">
           <ul>
             <li>
               <Link to="/">
-                <img src={logo} width="80" />
+                <img src={logo} alt="Logo" />
+                &nbsp;HEAD PAGE
               </Link>
-            </li>
-            <li>
-              <h2>O P A L</h2>
             </li>
           </ul>
         </div>
-        <div className="left-nav">
+        <div className="right-nav">
           {!isAuthenticated ? (
             <ul>
               <li>
-                <Link to="/about">About</Link>
-              </li>
-              <li>
-                <Link to="/login">Login</Link>
+                <Link to="/login">Log in</Link>
               </li>
               <li>
                 <Link to="/register">Register</Link>
@@ -49,20 +45,9 @@ class Navbar extends Component {
             </ul>
           ) : (
             <ul>
-              <li >
-                <NotificationMenu/>
-                
-              </li>
-              
-              <li >
-                <Link to="/usersettings">Settings</Link>
-              </li>
-              <li>
-                <Link to="/card"> Your Cards</Link>
-              </li>
               <li>
                 <a onClick={onLogout} href="/">
-                  Logout
+                  Log out
                 </a>
               </li>
             </ul>
@@ -79,5 +64,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, loaduser }
 )(Navbar);

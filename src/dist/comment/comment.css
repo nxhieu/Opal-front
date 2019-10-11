@@ -1,0 +1,165 @@
+.comment {
+  margin-top: 2rem;
+}
+
+.child-comment {
+  margin-left: 4rem;
+  margin-right: -4rem;
+}
+
+.row {
+  margin: 1.25rem 0 0 1.25rem;
+  /* display: flex; */
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.comment .row span {
+  float: left;
+  color: rgb(65, 62, 62);
+  font-size: 1.13rem;
+}
+
+.comment .row img {
+  max-height: 10rem;
+  width: auto;
+  height: auto;
+}
+
+.comment .row [type="submit"] {
+  font-size: 1.13rem;
+  text-decoration: none;
+  border: none;
+  padding: 0.5rem 0.55rem;
+  text-decoration: none;
+  color: #0078d7;
+  background-color: white;
+  /* margin: auto; */
+}
+
+.comment .row [type="submit"]:hover {
+  cursor: pointer;
+  background: #3c8ef0;
+  color: white;
+}
+
+.reply {
+  display: inline-block;
+  height: 25px;
+  width: 25px;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABm0lEQVRoge2ZsUrDUBSGP6NLEcFmcvQJnCuU7qI4+AK6ios4FHEoiOgzuLuIvoK1DoqILoKzg+CoSNuhRWsd7tWmJW2SWnJP4XxwueGce9P/I6HDDSiKkpQCUAHqQFvYqANlYCVKYg9oCQgcZ5T6SRSsRBMoArNR1g7IAtuYjC0gH7aogjEtppdraHYxWcthzaptSnwSvfiYrNWw5u+7Ny505fUcBhkpKiINFZGGikhDRaShItJQEWmoiDRURBoqIg0VkYaKSCMoUrNz1kWQhPh2/jugC4o82Hk9tTjDs2Hn+7DmMubkrok5W/XDFjnGB3YwGdvAUr+FJaI/K9z02esB1xF7Rzn2o6zzmFPu2oCbTIfsW0shfA24YMCTiMuzveF8T90D7mxv878/kgaPmLALPfUtW38FMmmHSsoE8IYJPBeo5+h8b1x1kCsxOUzYl0CtALzb+rGLUEnxgEtM4CNgBjgAPm3tHJh0li4mGeAEE7gFnNJ5xb6BQ8ZAAuCW8L/CK2DRXaxupmKs+QIawAfwhBE7s9eKoowJPz+23/KNSxD5AAAAAElFTkSuQmCC")
+    50% 50% no-repeat;
+  background-size: 100%;
+}
+
+.comment .row label {
+  float: left;
+  /* clear: left; */
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  /* justify-content: center; */
+  color: rgb(100, 98, 98);
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-decoration: bold;
+  margin-right: 2rem;
+}
+
+#delete-com {
+  padding-top: 0.15rem;
+}
+
+.comment .row button {
+  display: none;
+}
+
+/* .comment .row #delete-comment {
+  display: inline;
+  display: flex;
+  text-align: left;
+  float: left;
+  align-items: center;
+  width: fit-content;
+} */
+
+@media (max-width: 768px) {
+  .comment .row img {
+    max-height: 6rem;
+    width: auto;
+    height: auto;
+  }
+  .comment {
+    margin-top: 1rem;
+  }
+
+  .child-comment {
+    margin-left: 2rem;
+    margin-right: -4rem;
+  }
+
+  .row {
+    margin: 1rem 0 0 1rem;
+    /* display: flex; */
+  }
+
+  .comment .row span {
+    float: left;
+    color: rgb(65, 62, 62);
+    font-size: 1rem;
+  }
+
+  .comment .row [type="submit"] {
+    font-size: 1rem;
+    text-decoration: none;
+    border: none;
+    padding: 0.5rem 0.55rem;
+    text-decoration: none;
+    color: #0078d7;
+    background-color: white;
+    /* margin: auto; */
+  }
+
+  .comment .row [type="submit"]:hover {
+    cursor: pointer;
+    background: #3c8ef0;
+    color: white;
+  }
+
+  .reply {
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAABm0lEQVRoge2ZsUrDUBSGP6NLEcFmcvQJnCuU7qI4+AK6ios4FHEoiOgzuLuIvoK1DoqILoKzg+CoSNuhRWsd7tWmJW2SWnJP4XxwueGce9P/I6HDDSiKkpQCUAHqQFvYqANlYCVKYg9oCQgcZ5T6SRSsRBMoArNR1g7IAtuYjC0gH7aogjEtppdraHYxWcthzaptSnwSvfiYrNWw5u+7Ny505fUcBhkpKiINFZGGikhDRaShItJQEWmoiDRURBoqIg0VkYaKSCMoUrNz1kWQhPh2/jugC4o82Hk9tTjDs2Hn+7DmMubkrok5W/XDFjnGB3YwGdvAUr+FJaI/K9z02esB1xF7Rzn2o6zzmFPu2oCbTIfsW0shfA24YMCTiMuzveF8T90D7mxv878/kgaPmLALPfUtW38FMmmHSsoE8IYJPBeo5+h8b1x1kCsxOUzYl0CtALzb+rGLUEnxgEtM4CNgBjgAPm3tHJh0li4mGeAEE7gFnNJ5xb6BQ8ZAAuCW8L/CK2DRXaxupmKs+QIawAfwhBE7s9eKoowJPz+23/KNSxD5AAAAAElFTkSuQmCC")
+      50% 50% no-repeat;
+    background-size: 100%;
+  }
+
+  .comment .row label {
+    float: left;
+    /* clear: left; */
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    /* justify-content: center; */
+    color: rgb(100, 98, 98);
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: bold;
+    margin-right: 2rem;
+  }
+
+  #delete-com {
+    padding-top: 0.15rem;
+  }
+
+  .comment .row button {
+    display: none;
+  }
+}
