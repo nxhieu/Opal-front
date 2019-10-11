@@ -49,9 +49,8 @@ class CommentsList extends Component {
           />
         ) : null}
         {comments.map(comment => (
-          <div>
+          <div key={comment._id}>
             <Comment
-              key={comment._id}
               post_id={this.state.post_id}
               comment={comment}
               email={this.props.authState.email}
