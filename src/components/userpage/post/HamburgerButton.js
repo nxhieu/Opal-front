@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { Motion, spring, presets } from "react-motion";
 
 //https://reactjsexample.com/react-hamburger-button/
