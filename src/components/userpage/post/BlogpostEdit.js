@@ -4,6 +4,7 @@ import EditModal from "./editpost/editmodal";
 import { connect } from "react-redux";
 import HamburgerButton from "./HamburgerButton";
 import { deletePost } from "../../../actions/postAction";
+import PropTypes from "prop-types";
 
 //https://medium.com/@AmyScript/downshift-the-answer-to-building-accessible-and-visually-flexible-custom-react-input-components-aed1553e1e36
 
@@ -15,7 +16,7 @@ export class BlogpostEdit extends Component {
     this.setState({ create: !this.state.create });
   };
 
-  delPost = e => {
+  deletePost = e => {
     e.preventDefault();
     this.props.deletePost(this.props.post);
   };
@@ -42,7 +43,7 @@ export class BlogpostEdit extends Component {
               <ul className="edit-button-menu" {...getMenuProps()}>
                 <li onClick={this.createEventHandler}>Edit</li>
 
-                <li onClick={this.delPost}>Delete</li>
+                <li onClick={this.deletePost}>Delete</li>
               </ul>
             ) : null}
           </div>
@@ -51,6 +52,11 @@ export class BlogpostEdit extends Component {
     );
   }
 }
+
+BlogpostEdit.propTypes = {
+  post: PropTypes.object.isRequired,
+  authState: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   postState: state.post,

@@ -8,6 +8,7 @@ import "../../dist/css/main.css";
 import "../../dist/css/leaderboard.css";
 import "../../dist/css/userPage.css";
 import Welcome from "./welcome/Welcome";
+import PropTypes from "prop-types";
 import { thisExpression } from "@babel/types";
 
 class Userpage extends Component {
@@ -33,6 +34,11 @@ class Userpage extends Component {
     );
   }
 }
+
+Userpage.propTypes = {
+  authState: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
   authState: state.auth
 });

@@ -121,7 +121,6 @@ class Blogpost extends Component {
             {this.state.openModal && (
               <Modal
                 onClose={this.cancelEventHandler}
-                onClick={this.loadComment}
                 post_id={this.props.post._id}
               ></Modal>
             )}

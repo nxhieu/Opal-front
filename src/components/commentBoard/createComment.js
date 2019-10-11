@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "../../dist/comment/createComment.css";
 
 class CreateComment extends Component {
@@ -32,5 +33,12 @@ class CreateComment extends Component {
     );
   }
 }
+
+CreateComment.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  fileUrl: PropTypes.string,
+  email: PropTypes.string
+};
 
 export default CreateComment;

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../dist/comment/modal.css";
 import CommentsList from "./commentsList";
+import PropTypes from "prop-types";
 
 class Modal extends Component {
   render() {
@@ -18,4 +19,10 @@ class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  post_id: PropTypes.string.isRequired
+};
+
 export default Modal;

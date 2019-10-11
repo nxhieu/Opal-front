@@ -21,7 +21,7 @@ class editmodal extends Component {
 }
 
 editmodal.propTypes = {
-  onclose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired
 };
 

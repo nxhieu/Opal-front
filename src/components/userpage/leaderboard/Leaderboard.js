@@ -8,6 +8,8 @@ import crownsilver from "../../../img/leaderboard/stages/crownsilver.png";
 import crownbronze from "../../../img/leaderboard/stages/crownbronze.png";
 
 class Leaderboard extends Component {
+
+  
   componentWillMount() {
     this.props.getRank();
   }

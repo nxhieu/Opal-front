@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import "../../dist/comment/createComment.css";
 
 class CreateReply extends Component {
@@ -40,5 +41,12 @@ class CreateReply extends Component {
     );
   }
 }
+
+CreateReply.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  replyfileUrl: PropTypes.string,
+  email: PropTypes.string.isRequired
+};
 
 export default CreateReply;

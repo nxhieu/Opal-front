@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import "../../../dist/css/main.css";
 
 //https://www.youtube.com/watch?v=ZKwrOXl5TDI
@@ -26,6 +27,10 @@ export class Welcome extends Component {
     );
   }
 }
+
+Welcome.propTypes = {
+  authState: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   authState: state.auth

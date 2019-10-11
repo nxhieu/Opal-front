@@ -5,10 +5,11 @@ import {
   postComment,
   deleteComment
 } from "../../actions/commentAction";
+import PropTypes from "prop-types";
 import CreateComment from "./createComment";
 import Comment from "./comment";
 
-export class CommentsList extends Component {
+class CommentsList extends Component {
   state = {
     file: null,
     fileUrl: null,
@@ -63,6 +64,12 @@ export class CommentsList extends Component {
     );
   }
 }
+
+CommentsList.propTypes = {
+  commentState: PropTypes.object.isRequired,
+  postState: PropTypes.object.isRequired,
+  authState: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   commentState: state.comment,

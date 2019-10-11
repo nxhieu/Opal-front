@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { register, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 import "../../dist/css/auth.css";
 
 class Register extends Component {
@@ -154,6 +155,13 @@ class Register extends Component {
     );
   }
 }
+
+Register.propTypes = {
+  register: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
+  authState: PropTypes.object
+};
+
 //function that return the prop from store
 const mapStateToProps = state => ({
   authState: state.auth

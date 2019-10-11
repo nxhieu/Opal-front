@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getComment, postComment } from "../../actions/commentAction";
-import "../../dist/comment/comment.css";
+import PropTypes from "prop-types";
 import CreateReply from "./createReply";
+import "../../dist/comment/comment.css";
 
-export class Comment extends Component {
+class Comment extends Component {
   state = {
     replyComment: false,
     post_id: this.props.comment._post,
@@ -37,6 +38,7 @@ export class Comment extends Component {
 
   render() {
     const { email, imageUrl, _id } = this.props.comment;
+    console.log(this.props.comment._id);
     return (
       <div className="comment">
         <div className="row">
@@ -75,22 +77,32 @@ export class Comment extends Component {
             />
           </div>
         )}
-        {this.props.comment.child.map(comment => (
-          <div className="child-comment">
-            <Comment
-              key={comment._id}
-              post_id={this.props.post_id}
-              comment={comment}
-              email={this.props.email}
-              postComment={this.props.postComment}
-              deleteComment={this.props.deleteComment}
-            />
-          </div>
-        ))}
+        {this.props.comment.child !== null
+          ? this.props.comment.child.map(comment => (
+              <div className="child-comment">
+                <Comment
+                  key={comment._id}
+                  post_id={this.props.post_id}
+                  comment={comment}
+                  email={this.props.email}
+                  postComment={this.props.postComment}
+                  deleteComment={this.props.deleteComment}
+                />
+              </div>
+            ))
+          : null}
       </div>
     );
   }
 }
+
+Comment.propTypes = {
+  comment: PropTypes.object.isRequired,
+  email: PropTypes.string,
+  post_id: PropTypes.string,
+  postComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
   commentState: state.comment,

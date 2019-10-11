@@ -1,5 +1,4 @@
 import React, { Fragment, Component } from "react";
-//https://github.com/zackargyle/react-analog-clock
 import "../../dist/css/main.css";
 
 class About extends Component {

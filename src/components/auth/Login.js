@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { login, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
-import { clearPost } from "../../actions/postAction";
 import { withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
 import "../../dist/css/auth.css";
 
 export class Login extends Component {
@@ -77,6 +77,12 @@ export class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired
+};
+
 //function that return the prop from store
 const mapStateToProps = state => ({
   authState: state.auth
