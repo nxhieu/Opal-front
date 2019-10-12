@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { createPost } from "../../../../actions/postAction";
 import PropTypes from "prop-types";
 import "../../../../dist/css/postImage.css";
-import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
 
 class CreatePost extends Component {
   state = {

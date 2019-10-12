@@ -1,16 +1,10 @@
-import {
-  GETURI_FAIL,
-  GETURI_SUCCESS,
-  DELETEPOST_SUCCESS,
-  DELETEPOST_FAIL,
-  CREATEPOST_SUCCESS
-} from "./types";
+import { GETURI_FAIL } from "./types";
 
 export const postImage = file => async dispatch => {
   try {
     //get request to the back end (backend then call s3 and send back the presigned URl from S3 bucket)
     const res = await fetch(
-      `${window.apiAddress}/post/getUri?type=${file.type}`,
+      `${window.apiAddress}/image/getUri?type=${file.type}`,
       {
         method: "GET",
         headers: {
@@ -33,21 +27,33 @@ export const postImage = file => async dispatch => {
   }
 };
 
-export const deleteImage = data => async dispatch => {
+export const editImage = (model, file, modelType) => async dispatch => {
   try {
-    //post to backend to delete the post
-    const res = await fetch(`${window.apiAddress}/post/deletePost`, {
-      method: "DELETE",
-      body: JSON.stringify(data),
+    // request to the back end to delete the current image and get a new url (backend then call s3 and send back the presigned URl from S3 buckets)
+    const res = await fetch(
+      `${window.apiAddress}/image/editUri?type=${file.type}&model=${modelType}`,
+      {
+        method: "POST",
+        body: JSON.stringify(model),
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-type": "application/json"
+        }
+      }
+    );
+
+    const awsUrl = await res.json();
+    //post image to our bucket using our presigned URL
+    await fetch(awsUrl.url, {
+      method: "PUT",
+      body: file,
       headers: {
-        Authorization: "Bearer " + localStorage.getItem("token")
+        "Content-Type": file.type
       }
     });
-
-    const data = await res.json();
-
-    dispatch({ type: DELETEPOST_SUCCESS, payload: data });
+    // post imageUrl and post inf to backend and store in database
+    return awsUrl.key;
   } catch (error) {
-    dispatch({ type: DELETEPOST_FAIL, payload: error });
+    dispatch({ type: GETURI_FAIL });
   }
 };

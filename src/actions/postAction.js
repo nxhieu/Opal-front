@@ -13,7 +13,7 @@ import {
   EDITPOST_SUCCESS,
   CREATEPOST_SUCCESS
 } from "./types";
-import { postImage } from "./postImageAction";
+import { postImage, editImage } from "./postImageAction";
 
 export const createPost = file => async dispatch => {
   //Call utility function to post image to s3 . then create a post in the database with String Url
@@ -35,6 +35,7 @@ export const getPosts = currentPage => async dispatch => {
   try {
     //run the loading image
     dispatch({ type: GETPOSTS_REQUEST });
+
     const res = await fetch(
       `${window.apiAddress}/post/getPosts?page=${currentPage}`,
       {
@@ -45,7 +46,7 @@ export const getPosts = currentPage => async dispatch => {
       }
     );
     const data = await res.json();
-    //delay loading
+    //delay loading to avoid async error.
     setTimeout(() => {
       dispatch({ type: GETPOSTS_SUCCESS, payload: data });
     }, 1000);
@@ -56,49 +57,26 @@ export const getPosts = currentPage => async dispatch => {
 };
 export const editPost = (file, post) => async dispatch => {
   try {
-    console.log("1");
-    // request to the back end to delete the current image and get new url (backend then call s3 and send back the presigned URl from S3 bucket)
-    const res = await fetch(
-      `${window.apiAddress}/post/editImage?type=${file.type}`,
-      {
-        method: "PUT",
-        body: JSON.stringify(post),
+    editImage(post, file, "post")(dispatch).then(async imageUrl => {
+      // edit imageUrl for the post model in database
+      const blogRes = await fetch(`${window.apiAddress}/post/editPost`, {
+        method: "POST",
+        body: JSON.stringify({ post, imageUrl }),
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
           "Content-type": "application/json"
         }
-      }
-    );
+      });
+      const createdpost = await blogRes.json();
 
-    const awsUrl = await res.json();
-    console.log("2");
-    //post image to our bucket using our presigned URL
-    await fetch(awsUrl.url, {
-      method: "PUT",
-      body: file,
-      headers: {
-        "Content-Type": file.type
+      if (blogRes.status === 200) {
+        dispatch({ type: EDITPOST_SUCCESS, payload: createdpost });
+      } else {
+        dispatch({ type: EDITPOST_FAIL });
       }
     });
-    // post imageUrl and post inf to backend and store in database
-    const blogRes = await fetch(`${window.apiAddress}/post/editPost`, {
-      method: "POST",
-      body: JSON.stringify({ post, imageUrl: awsUrl.key }),
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-type": "application/json"
-      }
-    });
-    const createdpost = await blogRes.json();
-
-    if (blogRes.status === 200) {
-      dispatch({ type: EDITPOST_SUCCESS, payload: createdpost });
-    } else {
-      dispatch({ type: EDITPOST_FAIL });
-    }
   } catch (error) {
     dispatch({ type: EDITPOST_FAIL });
-    console.log(error);
   }
 };
 
@@ -136,7 +114,7 @@ export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
       });
       dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
     } else {
-      //find poition of emoji in the emoji array (return a number if found, return null if not found)
+      //find poition of emoji in the emoji array (return a number if found, return -1 if not found)
       let emojiIndex = copyPost.emoji.findIndex(emoji => emoji.user === userId);
       // console.log(emojiIndex);
       if (emojiIndex >= 0) {
@@ -170,16 +148,6 @@ export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
         dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
       }
     }
-    // await fetch(`${window.apiAddress}/post/postEmoji`, {
-    //   method: "POST",
-    //   body: JSON.stringify({ emoji, postId: post._id, userId, firstName }),
-    //   headers: {
-    //     Authorization: "Bearer " + localStorage.getItem("token"),
-    //     "Content-type": "application/json"
-    //   }
-    // });
-
-    // dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
   } catch (error) {
     dispatch({ type: POSTEMOJI_FAIL, payload: error.message });
   }
