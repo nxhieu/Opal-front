@@ -11,23 +11,32 @@ import {
   CLEARPOSTS_SUCCESS,
   EDITPOST_FAIL,
   EDITPOST_SUCCESS,
-  CREATEPOST_SUCCESS
+  CREATEPOST_SUCCESS,
+  CREATEPOST_FAIL
 } from "./types";
 import { postImage, editImage } from "./postImageAction";
+/**
+ *
+ * asd
+ */
 
 export const createPost = file => async dispatch => {
   //Call utility function to post image to s3 . then create a post in the database with String Url
   postImage(file)(dispatch).then(async imageUrl => {
-    const blogRes = await fetch(`${window.apiAddress}/post/upload`, {
-      method: "POST",
-      body: JSON.stringify({ imageUrl }),
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-        "Content-type": "application/json"
-      }
-    });
-    const createdpost = await blogRes.json();
-    dispatch({ type: CREATEPOST_SUCCESS, payload: createdpost });
+    try {
+      const blogRes = await fetch(`${window.apiAddress}/post/createPost`, {
+        method: "POST",
+        body: JSON.stringify({ imageUrl }),
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-type": "application/json"
+        }
+      });
+      const createdpost = await blogRes.json();
+      dispatch({ type: CREATEPOST_SUCCESS, payload: createdpost });
+    } catch (error) {
+      dispatch({ type: CREATEPOST_FAIL, payload: error });
+    }
   });
 };
 
@@ -92,7 +101,11 @@ export const deletePost = post => async dispatch => {
     });
 
     const data = await res.json();
-    if (res.status) dispatch({ type: DELETEPOST_SUCCESS, payload: post._id });
+    if (res.status === 200) {
+      dispatch({ type: DELETEPOST_SUCCESS, payload: post._id });
+    } else {
+      dispatch({ type: DELETEPOST_FAIL, payload: data.message });
+    }
   } catch (error) {
     dispatch({ type: DELETEPOST_FAIL, payload: error.message });
   }

@@ -8,6 +8,7 @@ import {
   POSTEMOJI_SUCCESS,
   CLEARPOSTS_SUCCESS,
   CREATEPOST_SUCCESS,
+  CREATEPOST_FAIL,
   EDITPOST_SUCCESS,
   EDITPOST_FAIL,
   DELETEEMOJI_SUCCESS,
@@ -94,7 +95,12 @@ export default (state = initialState, action) => {
           post._id === action.payload._id ? action.payload : post
         )
       };
+    case CREATEPOST_FAIL:
     case EDITPOST_FAIL:
+      return {
+        ...state,
+        message: action.payload
+      };
     default:
       return state;
   }
