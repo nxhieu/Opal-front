@@ -8,6 +8,7 @@ import {
   POSTEMOJI_SUCCESS,
   POSTEMOJI_FAIL,
   DELETEEMOJI_SUCCESS,
+  DELETEEMOJI_FAIL,
   CLEARPOSTS_SUCCESS,
   EDITPOST_FAIL,
   EDITPOST_SUCCESS,
@@ -15,10 +16,11 @@ import {
   CREATEPOST_FAIL
 } from "./types";
 import { postImage, editImage } from "./postImageAction";
-/**
- *
- * asd
+/*
+    This file contains all actions related the post (which include emoji) features. 
  */
+
+//Create post
 
 export const createPost = file => async dispatch => {
   //Call utility function to post image to s3 . then create a post in the database with String Url
@@ -35,7 +37,7 @@ export const createPost = file => async dispatch => {
       const createdpost = await blogRes.json();
       dispatch({ type: CREATEPOST_SUCCESS, payload: createdpost });
     } catch (error) {
-      dispatch({ type: CREATEPOST_FAIL, payload: error });
+      dispatch({ type: CREATEPOST_FAIL, payload: error.message });
     }
   });
 };
@@ -61,13 +63,11 @@ export const getPosts = currentPage => async dispatch => {
     }, 1000);
   } catch (error) {
     dispatch({ type: GETPOSTS_FAIL, payload: error.message });
-    console.log(error);
   }
 };
 export const editPost = (file, post) => async dispatch => {
   try {
     editImage(post, file, "post")(dispatch).then(async imageUrl => {
-      // edit imageUrl for the post model in database
       const blogRes = await fetch(`${window.apiAddress}/post/editPost`, {
         method: "POST",
         body: JSON.stringify({ post, imageUrl }),
@@ -78,20 +78,18 @@ export const editPost = (file, post) => async dispatch => {
       });
       const createdpost = await blogRes.json();
 
-      if (blogRes.status === 200) {
-        dispatch({ type: EDITPOST_SUCCESS, payload: createdpost });
-      } else {
-        dispatch({ type: EDITPOST_FAIL });
-      }
+      dispatch({ type: EDITPOST_SUCCESS, payload: createdpost });
     });
   } catch (error) {
-    dispatch({ type: EDITPOST_FAIL });
+    dispatch({ type: EDITPOST_FAIL, payload: error.message });
   }
 };
 
+//Delete a post
+
 export const deletePost = post => async dispatch => {
   try {
-    const res = await fetch(`${window.apiAddress}/post/deletePost`, {
+    await fetch(`${window.apiAddress}/post/deletePost`, {
       method: "DELETE",
       body: JSON.stringify(post),
       headers: {
@@ -100,19 +98,17 @@ export const deletePost = post => async dispatch => {
       }
     });
 
-    const data = await res.json();
-    if (res.status === 200) {
-      dispatch({ type: DELETEPOST_SUCCESS, payload: post._id });
-    } else {
-      dispatch({ type: DELETEPOST_FAIL, payload: data.message });
-    }
+    dispatch({ type: DELETEPOST_SUCCESS, payload: post._id });
   } catch (error) {
     dispatch({ type: DELETEPOST_FAIL, payload: error.message });
   }
 };
 
+//Create or Edit current emoji
+
 export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
   try {
+    //assign post to a new object to avoid mutating the state
     let copyPost = Object.assign({}, post);
     //check if post has any emoji react yet
     if (copyPost.emoji.length === 0) {
@@ -129,7 +125,7 @@ export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
     } else {
       //find poition of emoji in the emoji array (return a number if found, return -1 if not found)
       let emojiIndex = copyPost.emoji.findIndex(emoji => emoji.user === userId);
-      // console.log(emojiIndex);
+      // an Emoji from the user was found . change it and called the backend to change the document
       if (emojiIndex >= 0) {
         if (copyPost.emoji[emojiIndex].emoji !== emoji) {
           copyPost.emoji[emojiIndex].emoji = emoji;
@@ -148,6 +144,7 @@ export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
           });
           dispatch({ type: POSTEMOJI_SUCCESS, payload: copyPost });
         }
+        //if no Emoji belong to the user was found. Create a new one.
       } else {
         copyPost.emoji.push({ user: userId, firstName, emoji });
         await fetch(`${window.apiAddress}/post/postEmoji`, {
@@ -167,34 +164,40 @@ export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
 };
 
 //Delete Emoji
+
 export const deleteEmoji = (emoji, post, userId) => async dispatch => {
-  let copyPost = Object.assign({}, post);
-  console.log(copyPost);
-  if (copyPost.emoji.length > 0) {
-    let emojiIndex = copyPost.emoji.findIndex(emoji => emoji.user === userId);
-    if (emojiIndex => 0 && copyPost.emoji[emojiIndex].emoji === emoji) {
-      copyPost.emoji.splice(emojiIndex, 1);
+  try {
+    let copyPost = Object.assign({}, post);
 
-      await fetch(`${window.apiAddress}/post/deleteEmoji`, {
-        method: "DELETE",
-        body: JSON.stringify({ postId: post._id, userId }),
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-          "Content-type": "application/json"
-        }
-      });
+    if (copyPost.emoji.length > 0) {
+      let emojiIndex = copyPost.emoji.findIndex(emoji => emoji.user === userId);
+      if (emojiIndex => 0 && copyPost.emoji[emojiIndex].emoji === emoji) {
+        copyPost.emoji.splice(emojiIndex, 1);
 
-      dispatch({ type: DELETEEMOJI_SUCCESS, payload: copyPost });
+        await fetch(`${window.apiAddress}/post/deleteEmoji`, {
+          method: "DELETE",
+          body: JSON.stringify({ postId: post._id, userId }),
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+            "Content-type": "application/json"
+          }
+        });
+
+        dispatch({ type: DELETEEMOJI_SUCCESS, payload: copyPost });
+      }
     }
+  } catch (error) {
+    dispatch({ type: DELETEEMOJI_FAIL, payload: error.message });
   }
-  console.log(emoji, copyPost, userId);
 };
 
-//Utility function
+//Increase the current page number when user scrolled down to bottom
 
 export const increasePage = () => dispatch => {
   dispatch({ type: GETPOSTS_ANOTHERPAGE });
 };
+
+//Clear all the post when user goes to another page or reload the component
 
 export const clearPost = () => dispatch => {
   dispatch({ type: CLEARPOSTS_SUCCESS });

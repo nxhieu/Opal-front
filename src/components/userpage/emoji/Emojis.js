@@ -5,7 +5,7 @@ import "../../../dist/css/emoji.css";
 import { connect } from "react-redux";
 import { postEmoji } from "../../../actions/postAction";
 
-export class Emojis extends Component {
+class Emojis extends Component {
   state = {
     emojis: ["Cry", "EyeRoll", "HeartEyes", "Smile", "Thinking", "VeryAngry"],
     path: null,

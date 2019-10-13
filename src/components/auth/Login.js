@@ -14,7 +14,7 @@ class Login extends Component {
 
   //lifecycle method invoked when updating happens in the props or state
   componentDidUpdate() {
-    //if login was succesful navigate to /card
+    //if login was succesful navigate to main page
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
       this.props.history.push("/");

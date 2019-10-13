@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import "../../dist/css/main.css";
 
 class About extends Component {

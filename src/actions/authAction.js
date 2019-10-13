@@ -31,6 +31,7 @@ export const register = formData => async dispatch => {
       dispatch({ type: REGISTER_SUCCESS, payload: data });
     }
   } catch (error) {
+    console.log("here");
     console.log(error);
   }
 };
@@ -71,12 +72,14 @@ export const loaduser = () => async dispatch => {
       }
     });
     const data = await res.json();
-    if (res.status === 200) {
-      dispatch({ type: USER_LOADED, payload: data });
-    } else {
-      dispatch({ type: AUTH_ERROR });
-    }
+    dispatch({ type: USER_LOADED, payload: data });
+    // if (res.status === 200) {
+
+    // } else {
+    //   dispatch({ type: AUTH_ERROR });
+    // }
   } catch (error) {
+    console.log(error);
     dispatch({ type: AUTH_ERROR });
   }
 };

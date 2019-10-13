@@ -1,5 +1,6 @@
 import { GET_RANK_REQUEST, GET_RANK_SUCCESS, GET_RANK_FAIL } from "./types";
 
+
 export const getRank = () => async dispatch => {
   try {
     dispatch({ type: GET_RANK_REQUEST });

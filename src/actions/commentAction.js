@@ -7,30 +7,13 @@ import {
   CLOSE_COMMENT,
   POSTCOMMENT_SUCCESS,
   POSTCOMMENT_FAIL,
-  CLEAR_COMMENT
+  CLEAR_COMMENT,
+  EDITCOMMENT_FAIL
 } from "./types";
-import { postImage } from "./postImageAction";
+import { postImage, editImage } from "./postImageAction";
 
 export const postComment = (postId, file, parentsId) => async dispatch => {
   try {
-    // const res = await fetch(
-    //   `${window.apiAddress}/post/getUri?type=${file.type}`,
-    //   {
-    //     method: "GET",
-    //     headers: {
-    //       Authorization: "Bearer " + localStorage.getItem("token")
-    //     }
-    //   }
-    // );
-    // const awsUrl = await res.json();
-
-    // await fetch(awsUrl.url, {
-    //   method: "PUT",
-    //   body: file,
-    //   headers: {
-    //     "Content-Type": file.type
-    //   }
-    // });
     postImage(file)(dispatch).then(async imageUrl => {
       //create new comment
       await fetch(`${window.apiAddress}/comment/comment`, {
@@ -45,7 +28,6 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
           "Content-type": "application/json"
         }
       });
-
       //Clear the current comments inside the post
       dispatch({ type: CLEAR_COMMENT });
       //get all comments of a post back
@@ -71,7 +53,7 @@ export const getComment = postId => async dispatch => {
     const data = await res.json();
     dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: GET_COMMENT_FAIL, payload: "fail" });
+    dispatch({ type: GET_COMMENT_FAIL, payload: error.message });
   }
 };
 
@@ -90,6 +72,25 @@ export const deleteComment = (commentId, postId) => async dispatch => {
     getComment(postId)(dispatch);
   } catch (error) {
     dispatch({ type: GETURI_FAIL });
+  }
+};
+
+export const editComment = (comment, file, postId) => async dispatch => {
+  try {
+    editImage(comment, file, "comment")(dispatch).then(async imageUrl => {
+      await fetch(`${window.apiAddress}/comment/editComment`, {
+        method: "POST",
+        body: JSON.stringify({ comment, imageUrl }),
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+          "Content-type": "application/json"
+        }
+      });
+      dispatch({ type: CLEAR_COMMENT });
+      getComment(postId)(dispatch);
+    });
+  } catch (error) {
+    dispatch({ type: EDITCOMMENT_FAIL, payload: error });
   }
 };
 

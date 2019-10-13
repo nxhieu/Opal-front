@@ -1,5 +1,7 @@
-// This file store all dispatch types . Dispatch types of each feature will be grouped together.
-
+/*
+  This file store all dispatch types . 
+  Dispatch types of each feature will be grouped together.
+*/
 //User Auth
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
@@ -39,11 +41,13 @@ export const CLOSE_COMMENT = "CLOSE_COMMENT";
 export const CLEAR_COMMENT = "CLEAR_COMMENT";
 export const POSTCOMMENT_SUCCESS = "POSTCOMMENT_SUCCESS";
 export const POSTCOMMENT_FAIL = "POSTCOMMENT_FAIL";
+export const EDITCOMMENT_FAIL = "EDITCOMMENT_FAIL";
 
 //Emojis
 export const POSTEMOJI_SUCCESS = "POSTEMOJI_SUCCESS";
 export const POSTEMOJI_FAIL = "POSTEMOJI_FAIL";
 export const DELETEEMOJI_SUCCESS = "DELETEMOJI_SUCCESS";
+export const DELETEEMOJI_FAIL = "DELETEEMOJI_FAIL";
 
 //Leaderboard
 export const GET_RANK_REQUEST = "GET_RANK_REQUEST";

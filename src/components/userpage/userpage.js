@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import Leaderboard from "./leaderboard/Leaderboard";
 import Blogposts from "./post/Blogposts";
-import Createpost from "./post/putImage/createPost";
+import Createpost from "./post/createpost/createPost";
 import Welcome from "./welcome/Welcome";
 import { connect } from "react-redux";
 import { loaduser } from "../../actions/authAction";

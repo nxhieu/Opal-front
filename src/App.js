@@ -1,5 +1,4 @@
 import React, { Fragment, Component } from "react";
-
 import {
   BrowserRouter as Router,
   Route,

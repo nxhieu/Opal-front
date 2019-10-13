@@ -1,13 +1,20 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { getComment, postComment } from "../../actions/commentAction";
+import {
+  getComment,
+  postComment,
+  editComment
+} from "../../actions/commentAction";
 import PropTypes from "prop-types";
 import CreateReply from "./createReply";
+import EditComment from "./editComment";
 import "../../dist/comment/comment.css";
+import { throwStatement } from "@babel/types";
 
 class Comment extends Component {
   state = {
     replyComment: false,
+    editComment: false,
     post_id: this.props.comment._post,
     replyfileUrl: null,
     replyfile: null
@@ -33,7 +40,52 @@ class Comment extends Component {
   };
 
   replyCommentHandler = () => {
-    this.setState({ replyComment: true });
+    if (this.state.editComment === false) {
+      this.setState({
+        replyComment: !this.state.replyComment,
+        replyfile: null,
+        replyfileUrl: null
+      });
+    } else {
+      this.setState({
+        replyComment: !this.state.replyComment,
+        editComment: !this.state.editComment,
+        replyfile: null,
+        replyfileUrl: null
+      });
+    }
+  };
+
+  editchangeHandler = event => {
+    if (event.target.files[0] != null) {
+      this.setState({
+        replyfileUrl: URL.createObjectURL(event.target.files[0]),
+        replyfile: event.target.files[0]
+      });
+    }
+  };
+
+  editsubmitImageHandler = event => {
+    event.preventDefault();
+    const replyfile = this.state.replyfile;
+    this.props.editComment(this.props.comment, replyfile, this.state.post_id);
+  };
+
+  editCommentHandler = () => {
+    if (this.state.replyComment === false) {
+      this.setState({
+        editComment: !this.state.editComment,
+        replyfile: null,
+        replyfileUrl: null
+      });
+    } else {
+      this.setState({
+        replyComment: !this.state.replyComment,
+        editComment: !this.state.editComment,
+        replyfile: null,
+        replyfileUrl: null
+      });
+    }
   };
 
   render() {
@@ -57,19 +109,27 @@ class Comment extends Component {
             &nbsp; Reply
           </label>
           <button id={_id} onClick={this.replyCommentHandler} />
-          {this.props.email == email && (
-            <label
-              htmlFor={_id}
-              id="delete-com"
-              onClick={() => this.props.deleteComment(_id, this.props.post_id)}
-            >
-              Delete
-            </label>
+          {this.props.email === email && (
+            <Fragment>
+              <label
+                htmlFor={_id}
+                id="delete-com"
+                onClick={() =>
+                  this.props.deleteComment(_id, this.props.post_id)
+                }
+              >
+                Delete
+              </label>
+
+              <label htmlFor={`edit ${_id}`}>&nbsp; Edit</label>
+              <button id={`edit ${_id}`} onClick={this.editCommentHandler} />
+            </Fragment>
           )}
         </div>
-        {this.state.replyComment && (
+        {this.state.replyComment && !this.state.editComment && (
           <div className="row">
             <CreateReply
+              key={this.state.replyfileUrl}
               onChange={this.replychangeHandler}
               onSubmit={this.replysubmitImageHandler}
               replyfileUrl={this.state.replyfileUrl}
@@ -77,6 +137,18 @@ class Comment extends Component {
             />
           </div>
         )}
+        {this.state.editComment && !this.state.replyComment && (
+          <div className="row">
+            <EditComment
+              key={this.state.replyfileUrl}
+              onChange={this.editchangeHandler}
+              onSubmit={this.editsubmitImageHandler}
+              replyfileUrl={this.state.replyfileUrl}
+              email={this.props.email}
+            />
+          </div>
+        )}
+
         {this.props.comment.child !== null
           ? this.props.comment.child.map(comment => (
               <div key={comment._id} className="child-comment">
@@ -86,6 +158,7 @@ class Comment extends Component {
                   email={this.props.email}
                   postComment={this.props.postComment}
                   deleteComment={this.props.deleteComment}
+                  editComment={this.props.editComment}
                 />
               </div>
             ))
@@ -110,5 +183,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getComment, postComment }
+  { getComment, postComment, editComment }
 )(Comment);

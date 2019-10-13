@@ -18,7 +18,7 @@ if (hours < 12) {
   timeOfDay = "night";
 }
 
-export class Welcome extends Component {
+class Welcome extends Component {
   render() {
     return (
       <Fragment>
