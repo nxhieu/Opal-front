@@ -19,7 +19,7 @@ import {
   CREATEPOST_SUCCESS,
   CREATEPOST_FAIL
 } from "./types";
-import { postImage, editImage } from "./postImageAction";
+import { postImage, editImage } from "./imageAction";
 
 //Create post
 

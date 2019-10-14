@@ -15,7 +15,7 @@ import {
   CLEAR_COMMENT,
   EDITCOMMENT_FAIL
 } from "./types";
-import { postImage, editImage } from "./postImageAction";
+import { postImage, editImage } from "./imageAction";
 
 export const postComment = (postId, file, parentsId) => async dispatch => {
   try {
