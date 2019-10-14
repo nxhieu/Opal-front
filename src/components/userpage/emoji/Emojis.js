@@ -1,3 +1,7 @@
+/*
+    Emojis component displays emoji list   
+    url: /
+ */
 import React, { Component, Fragment } from "react";
 import Emoji from "./Emoji";
 import PropTypes from "prop-types";

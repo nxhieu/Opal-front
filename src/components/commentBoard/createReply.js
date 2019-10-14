@@ -1,3 +1,8 @@
+/*
+    createReply render component allowed user to create a new reply to a comment 
+    url: /
+ */
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "../../dist/comment/createComment.css";

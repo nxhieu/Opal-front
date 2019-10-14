@@ -1,3 +1,8 @@
+/*
+    This comment component render comment (and reply to comment) of  a post 
+    url: /
+ */
+
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import {
@@ -9,7 +14,6 @@ import PropTypes from "prop-types";
 import CreateReply from "./createReply";
 import EditComment from "./editComment";
 import "../../dist/comment/comment.css";
-import { throwStatement } from "@babel/types";
 
 class Comment extends Component {
   state = {
@@ -40,6 +44,7 @@ class Comment extends Component {
   };
 
   replyCommentHandler = () => {
+    //mount or unmount the editComment, createReply component if clicked on reply button
     if (this.state.editComment === false) {
       this.setState({
         replyComment: !this.state.replyComment,
@@ -72,6 +77,7 @@ class Comment extends Component {
   };
 
   editCommentHandler = () => {
+    //mount or unmount the editComment, createReply component if clicked on edit button
     if (this.state.replyComment === false) {
       this.setState({
         editComment: !this.state.editComment,
@@ -90,7 +96,7 @@ class Comment extends Component {
 
   render() {
     const { email, imageUrl, _id } = this.props.comment;
-    console.log(this.props.comment._id);
+
     return (
       <div className="comment">
         <div className="row">

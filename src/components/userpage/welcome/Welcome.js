@@ -1,10 +1,12 @@
+/*
+  Welcome component displays welcome message on user page 
+  url: /
+*/
+
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "../../../dist/css/main.css";
-
-//https://www.youtube.com/watch?v=ZKwrOXl5TDI
-//https://stackoverflow.com/questions/52933997/adding-a-greeting-to-a-react-app-based-on-the-time-of-day
 
 const date = new Date();
 const hours = date.getHours();

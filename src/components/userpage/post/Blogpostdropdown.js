@@ -1,7 +1,13 @@
+/*
+    Blogpostdropdown component define the UI for the blogpostdropdownlist button including OnClick() button.
+    Its a "three horizontal lines" stylized button which allows delete or edit the posts.
+    library: React-motion and Motion component is used for animation
+    url: /
+    Reference: https://reactjsexample.com/react-hamburger-button/
+    
+ */
 import React, { Component } from "react";
 import { Motion, spring, presets } from "react-motion";
-
-//https://reactjsexample.com/react-hamburger-button/
 
 class Blogpostdropdown extends Component {
   constructor() {

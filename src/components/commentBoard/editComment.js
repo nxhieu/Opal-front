@@ -1,3 +1,8 @@
+/*
+    editComment render component allowed user to edit a comment or a reply to a comment 
+    url: /
+ */
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "../../dist/comment/createComment.css";

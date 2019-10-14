@@ -6,6 +6,11 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../dist/css/auth.css";
 
+/*
+    This file contains Register component.
+    url: /register 
+ */
+
 class Register extends Component {
   state = {
     firstname: "",

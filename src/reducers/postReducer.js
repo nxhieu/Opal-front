@@ -1,3 +1,7 @@
+/*
+    Reducer for post feature: dispatch to redux store
+*/
+
 import {
   GETPOSTS_FAIL,
   GETPOSTS_SUCCESS,
@@ -11,9 +15,7 @@ import {
   CREATEPOST_FAIL,
   EDITPOST_SUCCESS,
   EDITPOST_FAIL,
-  DELETEEMOJI_SUCCESS,
-  GET_SORTEDRANK_SUCCESS,
-  GET_RANK_FAIL
+  DELETEEMOJI_SUCCESS
 } from "./../actions/types";
 import { access } from "fs";
 

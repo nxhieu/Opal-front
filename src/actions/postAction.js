@@ -1,3 +1,7 @@
+/*
+    This file contains all actions related the post (which include emoji) features. All these functions will return a function 
+    with dispatch as an argument.  
+ */
 import {
   GETPOSTS_FAIL,
   GETPOSTS_SUCCESS,
@@ -16,9 +20,6 @@ import {
   CREATEPOST_FAIL
 } from "./types";
 import { postImage, editImage } from "./postImageAction";
-/*
-    This file contains all actions related the post (which include emoji) features. 
- */
 
 //Create post
 
@@ -60,7 +61,7 @@ export const getPosts = currentPage => async dispatch => {
     //delay loading to avoid async error.
     setTimeout(() => {
       dispatch({ type: GETPOSTS_SUCCESS, payload: data });
-    }, 1000);
+    }, 500);
   } catch (error) {
     dispatch({ type: GETPOSTS_FAIL, payload: error.message });
   }

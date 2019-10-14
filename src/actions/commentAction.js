@@ -1,3 +1,8 @@
+/*
+    This file contains all actions related to Comment feature. All these functions will return a function 
+    with dispatch as an argument.  
+ */
+
 import {
   GETURI_SUCCESS,
   GETURI_FAIL,

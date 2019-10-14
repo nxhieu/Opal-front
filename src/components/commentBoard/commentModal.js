@@ -1,9 +1,13 @@
+/*
+    This file contains Comment modal component. That get rendered for each post. 
+    url: /
+ */
 import React, { Component } from "react";
 import "../../dist/comment/modal.css";
 import CommentsList from "./commentsList";
 import PropTypes from "prop-types";
 
-class Modal extends Component {
+class CommentModal extends Component {
   render() {
     return (
       <React.Fragment>
@@ -20,9 +24,9 @@ class Modal extends Component {
   }
 }
 
-Modal.propTypes = {
+CommentModal.propTypes = {
   onClose: PropTypes.func.isRequired,
   post_id: PropTypes.string.isRequired
 };
 
-export default Modal;
+export default CommentModal;

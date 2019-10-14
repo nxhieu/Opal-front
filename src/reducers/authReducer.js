@@ -7,7 +7,8 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   RESET_FORM,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  USERLOADED_FAIL
 } from "../actions/types";
 
 const initialState = {
@@ -53,6 +54,7 @@ export default (state = initialState, action) => {
         ...state,
         error: "Incorrect username or password"
       };
+    case USERLOADED_FAIL:
     case LOGOUT:
       //REMOVE THE TOKEN FROM STORAGE
       localStorage.removeItem("token");

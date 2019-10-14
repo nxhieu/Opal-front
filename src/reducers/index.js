@@ -1,3 +1,7 @@
+/*
+    Combine all reducers from all features to a single reducer function and pass to the createStore
+*/
+
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import postImageReducer from "./postImageReducer";
@@ -11,5 +15,4 @@ export default combineReducers({
   post: posts,
   comment: comments,
   leaderboard: leaderboards
-  //add your reducer here
 });

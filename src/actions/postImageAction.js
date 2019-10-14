@@ -1,9 +1,9 @@
-import { GETURI_FAIL } from "./types";
-
 /*
-  This file content all utility action functions used to interact with AWS s3 bucket. These actions
+  This file content all utility functions used to interact with AWS s3 bucket. These actions
   include POST, EDIT, DELETE  image in s3 bucket. 
   */
+
+import { GETURI_FAIL } from "./types";
 
 export const postImage = file => async dispatch => {
   try {

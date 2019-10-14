@@ -1,5 +1,9 @@
-import { GET_RANK_REQUEST, GET_RANK_SUCCESS, GET_RANK_FAIL } from "./types";
+/*
+    This file contains all actions related to Leaderboard feature. All these functions will return a function 
+    with dispatch as an argument.  
+ */
 
+import { GET_RANK_REQUEST, GET_RANK_SUCCESS, GET_RANK_FAIL } from "./types";
 
 export const getRank = () => async dispatch => {
   try {

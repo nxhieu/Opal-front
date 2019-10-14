@@ -2,10 +2,12 @@
   This file store all dispatch types . 
   Dispatch types of each feature will be grouped together.
 */
+
 //User Auth
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const USER_LOADED = "USER_LOADED";
+export const USERLOADED_FAIL = "USERLOADED_FAIL";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
@@ -14,7 +16,6 @@ export const RESET_FORM = "RESET_FORM";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 //Post Image
-
 export const GETURI_SUCCESS = "GETURI_SUCCESS";
 export const GETURI_FAIL = "GETURI_FAIL";
 

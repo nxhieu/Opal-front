@@ -1,4 +1,7 @@
-//Rendering the top navigation
+/*
+    This component render the Main Navigation bar  and perform load user function if there is a token 
+    stored in the browser  
+ */
 
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
@@ -6,7 +9,6 @@ import { logout, loaduser } from "../../actions/authAction";
 import { connect } from "react-redux";
 import "../../dist/css/navbar.css";
 import logo from "../../img/UI/logo.png";
-import smiley from "../../img/Smiling_Face.png";
 
 class Navbar extends Component {
   componentWillMount() {

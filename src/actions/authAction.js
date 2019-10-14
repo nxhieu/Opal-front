@@ -1,3 +1,8 @@
+/*
+    This file contains all actions related to Authentication feature. All these functions will return a function 
+    with dispatch as an argument.  
+ */
+
 import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
@@ -7,11 +12,10 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   RESET_FORM,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  USERLOADED_FAIL
 } from "./types";
 
-// Due to the use of the use of redux-thunk in middleware, function get passed in method dispatch.
-//When a function contains api call. we will have to use async function (OR USE PROMISE)
 // REGISTER USER
 export const register = formData => async dispatch => {
   try {
@@ -72,15 +76,14 @@ export const loaduser = () => async dispatch => {
       }
     });
     const data = await res.json();
-    dispatch({ type: USER_LOADED, payload: data });
-    // if (res.status === 200) {
 
-    // } else {
-    //   dispatch({ type: AUTH_ERROR });
-    // }
+    if (res.status === 200) {
+      dispatch({ type: USER_LOADED, payload: data });
+    } else {
+      dispatch({ type: USERLOADED_FAIL });
+    }
   } catch (error) {
-    console.log(error);
-    dispatch({ type: AUTH_ERROR });
+    dispatch({ type: USERLOADED_FAIL, payload: error.message });
   }
 };
 

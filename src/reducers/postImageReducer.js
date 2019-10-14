@@ -1,3 +1,7 @@
+/*
+    Reducer for image feature (interaction with s3 bucket): dispatch to redux store
+*/
+
 import { GETURI_FAIL, GETURI_SUCCESS } from "../actions/types";
 
 const initialState = {

@@ -1,16 +1,18 @@
-//Rendering the blog post
-//https://cmichel.io/how-to-create-a-more-popup-menu-in-react-native it's like a jQuery pop-up menu!
-
+/*
+    Blogpost component render a post.
+    other components: Emojis, commentModal, Blogpostdropdownlist 
+    url: /
+ */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { deleteEmoji } from "../../../actions/postAction";
 import { getComment, closeComment } from "../../../actions/commentAction";
+import Blogpostdropdownlist from "./Blogpostdropdownlist";
+import Emojis from "../emoji/Emojis";
+import CommentModal from "../../commentBoard/commentModal";
 import PropTypes from "prop-types";
 import "../../../dist/css/emoji.css";
 import "../../../dist/css/post.css";
-import BlogpostEdit from "./Blogpostdropdownlist";
-import Emojis from "../emoji/Emojis";
-import Modal from "../../commentBoard/modal";
 
 class Blogpost extends Component {
   state = {
@@ -28,11 +30,11 @@ class Blogpost extends Component {
     const { userId } = this.props.authState;
     const emoji = post.emoji.find(emoji => emoji.user === userId);
     if (emoji) {
-      this.setState({
+      this.setState(() => ({
         emoji: emoji.emoji,
         isReact: true,
         initialEmoji: emoji.emoji
-      });
+      }));
     }
   }
 
@@ -87,7 +89,10 @@ class Blogpost extends Component {
             <p id="date-post">on {createdAt.substring(0, 10)}</p>
           </div>
           {isAuthenticated ? (
-            <BlogpostEdit key={this.props.post} post={this.props.post} />
+            <Blogpostdropdownlist
+              key={this.props.post}
+              post={this.props.post}
+            />
           ) : null}
         </div>
         <div className="blogpost-body">
@@ -119,10 +124,10 @@ class Blogpost extends Component {
           </div>
           <div className="comments">
             {this.state.openModal && (
-              <Modal
+              <CommentModal
                 onClose={this.cancelEventHandler}
                 post_id={this.props.post._id}
-              ></Modal>
+              ></CommentModal>
             )}
 
             <button

@@ -1,3 +1,8 @@
+/*
+    This file contains Log in component.
+    url: /login 
+ */
+
 import React, { Component } from "react";
 import { login, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
@@ -12,7 +17,6 @@ class Login extends Component {
     this.props.reset();
   }
 
-  //lifecycle method invoked when updating happens in the props or state
   componentDidUpdate() {
     //if login was succesful navigate to main page
     const { isAuthenticated } = this.props.authState;
@@ -25,6 +29,7 @@ class Login extends Component {
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   //login
   onSubmit = e => {
     e.preventDefault();

@@ -1,3 +1,7 @@
+/*
+    CreatePost component displays a holder for user to post a new post.
+    url: /
+ */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createPost } from "../../../../actions/postAction";

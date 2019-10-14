@@ -1,12 +1,16 @@
+/*
+    Blogpostdropdownlist component displays a drop down button at blogpost component allow authorised user to edit or delete their post.
+    url: /
+    Reference: https://medium.com/@AmyScript/downshift-the-answer-to-building-accessible-and-visually-flexible-custom-react-input-components-aed1553e1e36
+ */
+
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import Downshift from "downshift";
 import EditModal from "./editpost/editmodal";
-import { connect } from "react-redux";
 import Blogpostdropdown from "./Blogpostdropdown";
 import { deletePost } from "../../../actions/postAction";
 import PropTypes from "prop-types";
-
-//https://medium.com/@AmyScript/downshift-the-answer-to-building-accessible-and-visually-flexible-custom-react-input-components-aed1553e1e36
 
 class Blogpostdropdownlist extends Component {
   state = {
