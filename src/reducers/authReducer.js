@@ -1,3 +1,7 @@
+/*
+    Reducer for authentication feature: dispatch to redux store
+*/
+
 import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,

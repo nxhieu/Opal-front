@@ -1,3 +1,9 @@
+/*
+    commentsList component render list of commments of a single post by mapping each comment.
+    url: /
+ */
+
+
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {

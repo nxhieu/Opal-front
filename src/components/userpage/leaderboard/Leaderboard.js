@@ -1,3 +1,7 @@
+/*
+    Leaderboard component displays a leaderboard of user ranked by number of post
+    url: /
+ */
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getRank } from "../../../actions/leaderboardAction";

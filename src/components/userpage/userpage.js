@@ -1,3 +1,10 @@
+/*
+    userpage component displays a list of posts
+    This component implement infinitescroll with debounce function. That deplays the loading to one second (avoid exhausting database)
+    Each time user scrolls to the bottom, they will get 10 posts. 
+    url: /
+*/
+
 import React, { Fragment, Component } from "react";
 import Leaderboard from "./leaderboard/Leaderboard";
 import Blogposts from "./post/Blogposts";

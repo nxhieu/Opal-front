@@ -1,3 +1,8 @@
+/*
+    Reducer for leaderboard feature: dispatch to redux store
+*/
+
+
 import {
   GET_RANK_REQUEST,
   GET_RANK_SUCCESS,

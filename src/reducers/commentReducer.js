@@ -1,3 +1,7 @@
+/*
+    Reducer for comment feature: dispatch to redux store
+*/
+
 import {
   GET_COMMENT_REQUEST,
   GET_COMMENT_SUCCESS,

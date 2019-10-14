@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import "../../dist/css/main.css";
 
+/*
+    This file contains all actions related to Authentication feature. All these functions will return a function 
+    with dispatch as an argument.  
+ */
+
 class About extends Component {
   state = {
     date: new Date()

@@ -1,4 +1,8 @@
-//Register component
+/*
+    This file contains Register component.
+    url: /register 
+ */
+
 import React, { Component } from "react";
 import { register, reset } from "../../actions/authAction";
 import { connect } from "react-redux";
@@ -6,10 +10,6 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../dist/css/auth.css";
 
-/*
-    This file contains Register component.
-    url: /register 
- */
 
 class Register extends Component {
   state = {
