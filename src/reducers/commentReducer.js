@@ -7,7 +7,8 @@ import {
   GET_COMMENT_SUCCESS,
   GET_COMMENT_FAIL,
   CLOSE_COMMENT,
-  CLEAR_COMMENT
+  CLEAR_COMMENT,
+  COMMENT_FAIL
 } from "../actions/types";
 
 const initialState = {
@@ -29,6 +30,7 @@ export default (state = initialState, action) => {
         comments: [...state.comments, ...action.payload.comments]
       };
     case GET_COMMENT_FAIL:
+    case COMMENT_FAIL:
       return {
         ...state,
         message: action.payload.message

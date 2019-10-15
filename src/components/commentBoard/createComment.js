@@ -26,7 +26,9 @@ class CreateComment extends Component {
             </label>
           </div>
           <div className="row">
-            {this.props.fileUrl && <img src={this.props.fileUrl} />}
+            {this.props.fileUrl && (
+              <img alt="create comment" src={this.props.fileUrl} />
+            )}
           </div>
           {this.props.fileUrl && (
             <div className="row">

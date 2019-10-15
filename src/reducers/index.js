@@ -4,7 +4,7 @@
 
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
-import postImageReducer from "./postImageReducer";
+import postImageReducer from "./ImageReducer";
 import posts from "./postReducer";
 import comments from "./commentReducer";
 import leaderboards from "./leaderboardReducer";

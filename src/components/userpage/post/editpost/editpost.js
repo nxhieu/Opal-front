@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { editPost } from "../../../../actions/postAction";
 import PropTypes from "prop-types";

@@ -97,6 +97,7 @@ class Blogpost extends Component {
         </div>
         <div className="blogpost-body">
           <img
+            alt="post"
             src={`https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/${imageUrl}`}
           />
         </div>
@@ -105,11 +106,15 @@ class Blogpost extends Component {
             <button className="btn-like">
               {isAuthenticated ? (
                 <img
+                  alt="emoji"
                   src={require(`../../../img/emoji/${this.state.emoji}.png`)}
                   onClick={this.onShowEmoji}
                 />
               ) : (
-                <img src={require(`../../../img/emoji/Thumb.png`)} />
+                <img
+                  alt="defaultemoji"
+                  src={require(`../../../img/emoji/Thumb.png`)}
+                />
               )}
               {isShowEmoji ? (
                 <Emojis

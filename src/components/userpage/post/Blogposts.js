@@ -5,7 +5,7 @@
     url: /
 */
 
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import debounce from "lodash.debounce";
 import { connect } from "react-redux";
 import { getPosts, increasePage, clearPost } from "../../../actions/postAction";
@@ -15,9 +15,6 @@ import loading from "../../../img/UI/loading.gif";
 import "../../../dist/css/post.css";
 
 class Blogposts extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentWillMount() {
     this.props.clearPost();
   }
@@ -63,7 +60,7 @@ class Blogposts extends Component {
         {this.props.postState.isLoading && (
           <div className="loading-post">
             <h4>Loading More Posts...</h4>
-            <img src={loading} className="loading-post" />
+            <img alt="loading" src={loading} className="loading-post" />
           </div>
         )}
         {!this.props.postState.hasMore && <div>No more posts.</div>}

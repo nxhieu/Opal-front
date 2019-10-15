@@ -18,17 +18,22 @@ export const postImage = file => async dispatch => {
       }
     );
     const awsUrl = await res.json();
+    if (res.status === 201) {
+      await fetch(awsUrl.url, {
+        method: "PUT",
+        body: file,
+        headers: {
+          "Content-Type": file.type
+        }
+      });
+      return awsUrl.key;
+    } else {
+      dispatch({ type: GETURI_FAIL, payload: awsUrl });
+    }
+
     //post image to our bucket using our presigned URL
-    await fetch(awsUrl.url, {
-      method: "PUT",
-      body: file,
-      headers: {
-        "Content-Type": file.type
-      }
-    });
-    return awsUrl.key;
   } catch (error) {
-    dispatch({ type: GETURI_FAIL });
+    dispatch({ type: GETURI_FAIL, payload: error });
   }
 };
 
@@ -46,19 +51,22 @@ export const editImage = (model, file, modelType) => async dispatch => {
         }
       }
     );
-
     const awsUrl = await res.json();
-    //post image to our bucket using our presigned URL
-    await fetch(awsUrl.url, {
-      method: "PUT",
-      body: file,
-      headers: {
-        "Content-Type": file.type
-      }
-    });
-    // post imageUrl and post inf to backend and store in database
-    return awsUrl.key;
+    if (res.status === 201) {
+      //post image to our bucket using our presigned URL
+      await fetch(awsUrl.url, {
+        method: "PUT",
+        body: file,
+        headers: {
+          "Content-Type": file.type
+        }
+      });
+      // post imageUrl and post inf to backend and store in database
+      return awsUrl.key;
+    } else {
+      dispatch({ type: GETURI_FAIL, payload: awsUrl });
+    }
   } catch (error) {
-    dispatch({ type: GETURI_FAIL });
+    dispatch({ type: GETURI_FAIL, payload: error });
   }
 };

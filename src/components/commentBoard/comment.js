@@ -41,6 +41,7 @@ class Comment extends Component {
       replyfile,
       this.props.comment._id
     );
+    this.replyCommentHandler();
   };
 
   replyCommentHandler = () => {
@@ -74,6 +75,7 @@ class Comment extends Component {
     event.preventDefault();
     const replyfile = this.state.replyfile;
     this.props.editComment(this.props.comment, replyfile, this.state.post_id);
+    this.editCommentHandler();
   };
 
   editCommentHandler = () => {
@@ -105,6 +107,7 @@ class Comment extends Component {
         <div className="row">
           {
             <img
+              alt="comment"
               src={`https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/${imageUrl}`}
             />
           }

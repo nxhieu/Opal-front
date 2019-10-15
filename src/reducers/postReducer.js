@@ -17,7 +17,6 @@ import {
   EDITPOST_FAIL,
   DELETEEMOJI_SUCCESS
 } from "./../actions/types";
-import { access } from "fs";
 
 const initialState = {
   message: "",

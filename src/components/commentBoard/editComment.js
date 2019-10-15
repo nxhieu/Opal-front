@@ -34,7 +34,9 @@ class editComment extends Component {
             ) : null}
           </div>
           <div className="row">
-            {this.props.replyfileUrl && <img src={this.props.replyfileUrl} />}
+            {this.props.replyfileUrl && (
+              <img alt="edit comment" src={this.props.replyfileUrl} />
+            )}
           </div>
           {this.props.replyfileUrl && (
             <div className="row">

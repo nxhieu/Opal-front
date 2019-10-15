@@ -36,9 +36,13 @@ export const createPost = file => async dispatch => {
         }
       });
       const createdpost = await blogRes.json();
-      dispatch({ type: CREATEPOST_SUCCESS, payload: createdpost });
+      if (blogRes.status === 201) {
+        dispatch({ type: CREATEPOST_SUCCESS, payload: createdpost });
+      } else {
+        dispatch({ type: CREATEPOST_FAIL, payload: createdpost });
+      }
     } catch (error) {
-      dispatch({ type: CREATEPOST_FAIL, payload: error.message });
+      dispatch({ type: CREATEPOST_FAIL, payload: error });
     }
   });
 };
@@ -58,16 +62,22 @@ export const getPosts = currentPage => async dispatch => {
       }
     );
     const data = await res.json();
+
     //delay loading to avoid async error.
-    setTimeout(() => {
-      dispatch({ type: GETPOSTS_SUCCESS, payload: data });
-    }, 500);
+    if (res.status === 200) {
+      setTimeout(() => {
+        dispatch({ type: GETPOSTS_SUCCESS, payload: data });
+      }, 500);
+    } else {
+      dispatch({ type: GETPOSTS_FAIL, payload: data });
+    }
   } catch (error) {
-    dispatch({ type: GETPOSTS_FAIL, payload: error.message });
+    dispatch({ type: GETPOSTS_FAIL, payload: error });
   }
 };
 export const editPost = (file, post) => async dispatch => {
   try {
+    // editImage on s3 then use the new URl to create new post.
     editImage(post, file, "post")(dispatch).then(async imageUrl => {
       const blogRes = await fetch(`${window.apiAddress}/post/editPost`, {
         method: "POST",
@@ -78,11 +88,14 @@ export const editPost = (file, post) => async dispatch => {
         }
       });
       const createdpost = await blogRes.json();
-
-      dispatch({ type: EDITPOST_SUCCESS, payload: createdpost });
+      if (blogRes.status === 200) {
+        dispatch({ type: EDITPOST_SUCCESS, payload: createdpost });
+      } else {
+        dispatch({ type: EDITPOST_FAIL, payload: createdpost });
+      }
     });
   } catch (error) {
-    dispatch({ type: EDITPOST_FAIL, payload: error.message });
+    dispatch({ type: EDITPOST_FAIL, payload: error });
   }
 };
 
@@ -90,7 +103,7 @@ export const editPost = (file, post) => async dispatch => {
 
 export const deletePost = post => async dispatch => {
   try {
-    await fetch(`${window.apiAddress}/post/deletePost`, {
+    const res = await fetch(`${window.apiAddress}/post/deletePost`, {
       method: "DELETE",
       body: JSON.stringify(post),
       headers: {
@@ -98,10 +111,14 @@ export const deletePost = post => async dispatch => {
         "Content-type": "application/json"
       }
     });
-
-    dispatch({ type: DELETEPOST_SUCCESS, payload: post._id });
+    const data = await res.json();
+    if (res.status === 200) {
+      dispatch({ type: DELETEPOST_SUCCESS, payload: post._id });
+    } else {
+      dispatch({ type: DELETEPOST_FAIL, payload: data });
+    }
   } catch (error) {
-    dispatch({ type: DELETEPOST_FAIL, payload: error.message });
+    dispatch({ type: DELETEPOST_FAIL, payload: error });
   }
 };
 
@@ -111,7 +128,7 @@ export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
   try {
     //assign post to a new object to avoid mutating the state
     let copyPost = Object.assign({}, post);
-    //check if post has any emoji react yet
+    // if post has no emoji react => create a emoji
     if (copyPost.emoji.length === 0) {
       copyPost.emoji.push({ user: userId, firstName, emoji });
       await fetch(`${window.apiAddress}/post/postEmoji`, {
@@ -126,7 +143,7 @@ export const postEmoji = (emoji, post, userId, firstName) => async dispatch => {
     } else {
       //find poition of emoji in the emoji array (return a number if found, return -1 if not found)
       let emojiIndex = copyPost.emoji.findIndex(emoji => emoji.user === userId);
-      // an Emoji from the user was found . change it and called the backend to change the document
+      // if an Emoji from the user was found . replace it with a new one and called the backend to change the document
       if (emojiIndex >= 0) {
         if (copyPost.emoji[emojiIndex].emoji !== emoji) {
           copyPost.emoji[emojiIndex].emoji = emoji;
@@ -188,7 +205,7 @@ export const deleteEmoji = (emoji, post, userId) => async dispatch => {
       }
     }
   } catch (error) {
-    dispatch({ type: DELETEEMOJI_FAIL, payload: error.message });
+    dispatch({ type: DELETEEMOJI_FAIL, payload: error });
   }
 };
 

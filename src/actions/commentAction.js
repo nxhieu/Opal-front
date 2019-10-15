@@ -4,16 +4,14 @@
  */
 
 import {
-  GETURI_SUCCESS,
   GETURI_FAIL,
   GET_COMMENT_REQUEST,
   GET_COMMENT_SUCCESS,
   GET_COMMENT_FAIL,
   CLOSE_COMMENT,
-  POSTCOMMENT_SUCCESS,
-  POSTCOMMENT_FAIL,
   CLEAR_COMMENT,
-  EDITCOMMENT_FAIL
+  EDITCOMMENT_FAIL,
+  COMMENT_FAIL
 } from "./types";
 import { postImage, editImage } from "./imageAction";
 
@@ -21,7 +19,7 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
   try {
     postImage(file)(dispatch).then(async imageUrl => {
       //create new comment
-      await fetch(`${window.apiAddress}/comment/comment`, {
+      const res = await fetch(`${window.apiAddress}/comment/comment`, {
         method: "POST",
         body: JSON.stringify({
           imageUrl,
@@ -33,13 +31,19 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
           "Content-type": "application/json"
         }
       });
-      //Clear the current comments inside the post
-      dispatch({ type: CLEAR_COMMENT });
-      //get all comments of a post back
-      getComment(postId)(dispatch);
+      const data = await res.json();
+
+      if (res.status !== 200) {
+        dispatch({ type: COMMENT_FAIL, payload: data });
+      } else {
+        //Clear the current comments inside the post
+        dispatch({ type: CLEAR_COMMENT });
+        //get all comments of a post back
+        getComment(postId)(dispatch);
+      }
     });
   } catch (error) {
-    dispatch({ type: GETURI_FAIL });
+    dispatch({ type: GETURI_FAIL, payload: error });
   }
 };
 
@@ -56,15 +60,19 @@ export const getComment = postId => async dispatch => {
       }
     );
     const data = await res.json();
-    dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
+    if (res.status !== 200) {
+      dispatch({ type: COMMENT_FAIL, payload: data });
+    } else {
+      dispatch({ type: GET_COMMENT_SUCCESS, payload: data });
+    }
   } catch (error) {
-    dispatch({ type: GET_COMMENT_FAIL, payload: error.message });
+    dispatch({ type: GET_COMMENT_FAIL, payload: error });
   }
 };
 
 export const deleteComment = (commentId, postId) => async dispatch => {
   try {
-    await fetch(
+    const res = await fetch(
       `${window.apiAddress}/comment/deleteComment?commentId=${commentId}`,
       {
         method: "DELETE",
@@ -73,8 +81,13 @@ export const deleteComment = (commentId, postId) => async dispatch => {
         }
       }
     );
-    dispatch({ type: CLEAR_COMMENT });
-    getComment(postId)(dispatch);
+    const data = await res.json();
+    if (res.status !== 201) {
+      dispatch({ type: COMMENT_FAIL, payload: data });
+    } else {
+      dispatch({ type: CLEAR_COMMENT });
+      getComment(postId)(dispatch);
+    }
   } catch (error) {
     dispatch({ type: GETURI_FAIL });
   }
@@ -82,8 +95,9 @@ export const deleteComment = (commentId, postId) => async dispatch => {
 
 export const editComment = (comment, file, postId) => async dispatch => {
   try {
+    //edit image on s3 . use the new imageUrl to edit a new comment
     editImage(comment, file, "comment")(dispatch).then(async imageUrl => {
-      await fetch(`${window.apiAddress}/comment/editComment`, {
+      const res = await fetch(`${window.apiAddress}/comment/editComment`, {
         method: "POST",
         body: JSON.stringify({ comment, imageUrl }),
         headers: {
@@ -91,8 +105,13 @@ export const editComment = (comment, file, postId) => async dispatch => {
           "Content-type": "application/json"
         }
       });
-      dispatch({ type: CLEAR_COMMENT });
-      getComment(postId)(dispatch);
+      const data = await res.json();
+      if (res.status !== 201) {
+        dispatch({ type: COMMENT_FAIL, payload: data });
+      } else {
+        dispatch({ type: CLEAR_COMMENT });
+        getComment(postId)(dispatch);
+      }
     });
   } catch (error) {
     dispatch({ type: EDITCOMMENT_FAIL, payload: error });

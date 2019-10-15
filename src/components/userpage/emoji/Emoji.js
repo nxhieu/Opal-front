@@ -12,6 +12,7 @@ class Emoji extends Component {
     return (
       <Fragment>
         <img
+          alt="emoji"
           src={require(`../../../img/emoji/${image}.png`)}
           onClick={() => this.props.chooseEmoji(image)}
         />
