@@ -60,7 +60,7 @@ I. Back-end.
 
 1. System architecture.
 
-![backend](https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/readme/backend.drawio)
+![backend](https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/readme/backend.png)
 
     - All middleware in controllers will be pooled in routes folder using express.Router(function).
     - All error will be threw to error handling middleware with status code and error message.
