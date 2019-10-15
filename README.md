@@ -29,6 +29,7 @@ Actions folder: contains all action files.
 
     - These action files will mainly contains async function (mainly api calls)
     - All action files are seperated in term of features (e.g: authAction, postAction, commentAction)
+    - All dispatch types are stored in type.js file to manage
 
 Reducer folder: contains all reducer files related to each feature.
 
@@ -41,4 +42,14 @@ img folder: contains all image used.
 
 Component folder: contains all react component files for the app.
 
-3. Front end features
+3. Image posting Feature:
+
+Normal workflow:
+
+![image-with-S3](https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/readme/Images3.png)
+
+Reference: Stephen Grider (advanced Nodejs course)
+
+imageActions contains all front end logic related to posting, deleting, updating image. functions inside this folder only be called by other actions.
+
+All presigned url has expiry time.
