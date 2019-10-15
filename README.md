@@ -52,4 +52,23 @@ Reference: Stephen Grider (advanced Nodejs course)
 
 imageActions contains all front end logic related to posting, deleting, updating image. functions inside this folder only be called by other actions.
 
+updating image involve deleting image and create new image.
+
 All presigned url has expiry time.
+
+I. Back-end.
+
+1. System architecture.
+
+![backend](https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/readme/backend.drawio)
+
+    - All middleware in controllers will be pooled in routes folder using express.Router(function).
+    - All error will be threw to error handling middleware with status code and error message.
+    - The rest api follows MVC pattern with react app being the view part.
+
+2. Noticable Library usage.
+
+   - aws-sdk: connect with S3.
+   - Mongoose : ORM with mongodb
+   - JWT: handle authentication and protect route.
+   - Bcrypt: to hash the user password.
