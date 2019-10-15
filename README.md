@@ -4,6 +4,7 @@ team member:
 Nguyen Xuan Hieu : 12803577
 Yi-An, Chen (Anita) : 13067475
 Michelle Yong : 13333695
+Kira Khristosova: 13516176
 
     This projects were seperated into 2 github repositories:
     Front-end (View part) : https://github.com/nxhieu/headpage-front
@@ -66,7 +67,7 @@ I. Back-end.
     - All error will be threw to error handling middleware with status code and error message.
     - The rest api follows MVC pattern with react app being the view part.
 
-2. Noticable Library usage.
+2. Library usage.
 
    - aws-sdk: connect with S3.
    - Mongoose : ORM with mongodb
