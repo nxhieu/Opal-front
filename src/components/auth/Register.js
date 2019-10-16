@@ -151,7 +151,7 @@ class Register extends Component {
         </div>
         <div className="fail_authentication">
           {this.props.authState.error !== null ? (
-            <h6>{this.props.authState.error.replace(/,/g, "; ")}</h6>
+            <h6>{this.props.authState.error}</h6>
           ) : null}
         </div>
       </div>
