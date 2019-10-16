@@ -10,7 +10,6 @@ import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../dist/css/auth.css";
 
-
 class Register extends Component {
   state = {
     firstname: "",
@@ -60,13 +59,12 @@ class Register extends Component {
       password === ""
     ) {
       console.log("Please type in all the details");
-    } else if (password !== password2) {
-      console.log("Password do not match");
     } else {
       //call register function in redux function
       this.props.register({
         email,
         password,
+        password2,
         phone,
         firstname,
         lastname,
@@ -152,8 +150,8 @@ class Register extends Component {
           </form>
         </div>
         <div className="fail_authentication">
-          {this.props.authState.error !== "Incorrect username or password" ? (
-            <h6>{this.props.authState.error}</h6>
+          {this.props.authState.error !== null ? (
+            <h6>{this.props.authState.error.replace(/,/g, "; ")}</h6>
           ) : null}
         </div>
       </div>

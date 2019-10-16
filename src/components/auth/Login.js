@@ -74,7 +74,7 @@ class Login extends Component {
           </form>
         </div>
         <div className="fail_authentication">
-          {this.props.authState.error === "Incorrect username or password" ? (
+          {this.props.authState.error !== null ? (
             <h6>{this.props.authState.error}</h6>
           ) : null}
         </div>

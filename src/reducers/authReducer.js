@@ -7,10 +7,10 @@ import {
   REGISTER_SUCCESS,
   USER_LOADED,
   AUTH_ERROR,
+  UNMATCHED_PASSWORD,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  RESET_FORM,
   CLEAR_ERRORS,
   USERLOADED_FAIL
 } from "../actions/types";
@@ -52,6 +52,11 @@ export default (state = initialState, action) => {
         ...state,
         error: action.payload.message
       };
+    case UNMATCHED_PASSWORD:
+      return {
+        ...state,
+        error: action.payload
+      };
     case AUTH_ERROR:
     case LOGIN_FAIL:
       return {
@@ -73,7 +78,7 @@ export default (state = initialState, action) => {
         email: null,
         error: action.payload
       };
-    case RESET_FORM:
+    case CLEAR_ERRORS:
       return {
         ...state,
         error: null
