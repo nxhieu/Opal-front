@@ -3,7 +3,6 @@
     url: /
  */
 
-
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import {
@@ -55,7 +54,7 @@ class CommentsList extends Component {
           />
         ) : null}
         {comments.map(comment => (
-          <div key={comment._id}>
+          <div key={comment.imageUrl}>
             <Comment
               post_id={this.state.post_id}
               comment={comment}

@@ -160,7 +160,7 @@ class Comment extends Component {
 
         {this.props.comment.child !== null
           ? this.props.comment.child.map(comment => (
-              <div key={comment._id} className="child-comment">
+              <div key={comment.imageUrl} className="child-comment">
                 <Comment
                   post_id={this.props.post_id}
                   comment={comment}

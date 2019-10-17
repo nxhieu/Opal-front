@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
     case GETURI_FAIL:
       return {
         ...state,
-        message: action.payload.message
+        message: action.payload
       };
     default:
       return state;
