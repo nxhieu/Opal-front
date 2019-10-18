@@ -13,6 +13,7 @@ import {
   DELETECOMMENT_SUCCESS,
   EDITCOMMENT_FAIL,
   EDITCOMMENT_SUCCESS,
+  CREATECOMMENT_SUCCESS,
   COMMENT_FAIL
 } from "./types";
 import store from "../../src/store";
@@ -39,10 +40,8 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
       if (res.status !== 200) {
         dispatch({ type: COMMENT_FAIL, payload: data });
       } else {
-        //Clear the current comments inside the post
-        dispatch({ type: CLEAR_COMMENT });
-        //get all comments of a post back
-        getComment(postId)(dispatch);
+        const newCommentlist = createCommentObject(data.comment);
+        dispatch({ type: CREATECOMMENT_SUCCESS, payload: newCommentlist });
       }
     });
   } catch (error) {
@@ -92,8 +91,6 @@ export const deleteComment = (commentId, postId) => async dispatch => {
     } else {
       const deletedComment = deleleCommentObject(commentId);
       dispatch({ type: DELETECOMMENT_SUCCESS, payload: deletedComment });
-      // dispatch({ type: CLEAR_COMMENT });
-      // getComment(postId)(dispatch);
     }
   } catch (error) {
     dispatch({ type: GETURI_FAIL, payload: error });
@@ -131,7 +128,7 @@ export const closeComment = () => dispatch => {
 };
 
 //Delete Comments on the store
-function deleleCommentObject(commentId) {
+const deleleCommentObject = commentId => {
   const comments = store.getState().comment.comments;
 
   let copyComment = Object.assign([], comments);
@@ -148,10 +145,10 @@ function deleleCommentObject(commentId) {
   }
   removeComment(commentId, copyComment);
   return copyComment;
-}
+};
 
-//Edit imageUrl on specific comment on the store
-function editCommentObject(updatedComment) {
+//Edit imageUrl on specific comment on the store when user edit comment.
+const editCommentObject = updatedComment => {
   const comments = store.getState().comment.comments;
 
   let copyComment = Object.assign([], comments);
@@ -169,4 +166,32 @@ function editCommentObject(updatedComment) {
   }
   editComment(updatedComment._id, copyComment);
   return copyComment;
-}
+};
+// add newly created comment to the correct position on comment array
+
+const createCommentObject = newComment => {
+  const comments = store.getState().comment.comments;
+
+  let copyComment = Object.assign([], comments);
+
+  function addComment(parentsID, copyComment) {
+    //if parentsId is null => add to the outer comment array
+    if (parentsID === null) {
+      copyComment.push(newComment);
+      return copyComment;
+    }
+    // recursively lopp through comment array and child comment
+    for (let i in copyComment) {
+      //if a comment with id equal to parentID of the newly created comment, push to the child array of that comment.
+      if (copyComment[i]._id === parentsID) {
+        copyComment[i].child.push(newComment);
+        return copyComment;
+      }
+      if (copyComment[i].child && copyComment[i].child.length) {
+        addComment(parentsID, copyComment[i].child);
+      }
+    }
+  }
+  addComment(newComment.parentsID, copyComment);
+  return copyComment;
+};
