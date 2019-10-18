@@ -14,15 +14,18 @@ import About from "./components/about/about";
 import { Provider } from "react-redux";
 import { loaduser } from "./actions/authAction";
 import store from "./store";
+import Validator from "./components/validator/validator";
 import "./dist/css/main.css";
 
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
+       
         <Router>
           <Fragment>
             <Navbar />
+           
             <Switch>
               <Route exact path="/" component={Userpage} />
               <Route exact path="/register" component={Register} />
@@ -39,7 +42,7 @@ class App extends Component {
               />
               <Route exact path="/about" component={About} />
             </Switch>
-          </Fragment>
+          </Fragment>   
         </Router>
       </Provider>
     );

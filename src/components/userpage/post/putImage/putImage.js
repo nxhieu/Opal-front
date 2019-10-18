@@ -4,12 +4,16 @@ import { postImage } from "../../../../actions/postImageAction";
 import PropTypes from "prop-types";
 import "../../../../dist/css/postImage.css";
 import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
+import Validator from "../../../validator/validator";
+import { Provider } from "react-redux";
+import store from "../../../../reducers/validationReducer";
 
 class putImage extends Component {
   state = {
     file: null,
     fileUrl: null
   };
+  
   onFileChange = event => {
     if (event.target.files[0] != null) {
       this.setState({
@@ -34,6 +38,7 @@ class putImage extends Component {
     const { email } = this.props.authState;
     return (
       <div className="postImage">
+        
         <form onSubmit={this.onSubmit}>
           <div className="row">
             <p>Create post by {email}</p>
@@ -48,12 +53,15 @@ class putImage extends Component {
               <i className="addimage"></i>
               &nbsp; Choose a Image
             </label>
+            
+            
           </div>
           <div className="row">
             {fileUrl && <img src={fileUrl} alt="post" />}
           </div>
           <div className="row">
-            {file && <input type="submit" value="Submit" />}
+            {file && <Provider store={store}><Validator/></Provider>}
+           
           </div>
         </form>
       </div>

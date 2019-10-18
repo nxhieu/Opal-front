@@ -36,6 +36,7 @@ class Blogpost extends Component {
     }
   }
 
+  //when emoji is closed
   onCloseEmoji = () => {
     this.setState({ isShowEmoji: false });
   };
@@ -61,6 +62,7 @@ class Blogpost extends Component {
     );
   };
 
+  //changing the emoji depending which one is clicked be the user
   onChangeEmoji = emoji => {
     this.setState({ emoji: emoji, isReact: true });
   };

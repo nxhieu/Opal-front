@@ -1,3 +1,11 @@
+.validator ul li{
+ list-style: none;
+ float: left;
+ clear: left;
+ padding: 1rem 0 0 2rem;
+ 
+ 
+}
 .postImage {
   display: flex;
   flex-direction: column;
