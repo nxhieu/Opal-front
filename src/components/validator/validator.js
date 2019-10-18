@@ -42,26 +42,6 @@ validateImageWeight = imageFile => {
   }
 };
 
-validateImageWidth = imageFile => {
-  if (imageFile) {
-    const { maxWidth } = this.props;
-
-    if (imageFile.width > maxWidth) {
-      return `Image width must be less or equal to ${maxWidth}px`;
-    }
-  }
-};
-
-validateImageHeight = imageFile => {
-  if (imageFile) {
-    const { maxHeight } = this.props;
-
-    if (imageFile.height > maxHeight) {
-      return `Image height must be less or equal to ${maxHeight}px`;
-    }
-  }
-};
-
 renderFileInput = ({ input, type, meta }) => {
   const { mimeType } = this.props;
   return (
@@ -72,7 +52,6 @@ renderFileInput = ({ input, type, meta }) => {
         accept={mimeType}
         onChange={event => this.handleChange(event, input)}
       />
-        <Message negative header="Error:" content={meta.error} />
       {meta && meta.invalid && meta.error && (
           <Message negative header="Error:" content={meta.error} />
       )}
@@ -123,8 +102,6 @@ render() {
                   type="file"
                   validate={[
                     this.validateImageWeight,
-                    this.validateImageWidth,
-                    this.validateImageHeight,
                     this.validateImageFormat
                   ]}
                   component={this.renderFileInput}
