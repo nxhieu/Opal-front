@@ -16,7 +16,7 @@ class Blogpostdropdownlist extends Component {
   state = {
     create: false
   };
-
+  //open edit modal
   createEventHandler = () => {
     this.setState({ create: !this.state.create });
   };
