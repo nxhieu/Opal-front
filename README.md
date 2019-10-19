@@ -24,7 +24,7 @@ We take advantage of redux-thunk to pass in middleware. Our action creators will
 
 2. Front end file structure with redux.
 
-![react-redux work flow](https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/readme/Filfe+structure+Diagram.png)
+![react-redux work flow](<https://my-blog-1996.s3-ap-southeast-2.amazonaws.com/readme/Filfe+structure+Diagram+(1).png>)
 
 Actions folder: contains all action files.
 
@@ -66,6 +66,7 @@ I. Back-end.
     - All middleware in controllers will be pooled in routes folder using express.Router(function).
     - All error will be threw to error handling middleware with status code and error message.
     - The rest api follows MVC pattern with react app being the view part.
+    - System use AWS S3 bucket to store image.
 
 2. Library usage.
 
