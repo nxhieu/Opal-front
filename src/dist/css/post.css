@@ -16,6 +16,7 @@
 }
 
 /*   POST HEADER   */
+
 .blogpost-header {
   width: 100%;
   display: flex;
@@ -57,7 +58,6 @@
   font-size: 1rem;
   width: 7rem;
   background: #0078d7;
-  /* border: 0.05rem solid #0375d3; */
   overflow: hidden;
   z-index: 0;
 }
@@ -141,6 +141,7 @@
 }
 
 /* ======== LOADING POST ANIMATION ========*/
+
 .loading-post {
   display: flex;
   flex-direction: column;
@@ -165,6 +166,7 @@
   }
 
   /*   POST HEADER   */
+
   .blogpost-header {
     font-size: 0.9rem;
   }
@@ -181,20 +183,16 @@
   .blogpost-edit {
     width: 1.2rem;
     margin-right: 1.5rem;
-    /* position: absolute; */
   }
 
   .blogpost-edit-button {
     margin-top: 0.5rem;
     font-size: 2rem;
-    /* position: absolute; */
   }
 
   .edit-button-menu {
-    /* position: relative; */
     position: absolute;
     right: 2rem;
-    /* right: calc(0% + 1.2rem); */
     font-size: 0.7rem;
     width: 5rem;
   }
@@ -244,6 +242,7 @@
   }
 
   /* ======== LOADING POST ANIMATION ========*/
+
   .loading-post h4 {
     font-size: 1rem;
     text-align: center;

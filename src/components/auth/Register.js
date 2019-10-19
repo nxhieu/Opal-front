@@ -4,12 +4,11 @@
  */
 
 import React, { Component } from "react";
-import { register, reset } from "../../actions/authAction";
+import { register, clearErrors } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../dist/css/auth.css";
-
 
 class Register extends Component {
   state = {
@@ -23,24 +22,21 @@ class Register extends Component {
   };
 
   componentWillUnmount() {
-    this.props.reset();
+    this.props.clearErrors();
   }
 
-  //lifecycle method invoked when updating happens in the props or state
   componentDidUpdate() {
-    //if registering was succesful navigate to /card
+    // If user was successfully registered, navigate to main page ("/")
     const { isAuthenticated } = this.props.authState;
     if (isAuthenticated) {
       this.props.history.push("/");
     }
   }
 
-  //change state whenever user type in
   onChange = e => this.setState({ [e.target.name]: e.target.value });
-  // submit the form
+
   onSubmit = e => {
     e.preventDefault();
-    // spread operator to take out the state
     const {
       address,
       phone,
@@ -60,13 +56,11 @@ class Register extends Component {
       password === ""
     ) {
       console.log("Please type in all the details");
-    } else if (password !== password2) {
-      console.log("Password do not match");
     } else {
-      //call register function in redux function
       this.props.register({
         email,
         password,
+        password2,
         phone,
         firstname,
         lastname,
@@ -152,7 +146,7 @@ class Register extends Component {
           </form>
         </div>
         <div className="fail_authentication">
-          {this.props.authState.error !== "Incorrect username or password" ? (
+          {this.props.authState.error !== null ? (
             <h6>{this.props.authState.error}</h6>
           ) : null}
         </div>
@@ -163,19 +157,17 @@ class Register extends Component {
 
 Register.propTypes = {
   register: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   authState: PropTypes.object
 };
 
-//function that return the prop from store
 const mapStateToProps = state => ({
   authState: state.auth
 });
-//use withRouter from 'react-router-dom' to wrap the component so that component has access to history object
-// use connect from 'react-redux' to map State and functions from the authReducer to component. REMEMBER THE FIRST ARGUMENT PASSING THE STATE TO PROPS . THE SECOND ARGUMENT (e.g {register}) map function the props of Register component
+
 export default withRouter(
   connect(
     mapStateToProps,
-    { register, reset }
+    { register, clearErrors }
   )(Register)
 );

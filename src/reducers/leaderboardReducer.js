@@ -2,7 +2,6 @@
     Reducer for leaderboard feature: dispatch to redux store
 */
 
-
 import {
   GET_RANK_REQUEST,
   GET_RANK_SUCCESS,
@@ -35,7 +34,8 @@ export default (state = initialState, action) => {
       };
     default:
       return {
-        ...state
+        ...state,
+        message: action.payload
       };
   }
 };

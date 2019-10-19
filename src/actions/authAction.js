@@ -7,36 +7,42 @@ import {
   REGISTER_FAIL,
   REGISTER_SUCCESS,
   USER_LOADED,
-  AUTH_ERROR,
+  UNMATCHED_PASSWORD,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  RESET_FORM,
   CLEAR_ERRORS,
   USERLOADED_FAIL
 } from "./types";
 
-// REGISTER USER
+// REGISTER A NEW USER
 export const register = formData => async dispatch => {
   try {
-    const res = await fetch(`${window.apiAddress}/auth/register`, {
-      method: "PUT",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-type": "application/json"
-      }
-    });
-
-    const data = await res.json();
-
-    if (res.status !== 200 && res.status !== 201) {
-      dispatch({ type: REGISTER_FAIL, payload: data });
+    // Check if the password and confirm password are same
+    if (formData.password !== formData.password2) {
+      dispatch({
+        type: UNMATCHED_PASSWORD,
+        payload: "Password does not match"
+      });
     } else {
-      dispatch({ type: REGISTER_SUCCESS, payload: data });
+      const res = await fetch(`${window.apiAddress}/auth/register`, {
+        method: "PUT",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-type": "application/json"
+        }
+      });
+
+      const data = await res.json();
+
+      if (res.status !== 200 && res.status !== 201) {
+        dispatch({ type: REGISTER_FAIL, payload: data });
+      } else {
+        dispatch({ type: REGISTER_SUCCESS, payload: data });
+      }
     }
   } catch (error) {
-    console.log("here");
-    console.log(error);
+    dispatch({ type: REGISTER_FAIL, payload: error });
   }
 };
 
@@ -52,12 +58,12 @@ export const login = formData => async dispatch => {
     });
     const data = await res.json();
     if (res.status !== 200) {
-      dispatch({ type: LOGIN_FAIL, payload: "error" });
+      dispatch({ type: LOGIN_FAIL });
     } else {
       dispatch({ type: LOGIN_SUCCESS, payload: data });
     }
   } catch (err) {
-    console.log(err);
+    dispatch({ type: LOGIN_FAIL, payload: err });
   }
 };
 
@@ -87,10 +93,6 @@ export const loaduser = () => async dispatch => {
   }
 };
 
-export const reset = () => async dispatch => {
-  try {
-    dispatch({ type: RESET_FORM });
-  } catch (error) {
-    console.log(error);
-  }
+export const clearErrors = () => async dispatch => {
+  dispatch({ type: CLEAR_ERRORS });
 };

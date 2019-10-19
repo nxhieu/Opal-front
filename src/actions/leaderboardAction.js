@@ -5,6 +5,7 @@
 
 import { GET_RANK_REQUEST, GET_RANK_SUCCESS, GET_RANK_FAIL } from "./types";
 
+// Get the user list and number of post for the leaderboard ranking
 export const getRank = () => async dispatch => {
   try {
     dispatch({ type: GET_RANK_REQUEST });
@@ -21,7 +22,7 @@ export const getRank = () => async dispatch => {
   } catch (error) {
     dispatch({
       type: GET_RANK_FAIL,
-      payload: "err"
+      payload: error
     });
   }
 };

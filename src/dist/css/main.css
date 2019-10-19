@@ -1,5 +1,4 @@
 * {
-  /* width: 100%; */
   margin: 0;
   padding: 0;
 }
@@ -45,20 +44,14 @@ h3 {
 }
 
 /*WELCOME MESSAGE*/
+
 .welcome {
-  /* display: inline-flex; */
-  /* background-color: white; */
   justify-content: center;
   vertical-align: middle;
-  /* border: 1px solid #ddd; */
-  /* margin-left: 1.3rem; */
   padding: 0rem 1.5rem;
   width: fit-content;
   height: 60px;
   border-radius: 10px;
-  /* -webkit-box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71);
-  -moz-box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71);
-  box-shadow: 10px 10px 33px -19px rgba(0, 0, 0, 0.71); */
 }
 
 .welcome h3 {

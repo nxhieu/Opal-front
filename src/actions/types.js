@@ -4,15 +4,14 @@
 */
 
 //User Auth
+export const UNMATCHED_PASSWORD = "UNMATCHED_PASSWORD";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAIL = "REGISTER_FAIL";
 export const USER_LOADED = "USER_LOADED";
 export const USERLOADED_FAIL = "USERLOADED_FAIL";
-export const AUTH_ERROR = "AUTH_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGOUT = "LOGOUT";
-export const RESET_FORM = "RESET_FORM";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 //Post Image

@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from "react";
-import { login, reset } from "../../actions/authAction";
+import { login, clearErrors } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -14,7 +14,7 @@ class Login extends Component {
   state = { email: "", password: "" };
 
   componentWillUnmount() {
-    this.props.reset();
+    this.props.clearErrors();
   }
 
   componentDidUpdate() {
@@ -25,12 +25,10 @@ class Login extends Component {
     }
   }
 
-  //Change state whenever user type in the input fields
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  //login
   onSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
@@ -74,7 +72,7 @@ class Login extends Component {
           </form>
         </div>
         <div className="fail_authentication">
-          {this.props.authState.error === "Incorrect username or password" ? (
+          {this.props.authState.error !== null ? (
             <h6>{this.props.authState.error}</h6>
           ) : null}
         </div>
@@ -85,18 +83,16 @@ class Login extends Component {
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-  reset: PropTypes.func.isRequired
+  clearErrors: PropTypes.func.isRequired
 };
 
-//function that return the prop from store
 const mapStateToProps = state => ({
   authState: state.auth
 });
-//use withRouter from 'react-router-dom' to wrap the component so that component has access to history object
-// use connect from 'react-redux' to map State and functions from the authReducer to component
+
 export default withRouter(
   connect(
     mapStateToProps,
-    { login, reset }
+    { login, clearErrors }
   )(Login)
 );
