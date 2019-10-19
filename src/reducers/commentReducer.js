@@ -32,7 +32,6 @@ export default (state = initialState, action) => {
         message: action.payload.message,
         comments: [...state.comments, ...action.payload.comments]
       };
-
     case CREATECOMMENT_SUCCESS:
     case DELETECOMMENT_SUCCESS:
     case EDITCOMMENT_SUCCESS:

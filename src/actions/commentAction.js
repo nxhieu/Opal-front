@@ -41,6 +41,7 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
       if (res.status !== 200) {
         dispatch({ type: COMMENT_FAIL, payload: data });
       } else {
+        //get new commentlist
         const newCommentlist = createCommentObject(data.comment);
         dispatch({ type: CREATECOMMENT_SUCCESS, payload: newCommentlist });
       }
@@ -75,7 +76,7 @@ export const getComment = postId => async dispatch => {
 };
 
 //send the commentId to backend to delete the comment
-export const deleteComment = (commentId, postId) => async dispatch => {
+export const deleteComment = commentId => async dispatch => {
   try {
     const res = await fetch(
       `${window.apiAddress}/comment/deleteComment?commentId=${commentId}`,
@@ -91,6 +92,7 @@ export const deleteComment = (commentId, postId) => async dispatch => {
     if (res.status !== 201) {
       dispatch({ type: COMMENT_FAIL, payload: data });
     } else {
+      //get new commentlist
       const deletedComment = deleleCommentObject(commentId);
       dispatch({ type: DELETECOMMENT_SUCCESS, payload: deletedComment });
     }
@@ -99,7 +101,7 @@ export const deleteComment = (commentId, postId) => async dispatch => {
   }
 };
 
-export const editComment = (comment, file, postId) => async dispatch => {
+export const editComment = (comment, file) => async dispatch => {
   try {
     //edit image on s3 . use the new imageUrl to edit a new comment
     editImage(comment, file, "comment")(dispatch).then(async imageUrl => {
@@ -115,6 +117,7 @@ export const editComment = (comment, file, postId) => async dispatch => {
       if (res.status !== 201) {
         dispatch({ type: COMMENT_FAIL, payload: data });
       } else {
+        //get new commentlist
         const updatedComments = editCommentObject(data.comment);
         dispatch({ type: CLEAR_COMMENT });
         dispatch({ type: EDITCOMMENT_SUCCESS, payload: updatedComments });
@@ -134,12 +137,15 @@ const deleleCommentObject = commentId => {
   const comments = store.getState().comment.comments;
 
   let copyComment = Object.assign([], comments);
+  // recursively loop through comment array and child comment.
   function removeComment(commentId, copyComment) {
     for (let i in copyComment) {
+      //delete  comment if a comment with that id was found
       if (copyComment[i]._id === commentId) {
         copyComment.splice(i, 1);
         return copyComment;
       }
+      //if child field exist and an array exist function call it self again.
       if (copyComment[i].child && copyComment[i].child.length) {
         removeComment(commentId, copyComment[i].child);
       }
@@ -154,13 +160,15 @@ const editCommentObject = updatedComment => {
   const comments = store.getState().comment.comments;
 
   let copyComment = Object.assign([], comments);
-
+  // recursively loop through comment array and child comment.
   function editComment(commentId, copyComment) {
     for (let i in copyComment) {
+      //replace new imageUrl if comment was found
       if (copyComment[i]._id === commentId) {
         copyComment[i].imageUrl = updatedComment.imageUrl;
         return copyComment;
       }
+      //if child field exist and an array exist function call it self again.
       if (copyComment[i].child && copyComment[i].child.length) {
         editComment(commentId, copyComment[i].child);
       }
@@ -182,13 +190,14 @@ const createCommentObject = newComment => {
       copyComment.push(newComment);
       return copyComment;
     }
-    // recursively lopp through comment array and child comment
+    // recursively loop through comment array and child comment
     for (let i in copyComment) {
       //if a comment with id equal to parentID of the newly created comment, push to the child array of that comment.
       if (copyComment[i]._id === parentsID) {
         copyComment[i].child.push(newComment);
         return copyComment;
       }
+      //if child field exist and an array exist function call it self again.
       if (copyComment[i].child && copyComment[i].child.length) {
         addComment(parentsID, copyComment[i].child);
       }

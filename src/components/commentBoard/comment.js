@@ -77,7 +77,7 @@ class Comment extends Component {
   editsubmitImageHandler = event => {
     event.preventDefault();
     const replyfile = this.state.replyfile;
-    this.props.editComment(this.props.comment, replyfile, this.state.post_id);
+    this.props.editComment(this.props.comment, replyfile);
     this.editCommentHandler();
   };
 
@@ -126,9 +126,7 @@ class Comment extends Component {
               <label
                 htmlFor={_id}
                 id="delete-com"
-                onClick={() =>
-                  this.props.deleteComment(_id, this.props.post_id)
-                }
+                onClick={() => this.props.deleteComment(_id)}
               >
                 Delete
               </label>

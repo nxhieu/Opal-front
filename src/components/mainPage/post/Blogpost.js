@@ -25,7 +25,7 @@ class Blogpost extends Component {
   };
 
   componentDidMount() {
-    //check whether user has reacted to a post
+    //check whether user has reacted to a post if yes change local state
     const post = this.props.post;
     const { userId } = this.props.authState;
     const emoji = post.emoji.find(emoji => emoji.user === userId);
@@ -47,6 +47,7 @@ class Blogpost extends Component {
     this.setState(
       () => ({ isShowEmoji: !this.state.isShowEmoji }),
       () => {
+        // if user already react to a post => delete the emoji
         if (
           this.state.isReact &&
           this.state.emoji !== "Thumb" &&

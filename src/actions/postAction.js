@@ -27,6 +27,7 @@ export const createPost = file => async dispatch => {
   //Call utility function to post image to s3 . then create a post in the database with String Url
   postImage(file)(dispatch).then(async imageUrl => {
     try {
+      // create post
       const blogRes = await fetch(`${window.apiAddress}/post/createPost`, {
         method: "POST",
         body: JSON.stringify({ imageUrl }),
