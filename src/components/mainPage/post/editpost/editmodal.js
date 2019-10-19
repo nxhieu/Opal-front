@@ -1,7 +1,7 @@
 import Editpost from "./editpost";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "../../../../dist/css/editmodal.css";
+import "../../../../css/editmodal.css";
 
 class editmodal extends Component {
   render() {

@@ -12,7 +12,7 @@ import { getPosts, increasePage, clearPost } from "../../../actions/postAction";
 import Blogpost from "./Blogpost";
 import PropTypes from "prop-types";
 import loading from "../../../img/UI/loading.gif";
-import "../../../dist/css/post.css";
+import "../../../css/post.css";
 
 class Blogposts extends Component {
   componentWillMount() {

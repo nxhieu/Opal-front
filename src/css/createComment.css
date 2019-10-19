@@ -69,7 +69,6 @@ input[type="file"] {
   background-color: white;
   width: fit-content;
   margin-right: 1rem;
-  /* margin: auto; */
 }
 
 .comment form .row [type="submit"]:hover,

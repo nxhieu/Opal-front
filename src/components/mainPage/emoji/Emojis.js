@@ -5,7 +5,7 @@
 import React, { Component } from "react";
 import Emoji from "./Emoji";
 import PropTypes from "prop-types";
-import "../../../dist/css/emoji.css";
+import "../../../css/emoji.css";
 import { connect } from "react-redux";
 import { postEmoji } from "../../../actions/postAction";
 

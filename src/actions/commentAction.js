@@ -19,6 +19,7 @@ import {
 import store from "../../src/store";
 import { postImage, editImage } from "./imageAction";
 
+//post the comment to backend
 export const postComment = (postId, file, parentsId) => async dispatch => {
   try {
     postImage(file)(dispatch).then(async imageUrl => {
@@ -49,6 +50,7 @@ export const postComment = (postId, file, parentsId) => async dispatch => {
   }
 };
 
+//get the comment list from backend by providing the postId to backend
 export const getComment = postId => async dispatch => {
   try {
     dispatch({ type: GET_COMMENT_REQUEST });
@@ -72,6 +74,7 @@ export const getComment = postId => async dispatch => {
   }
 };
 
+//send the commentId to backend to delete the comment
 export const deleteComment = (commentId, postId) => async dispatch => {
   try {
     const res = await fetch(
@@ -84,7 +87,6 @@ export const deleteComment = (commentId, postId) => async dispatch => {
       }
     );
 
-    // console.log(deleleCommentObject(commentId));
     const data = await res.json();
     if (res.status !== 201) {
       dispatch({ type: COMMENT_FAIL, payload: data });

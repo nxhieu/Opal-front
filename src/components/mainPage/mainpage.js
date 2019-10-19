@@ -13,11 +13,11 @@ import Welcome from "./welcome/Welcome";
 import { connect } from "react-redux";
 import { loaduser } from "../../actions/authAction";
 import PropTypes from "prop-types";
-import "../../dist/css/main.css";
-import "../../dist/css/leaderboard.css";
-import "../../dist/css/userPage.css";
+import "../../css/main.css";
+import "../../css/leaderboard.css";
+import "../../css/userPage.css";
 
-class Userpage extends Component {
+class Mainpage extends Component {
   render() {
     return (
       <Fragment>
@@ -41,7 +41,7 @@ class Userpage extends Component {
   }
 }
 
-Userpage.propTypes = {
+Mainpage.propTypes = {
   authState: PropTypes.object.isRequired
 };
 
@@ -52,4 +52,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loaduser }
-)(Userpage);
+)(Mainpage);

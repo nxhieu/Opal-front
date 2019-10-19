@@ -1,6 +1,6 @@
 /*
     commentsList component render list of commments of a single post by mapping each comment.
-    url: /
+    url: ./
  */
 
 import React, { Component } from "react";
@@ -21,6 +21,7 @@ class CommentsList extends Component {
     post_id: this.props.post_id
   };
 
+  //to see whether the user have choose file for the comment and get the img url and the file
   fileChangeHandler = event => {
     if (event.target.files[0] != null) {
       this.setState({
@@ -30,6 +31,8 @@ class CommentsList extends Component {
     }
   };
 
+  //to see whether the comment is submitted and post the comment to backend to store in database
+  //and update the state
   submitImageHandler = event => {
     event.preventDefault();
     const file = this.state.file;

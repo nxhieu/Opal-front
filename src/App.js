@@ -8,11 +8,10 @@ import {
 import Navbar from "./components/layout/Navbar";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
-import Userpage from "./components/userpage/userpage";
-import About from "./components/about/about";
+import Mainpage from "./components/mainPage/mainpage";
 import { Provider } from "react-redux";
 import store from "./store";
-import "./dist/css/main.css";
+import "./css/main.css";
 
 class App extends Component {
   render() {
@@ -22,7 +21,7 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Switch>
-              <Route exact path="/" component={Userpage} />
+              <Route exact path="/" component={Mainpage} />
               <Route exact path="/register" component={Register} />
               <Route
                 exact
@@ -35,7 +34,6 @@ class App extends Component {
                   )
                 }
               />
-              <Route exact path="/about" component={About} />
             </Switch>
           </Fragment>
         </Router>

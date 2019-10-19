@@ -1,6 +1,6 @@
 /*
     This comment component render comment (and reply to comment) of  a post 
-    url: /
+    url: ./
  */
 
 import React, { Component, Fragment } from "react";
@@ -13,7 +13,7 @@ import {
 import PropTypes from "prop-types";
 import CreateReply from "./createReply";
 import EditComment from "./editComment";
-import "../../dist/comment/comment.css";
+import "../../css/comment.css";
 
 class Comment extends Component {
   state = {
@@ -24,6 +24,7 @@ class Comment extends Component {
     replyfile: null
   };
 
+  //to see whether the user have choose file for the reply and get the img url and the file
   replychangeHandler = event => {
     if (event.target.files[0] != null) {
       this.setState({
@@ -33,6 +34,7 @@ class Comment extends Component {
     }
   };
 
+  //to see whether the reply is submitted and post the reply to backend to store in database
   replysubmitImageHandler = event => {
     event.preventDefault();
     const replyfile = this.state.replyfile;
@@ -44,6 +46,7 @@ class Comment extends Component {
     this.replyCommentHandler();
   };
 
+  // update the state for the reply
   replyCommentHandler = () => {
     //mount or unmount the editComment, createReply component if clicked on reply button
     if (this.state.editComment === false) {

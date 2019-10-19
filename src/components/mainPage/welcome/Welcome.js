@@ -6,7 +6,7 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import "../../../dist/css/main.css";
+import "../../../css/main.css";
 
 const date = new Date();
 const hours = date.getHours();

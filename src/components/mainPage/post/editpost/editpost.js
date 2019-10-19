@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { editPost } from "../../../../actions/postAction";
 import PropTypes from "prop-types";
-import "../../../../dist/css/postImage.css";
+import "../../../../css/postImage.css";
 
 class Editpost extends Component {
   state = {

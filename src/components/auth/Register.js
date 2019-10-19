@@ -8,7 +8,7 @@ import { register, clearErrors } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import "../../dist/css/auth.css";
+import "../../css/auth.css";
 
 class Register extends Component {
   state = {
@@ -35,6 +35,7 @@ class Register extends Component {
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
+  // Submit the registration form
   onSubmit = e => {
     e.preventDefault();
     const {

@@ -5,7 +5,7 @@
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import "../../dist/comment/createComment.css";
+import "../../css/createComment.css";
 
 class editComment extends Component {
   render() {

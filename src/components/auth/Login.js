@@ -8,7 +8,7 @@ import { login, clearErrors } from "../../actions/authAction";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-import "../../dist/css/auth.css";
+import "../../css/auth.css";
 
 class Login extends Component {
   state = { email: "", password: "" };
@@ -29,6 +29,7 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  // Submit the login form
   onSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;

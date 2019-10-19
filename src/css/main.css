@@ -8,19 +8,6 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-.about-page-content {
-  margin: 6rem auto;
-  width: 75%;
-  text-align: justify;
-  line-height: 1.4rem;
-}
-
-.about-page-content h2,
-h3 {
-  padding-top: 20px;
-  color: purple;
-}
-
 .blogpost-leaderboard {
   display: flex;
   flex-direction: row;
@@ -72,11 +59,6 @@ h3 {
 }
 
 @media only screen and (max-width: 768px) {
-  .about-page-content {
-    width: 20rem;
-    line-height: 1.2rem;
-  }
-
   .blogpost-column {
     width: 100%;
     margin: 5rem 0;

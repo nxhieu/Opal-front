@@ -11,8 +11,8 @@ import Blogpostdropdownlist from "./Blogpostdropdownlist";
 import Emojis from "../emoji/Emojis";
 import CommentModal from "../../commentBoard/commentModal";
 import PropTypes from "prop-types";
-import "../../../dist/css/emoji.css";
-import "../../../dist/css/post.css";
+import "../../../css/emoji.css";
+import "../../../css/post.css";
 
 class Blogpost extends Component {
   state = {
