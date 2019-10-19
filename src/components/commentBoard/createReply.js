@@ -2,12 +2,15 @@
     createReply render component allowed user to create a new reply to a comment 
     url: /
  */
+/*
+    createReply render component allowed user to edit a comment or a reply to a comment 
+    url: /
+ */
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "../../css/createComment.css";
 
-//the component for create reply
 class CreateReply extends Component {
   render() {
     return (
@@ -54,7 +57,7 @@ CreateReply.propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   replyfileUrl: PropTypes.string,
-  email: PropTypes.string.isRequired
+  email: PropTypes.string
 };
 
 export default CreateReply;

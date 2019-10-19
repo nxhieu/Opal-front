@@ -9,7 +9,7 @@ class Editpost extends Component {
     file: null,
     fileUrl: null
   };
-
+  // when user change file submission
   onFileChange = event => {
     if (event.target.files[0] != null) {
       this.setState({

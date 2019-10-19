@@ -26,14 +26,16 @@ class Blogposts extends Component {
     this.loadPosts(1);
   }
 
+  //remove event listener when component get unmounted
   componentWillUnmount() {
     window.removeEventListener("scroll", this.onScroll, false);
     this.props.clearPost();
   }
-
+  // only load posts each 1 second
   handleScroll = debounce(e => {
     const { error, isLoading, hasMore } = this.props.postState;
     if (error || isLoading || !hasMore) return;
+    //loadpost when user scroll to bottoms
     if (
       window.innerHeight + window.pageYOffset >=
       document.body.offsetHeight - 2

@@ -37,11 +37,12 @@ class Blogpost extends Component {
       }));
     }
   }
-
+  //close emoji modal when click one of the emoji
   onCloseEmoji = () => {
     this.setState({ isShowEmoji: false });
   };
 
+  // open emoji modal when click on the react icon and delete emoji react if needed
   onShowEmoji = emoji => {
     //use call back to prevent asynchrounous error
     this.setState(
@@ -64,15 +65,17 @@ class Blogpost extends Component {
     );
   };
 
+  //when user change their reaction.
   onChangeEmoji = emoji => {
     this.setState({ emoji: emoji, isReact: true });
   };
 
+  //open comment modal
   createEventHandler = () => {
     this.setState({ openModal: true });
     this.props.getComment(this.state.post_id);
   };
-
+  // close comment modal
   cancelEventHandler = () => {
     this.setState({ openModal: false });
     this.props.closeComment();
