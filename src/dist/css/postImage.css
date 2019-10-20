@@ -4,8 +4,12 @@
  clear: left;
  padding: 1rem 0 0 2rem;
  
- 
 }
+
+.validation-error {
+  color:red;
+}
+
 .postImage {
   display: flex;
   flex-direction: column;

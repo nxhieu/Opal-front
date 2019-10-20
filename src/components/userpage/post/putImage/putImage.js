@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import "../../../../dist/css/postImage.css";
 import placeholder from "../../../../img/blogpost/placeholder/image-placeholder.jpg";
 import Validator from "../../../validator/validator";
-import { Provider } from "react-redux";
-import store from "../../../../reducers/validationReducer";
+import { Form } from "semantic-ui-react";
+
 
 class putImage extends Component {
   state = {
@@ -33,6 +33,7 @@ class putImage extends Component {
     });
   };
 
+
   render() {
     const { fileUrl, file } = this.state;
     const { email } = this.props.authState;
@@ -51,7 +52,7 @@ class putImage extends Component {
             />
             <label htmlFor="post_uploadFile">
               <i className="addimage"></i>
-              &nbsp; Choose a Image
+              &nbsp; Choose an Image
             </label>
             
             
@@ -60,7 +61,7 @@ class putImage extends Component {
             {fileUrl && <img src={fileUrl} alt="post" />}
           </div>
           <div className="row">
-            {file && <Provider store={store}><Validator/></Provider>}
+            {file && <Validator/> }
            
           </div>
         </form>
