@@ -1,5 +1,5 @@
 HEADPAGE DOCUMENTATION: (Advanced Internet Programming Spring 2019)
-
+URl: https://gifted-johnson-588903.netlify.com
 team member:
 Nguyen Xuan Hieu : 12803577
 Yi-An, Chen (Anita) : 13067475
@@ -12,7 +12,7 @@ Kira Khristosova: 13516176
 
 The details of A3 project is as follow:
 
-I. Front-end.
+I. Front-end. (deploy to netlify)
 
 1. Redux and Redux thunk usage.
 
@@ -57,7 +57,7 @@ updating image involve deleting image and create new image.
 
 All presigned url has expiry time.
 
-I. Back-end.
+I. Back-end. (deploy to AWS Elastic Beanstalk)
 
 1. System architecture.
 
