@@ -21,10 +21,16 @@ if (hours < 12) {
 }
 
 class Welcome extends Component {
+  
+  displayName(){
+    if(this.props.authState.firstName == null)
+      return "Guest"
+    return this.props.authState.firstName; 
+  }  
   render() {
     return (
       <Fragment>
-        <h3>{`Good ${timeOfDay} ${this.props.authState.firstName}!`}</h3>
+        <h3>{`Good ${timeOfDay} ${this.displayName()} !`}</h3>
       </Fragment>
     );
   }
